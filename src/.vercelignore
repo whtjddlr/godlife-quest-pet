@@ -1,0 +1,17 @@
+.env
+.env.local
+.edge*/
+data/
+dist/
+*.log
+*-preview*.png
+home-tamagotchi*.png
+mission-ui-preview*.png
+quest-tabs-fixed-preview*.png
+quest-window-compact-preview*.png
+pet-dex-preview*.png
+accessory-ui-preview*.png
+notification-inbox-preview.png
+room-feature-preview.png
+profile-edit-preview.png
+starter-preview.png

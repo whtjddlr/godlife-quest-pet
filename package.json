@@ -1,0 +1,11 @@
+{
+  "name": "godlife-quest-pet",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "web-push": "3.6.7"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
