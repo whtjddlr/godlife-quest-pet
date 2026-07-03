@@ -13536,3 +13536,190 @@ a {
   padding: 8px 10px;
   border-radius: 12px;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 딥 스테이트 스윕
+   퀘스트 상세·사진 인증·그룹원 카드·색상 변경·보관함 등 깊은 상태 화면에
+   남아 있던 레트로 요소(주황 그라데이션, 2px 아웃라인)를 시스템 언어로 정리.
+   -------------------------------------------------------------------------- */
+
+/* --- 퀘스트 상세 모달 --- */
+.quest-action {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.quest-action:active {
+  background: var(--mint-dark);
+}
+
+.quest-item {
+  border: 1px solid var(--soft-line);
+}
+
+.quest-edit,
+.quest-share {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.quest-pager button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.quest-swipe-hint {
+  border: 1px dashed var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+/* --- 사진 인증 모달 --- */
+.proof-camera-toolbar button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.proof-camera-toolbar button:first-child {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.profile-card input[type="file"] {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+}
+
+.profile-card input[type="file"]::file-selector-button {
+  border: 1px solid rgba(53, 163, 129, 0.4);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  font-weight: 700;
+}
+
+.proof-actions {
+  background: transparent;
+}
+
+.proof-actions .ghost,
+.temptation-confirm-card .proof-actions .ghost {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+/* --- 그룹원 카드 --- */
+.group-member-bars span {
+  border: none;
+  background: rgba(35, 43, 54, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.group-member-bars span::before {
+  background: var(--mint);
+}
+
+.group-member-bars em {
+  color: var(--ink);
+}
+
+.member-mission-button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+/* --- 상점: 색상 변경 스와치 / 보관함 필터 --- */
+.palette-option {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.palette-option.active {
+  border-color: var(--mint);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
+}
+
+.accessory-filter-bar button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.accessory-filter-bar button.active,
+.accessory-filter-bar button[aria-pressed="true"] {
+  border-color: var(--mint);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* 안내(빈 상태) 카드: 2px 아웃라인 → 헤어라인 */
+.proof-empty {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+/* 펫 도감 희소성 카드: 라디얼 핑크 → 옅은 플랫 틴트 */
+.pet-card.rare {
+  background: #f3f7fd;
+}
+
+.pet-card.epic {
+  background: #f6f2fd;
+}
+
+.pet-card.legend {
+  background: #fdf3f0;
+}
+
+/* --- 프로필: 테마색 선택 스와치 --- */
+.theme-swatch-button {
+  border: 1px solid var(--soft-line);
+  box-shadow: none;
+}
+
+.theme-swatch-button.active,
+.theme-swatch-button[aria-pressed="true"] {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.2);
+}
+
+/* 딥 스윕 마감: 퀘스트 칩·링크 버튼, 인증 하단 스티키 띠 */
+.quest-type,
+.quest-links .link-add,
+.quest-links .quest-link {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.quest-item .quest-type {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+}
+
+/* 스티키 푸터는 스크롤 내용 위에 뜨므로 배경이 필요 — 크림 대신 흰색 페이드 */
+.proof-modal .proof-actions {
+  background: linear-gradient(rgba(255, 255, 255, 0), #ffffff 24%);
+  box-shadow: none;
+}
