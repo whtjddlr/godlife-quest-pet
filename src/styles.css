@@ -13440,3 +13440,99 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 상점 사이징 패스
+   빈 카드가 그려지던 버그를 고치고, 성장 보상 그리드·뽑기 카드가
+   내용에 맞는 크기만 차지하도록 압축한다.
+   -------------------------------------------------------------------------- */
+
+/* hidden 속성이 display:grid 규칙에 눌려 빈 카드 띠로 그려지던 버그 수정 */
+[hidden] {
+  display: none !important;
+}
+
+/* 성장 보상: 셀 패딩·간격 압축 (2열 유지) */
+.level-reward-card {
+  padding: 12px;
+}
+
+.level-reward-list {
+  gap: 6px;
+}
+
+.level-reward-list div {
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+.level-reward-list div.unlocked {
+  background: var(--accent-soft);
+}
+
+.level-reward-list em {
+  margin-bottom: 1px;
+}
+
+/* 뽑기 카드: 옆 열 전체를 차지하던 거대 버튼 → 하단 일반 버튼 */
+.gacha-card {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+}
+
+.gacha-card button {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  background: var(--mint);
+  color: #ffffff;
+}
+
+.gacha-card button:disabled {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  opacity: 1;
+}
+
+/* 코인 비용 배지: 레트로 옐로 → 앰버 소프트 */
+.gacha-cost {
+  border: 1px solid rgba(237, 162, 59, 0.45);
+  background: var(--amber-soft);
+  color: #8a5a12;
+}
+
+/* 확률 칩: 큰 블록 → 컴팩트 칩 */
+.gacha-odd {
+  min-height: 34px;
+  padding: 6px 9px;
+  border-radius: 10px;
+}
+
+.gacha-odds {
+  gap: 6px;
+}
+
+/* 최근 결과 필: 내용 높이만 차지 */
+.gacha-result-pill {
+  min-height: 0;
+  padding: 9px 11px;
+}
+
+/* 우정 보상 행 압축 */
+.friend-reward-card {
+  padding: 12px;
+}
+
+.friend-reward-list {
+  gap: 6px;
+}
+
+.friend-reward-list > div {
+  padding: 8px 10px;
+  border-radius: 12px;
+}
