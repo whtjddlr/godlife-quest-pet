@@ -12344,7 +12344,7 @@ body {
 .top-actions .icon-button,
 .top-actions .mini-action-button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12382,7 +12382,7 @@ body {
 
 .care-actions button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
   transition: transform 0.12s ease, background 0.12s ease;
 }
@@ -12401,7 +12401,7 @@ body {
 .home-mission-card {
   border: 1px solid var(--soft-line);
   border-left: 4px solid var(--mint);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
 }
 
@@ -12425,7 +12425,7 @@ body {
 .home-mini-metrics,
 .xp-progress-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12433,7 +12433,7 @@ body {
   border: 1px solid rgba(237, 162, 59, 0.45);
   background: var(--amber-soft);
   box-shadow: none;
-  color: #8a5a12;
+  color: var(--amber-ink, #8a5a12);
 }
 
 .condition-card .label {
@@ -12465,7 +12465,7 @@ body {
 
 /* --- 하단 내비게이션: 흰 바 + 액센트 소프트 활성 필 --- */
 .tab-bar {
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--shadow);
 }
 
@@ -12491,7 +12491,7 @@ body {
 /* --- 퀘스트 화면 --- */
 .mission-category-head {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
 }
 
@@ -12506,14 +12506,14 @@ body {
 
 .quest-list-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
 .quest-list-action.request {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -12523,7 +12523,7 @@ body {
 
 .quest-list-action.waiting {
   background: var(--amber-soft);
-  color: #8a5a12;
+  color: var(--amber-ink, #8a5a12);
   border: 1px solid rgba(237, 162, 59, 0.4);
 }
 
@@ -12540,7 +12540,7 @@ body {
 .login-card,
 .group-gate-card {
   border: 1px solid var(--ui-soft-border);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--shadow);
 }
 
@@ -12575,7 +12575,7 @@ textarea:focus {
 .profile-submit {
   background: var(--mint);
   border: none;
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   font-weight: 800;
   box-shadow: none;
 }
@@ -12588,7 +12588,7 @@ textarea:focus {
 /* --- 온보딩 (시작하기 모달) --- */
 .solo-start-button {
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
 }
 
 .gate-solo-note {
@@ -12629,7 +12629,7 @@ textarea:focus {
 }
 
 .room-gate-join button {
-  background: #ffffff;
+  background: var(--surface-strong);
   border: 1px solid var(--soft-line);
   color: var(--ink);
 }
@@ -12668,7 +12668,7 @@ textarea:focus {
 /* --- 퀘스트 액션: 후반부 그라데이션 규칙보다 우선순위를 맞춰 재정의 --- */
 .quest-list-actions .quest-list-action.request {
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -12678,7 +12678,7 @@ textarea:focus {
 
 .quest-list-actions .quest-list-action.waiting {
   background: var(--amber-soft);
-  color: #8a5a12;
+  color: var(--amber-ink, #8a5a12);
   box-shadow: inset 0 0 0 1px rgba(237, 162, 59, 0.4);
 }
 
@@ -12689,7 +12689,7 @@ textarea:focus {
 }
 
 .quest-list-actions .quest-list-detail {
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   box-shadow: inset 0 0 0 1px var(--soft-line);
 }
@@ -12698,8 +12698,8 @@ textarea:focus {
 .mission-category-head,
 body.feature-window-open .mission-category-head {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
-  background-color: #ffffff;
+  background: var(--surface-strong);
+  background-color: var(--surface-strong);
 }
 
 .mission-category-head strong {
@@ -12719,7 +12719,7 @@ body.feature-window-open .mission-category-head span {
 
 .mission-category-head::after {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   font-weight: 800;
 }
@@ -12727,7 +12727,7 @@ body.feature-window-open .mission-category-head span {
 /* --- 풀스크린 창 뒤로가기: 두꺼운 레트로 아웃라인 → 조용한 원형 --- */
 #featureWindowClose {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
   color: var(--ink);
 }
@@ -12749,12 +12749,12 @@ body.feature-window-open .mission-category-head span {
 
 .mission-category.open .mission-category-head em {
   border: 1px solid rgba(53, 163, 129, 0.4);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--mint-dark);
 }
 
 .mission-category.open .mission-category-head::after {
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--mint-dark);
 }
 
@@ -12790,7 +12790,7 @@ body.feature-window-open .mission-category-head span {
 .room-card,
 #panel-verify .room-card:not(.empty) {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
 }
 
@@ -12810,7 +12810,7 @@ body.feature-window-open .mission-category-head span {
 .group-reward-card,
 #panel-verify .group-reward-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12827,7 +12827,7 @@ body.feature-window-open .mission-category-head span {
 .group-member-card,
 #panel-verify .group-member-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12835,7 +12835,7 @@ body.feature-window-open .mission-category-head span {
 .friend-reward-card,
 .level-reward-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
 }
 
@@ -12856,7 +12856,7 @@ body.feature-window-open .mission-category-head span {
 .friend-reward-list button,
 .level-reward-list button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -12865,13 +12865,13 @@ body.feature-window-open .mission-category-head span {
 .level-reward-list .ready button {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
 }
 
 /* --- 알림함 --- */
 .notification-item {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12898,14 +12898,14 @@ body.feature-window-open .mission-category-head span {
 #pushEnableButton {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
 /* --- 모달 공통: 두꺼운 레트로 아웃라인 버튼 → 헤어라인 --- */
 .modal-close-button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -12920,14 +12920,14 @@ body.feature-window-open .mission-category-head span {
 
 .self-rule-stepper button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
 
 .time-row span {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -12940,7 +12940,7 @@ body.feature-window-open .mission-category-head span {
 /* --- 통일 패스 마감: 닫기 버튼, 읽음 상태, 보상 대기 칩, 희소성 칩 --- */
 .quest-modal-close {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: var(--ui-soft-shadow);
 }
@@ -12953,7 +12953,7 @@ body.feature-window-open .mission-category-head span {
 
 .group-reward-card button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -12966,7 +12966,7 @@ body.feature-window-open .mission-category-head span {
 .group-reward-card.ready button:not(:disabled) {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
 }
 
 .starter-card em,
@@ -12985,7 +12985,7 @@ body.feature-window-open .mission-category-head span {
 #roomCancel,
 #temptationConfirmClose {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: var(--ui-soft-shadow);
 }
@@ -12993,19 +12993,19 @@ body.feature-window-open .mission-category-head span {
 /* --- 펫 소식(자랑) 화면 --- */
 .quick-share-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
 .quick-share-card button {
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   box-shadow: inset 0 0 0 1px var(--soft-line);
 }
 
 .quick-share-card .quick-share-primary {
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -13018,7 +13018,7 @@ body.feature-window-open .mission-category-head span {
 #panel-brag textarea,
 #dailyShareNote {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
 }
 
 .achievement-card em {
@@ -13036,19 +13036,19 @@ body.feature-window-open .mission-category-head span {
 /* --- 펫 소식 작성 카드: 그라데이션 배경과 삼색 원형 버튼 통일 --- */
 .brag-card {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
 }
 
 .share-icon-button {
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   box-shadow: inset 0 0 0 1px var(--soft-line);
 }
 
 .share-icon-button.share-icon-chat {
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -13056,7 +13056,7 @@ body.feature-window-open .mission-category-head span {
 .quick-share-card .quick-share-primary,
 .brag-actions #sharePetButton {
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -13064,7 +13064,7 @@ body.feature-window-open .mission-category-head span {
 .brag-actions [data-external-share],
 .quick-share-card [data-save-share-image],
 .brag-actions [data-save-share-image] {
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   box-shadow: inset 0 0 0 1px var(--soft-line);
 }
@@ -13072,7 +13072,7 @@ body.feature-window-open .mission-category-head span {
 /* --- 기상 시간 휠: 선택값의 레트로 아웃라인 → 액센트 링 --- */
 .wake-wheel-column button.active {
   border: 1px solid var(--mint);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.16);
 }
@@ -13113,7 +13113,7 @@ body.feature-window-open .mission-category-head span {
 .condition-card[data-condition="happy"],
 .condition-card[data-condition="steady"],
 .condition-card[data-condition="low"] {
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -13348,7 +13348,7 @@ body.feature-window-open .mission-category-head span {
 /* 퀘스트 안내 바: 레트로 보더·그라데이션 → 조용한 흰 카드 */
 .quest-overview {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -13489,7 +13489,7 @@ a {
   border: none;
   border-radius: 12px;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
 }
 
 .gacha-card button:disabled {
@@ -13503,7 +13503,7 @@ a {
 .gacha-cost {
   border: 1px solid rgba(237, 162, 59, 0.45);
   background: var(--amber-soft);
-  color: #8a5a12;
+  color: var(--amber-ink, #8a5a12);
 }
 
 /* 확률 칩: 큰 블록 → 컴팩트 칩 */
@@ -13547,7 +13547,7 @@ a {
 .quest-action {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -13562,14 +13562,14 @@ a {
 .quest-edit,
 .quest-share {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
 
 .quest-pager button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -13583,14 +13583,14 @@ a {
 /* --- 사진 인증 모달 --- */
 .proof-camera-toolbar button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
 }
 
 .proof-camera-toolbar button:first-child {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -13614,7 +13614,7 @@ a {
 .proof-actions .ghost,
 .temptation-confirm-card .proof-actions .ghost {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -13637,7 +13637,7 @@ a {
 
 .member-mission-button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -13645,7 +13645,7 @@ a {
 /* --- 상점: 색상 변경 스와치 / 보관함 필터 --- */
 .palette-option {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -13658,7 +13658,7 @@ a {
 
 .accessory-filter-bar button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -13673,7 +13673,7 @@ a {
 /* 안내(빈 상태) 카드: 2px 아웃라인 → 헤어라인 */
 .proof-empty {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -13707,7 +13707,7 @@ a {
 .quest-links .link-add,
 .quest-links .quest-link {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -14014,7 +14014,7 @@ a {
   content: "";
   width: 16px;
   height: 16px;
-  background: #b57b1c;
+  background: var(--amber-ink, #b57b1c);
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
@@ -14174,7 +14174,7 @@ a {
   min-height: 44px;
   border: 1px solid var(--soft-line);
   border-radius: var(--ui-control-radius);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--muted);
   font-weight: 700;
 }
@@ -14478,7 +14478,7 @@ a {
 .template-actions button:last-child {
   border: none;
   background: var(--mint);
-  color: #ffffff;
+  color: var(--on-mint, #ffffff);
   box-shadow: none;
 }
 
@@ -14499,7 +14499,7 @@ a {
 .accessory-card button,
 .pet-card button {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   color: var(--ink);
   box-shadow: none;
 }
@@ -14512,14 +14512,14 @@ a {
 .mood-picker button.active {
   border: 1px solid var(--mint);
   box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
-  background: #ffffff;
+  background: var(--surface-strong);
 }
 
 /* 페널티 상태는 의미색(코럴) 소프트 */
 .care-actions button.active-penalty {
   border: 1px solid rgba(232, 106, 80, 0.45);
   background: var(--coral-soft);
-  color: #a33f2b;
+  color: var(--coral-ink, #a33f2b);
   box-shadow: none;
 }
 
@@ -14544,13 +14544,13 @@ a {
 .temptation-confirm-pet,
 .group-member-pet {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
 .mission-open-card:hover {
   border-color: rgba(53, 163, 129, 0.4);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: var(--ui-soft-shadow);
 }
 
@@ -14582,7 +14582,7 @@ a {
 /* 채팅 버블 → 부드러운 화이트 */
 .chat-bubble {
   border: 1px solid var(--soft-line);
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow: none;
 }
 
@@ -14733,7 +14733,7 @@ body.safari-browser .tab-bar {
 }
 
 .pet-care-grid .care-actions button {
-  background: #ffffff;
+  background: var(--surface-strong);
 }
 
 /* 3. 하단 액션 존: 미션 카드가 좌우 여백을 물려받아 정렬 */
@@ -14883,7 +14883,7 @@ body,
 .mission-open-card {
   border-color: rgba(35, 43, 54, 0.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.85)),
     0 1px 2px rgba(35, 43, 54, 0.04),
     0 10px 24px rgba(35, 43, 54, 0.07);
 }
@@ -14894,7 +14894,7 @@ body,
 .login-card,
 .group-gate-card {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
     0 2px 6px rgba(35, 43, 54, 0.06),
     0 18px 44px rgba(35, 43, 54, 0.14);
 }
@@ -14927,7 +14927,7 @@ body,
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.7)),
     0 3px 10px rgba(35, 43, 54, 0.18);
 }
 
@@ -14945,7 +14945,7 @@ body,
 .pet-care-grid .care-actions button {
   border-color: rgba(35, 43, 54, 0.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
     0 2px 5px rgba(35, 43, 54, 0.08),
     0 14px 28px rgba(35, 43, 54, 0.16);
 }
@@ -14957,14 +14957,14 @@ body,
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
     0 2px 6px rgba(35, 43, 54, 0.05),
     0 16px 36px rgba(35, 43, 54, 0.16);
 }
 
 .tab-button.active {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.7)),
     inset 0 0 0 1px rgba(53, 163, 129, 0.22);
 }
 
@@ -15206,7 +15206,7 @@ body.safari-browser .tab-bar {
 .pet-care-grid .feed-row button,
 .pet-care-grid .care-actions button {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
     0 1px 3px rgba(35, 43, 54, 0.06),
     0 8px 18px rgba(35, 43, 54, 0.08);
 }
@@ -15254,9 +15254,9 @@ body.safari-browser .tab-bar {
   padding: 9px 12px;
   border: 1px solid rgba(35, 43, 54, 0.08);
   border-radius: 16px;
-  background: #ffffff;
+  background: var(--surface-strong);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
     0 1px 3px rgba(35, 43, 54, 0.06),
     0 8px 18px rgba(35, 43, 54, 0.08);
 }
@@ -15267,4 +15267,316 @@ body.safari-browser .tab-bar {
   background: var(--surface-soft);
   color: var(--muted);
   box-shadow: none;
+}
+
+/* ==========================================================================
+   Night Arcade — 다크 아트 디렉션
+   크림 파스텔의 밋밋함을 버린다. 깊은 차콜 네이비 위에서 픽셀 룸은
+   빛나는 창이 되고, 민트는 네온으로 깨어난다. 레트로 게임기의 문법.
+   ========================================================================== */
+
+:root {
+  --ink: #edf1f8;
+  --muted: #98a2b6;
+  --paper: #171c26;
+  --panel: #202634;
+  --app-bg: #171c26;
+  --surface: #202634;
+  --surface-strong: #202634;
+  --surface-soft: #28303f;
+  --surface-warm: #272c39;
+  --surface-cool: #242e40;
+  --mint: #36d6a3;
+  --mint-dark: #7dead0;
+  --accent-soft: rgba(54, 214, 163, 0.14);
+  --yellow: #f6b44e;
+  --amber-soft: rgba(246, 180, 78, 0.14);
+  --coral: #ff836b;
+  --coral-soft: rgba(255, 131, 107, 0.15);
+  --blue: #7fb2ea;
+  --soft-line: rgba(255, 255, 255, 0.09);
+  --ui-soft-border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 16px 38px rgba(0, 0, 0, 0.45);
+  --ui-soft-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 26px rgba(0, 0, 0, 0.35);
+  --edge-hl: rgba(255, 255, 255, 0.06);
+  --on-mint: #0b241a;
+  --amber-ink: #f4c983;
+  --coral-ink: #ff9f8b;
+  --tab-active-bg: rgba(54, 214, 163, 0.16);
+  --modal-bg: #202634;
+}
+
+/* 배경 질감: 다크 모눈 */
+body,
+#featureWindow {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1.1px);
+  background-color: var(--app-bg);
+}
+
+/* 유리 표면들 → 다크 글래스 */
+.hud-chip {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(23, 28, 38, 0.72);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hud-bar {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.tab-bar,
+body.pwa-standalone .tab-bar,
+body.safari-browser .tab-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 25, 34, 0.88);
+  box-shadow: none;
+}
+
+.tab-button {
+  color: #7e879b;
+}
+
+.tab-button.active {
+  color: var(--mint);
+}
+
+/* 헤더 액션 */
+.top-actions .install-button,
+.top-actions .notify-button,
+.top-actions .icon-button,
+.top-actions .mini-action-button {
+  border-color: var(--soft-line);
+  background: var(--surface-strong);
+}
+
+.icon-button,
+.install-button {
+  color: var(--muted);
+}
+
+/* 퀘스트 카테고리 아이콘 배지: 파스텔 → 다크 의미 틴트 */
+.quest-list-icon,
+.quest-list-card:nth-child(3n + 2) .quest-list-icon,
+.quest-list-card:nth-child(3n) .quest-list-icon {
+  background: var(--surface-soft);
+  color: var(--mint);
+}
+
+.quest-list-card:nth-child(3n + 2) .quest-list-icon {
+  color: var(--blue);
+}
+
+.quest-list-card:nth-child(3n) .quest-list-icon {
+  color: var(--yellow);
+}
+
+/* 보상 칩: 다크 틴트 + 밝은 의미색 텍스트 */
+.reward-pill.xp {
+  background: rgba(127, 178, 234, 0.14);
+  color: var(--blue);
+}
+
+.reward-pill.coin {
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+}
+
+.reward-pill.health {
+  background: var(--coral-soft);
+  color: var(--coral-ink);
+}
+
+.reward-pill.bond {
+  background: rgba(231, 123, 166, 0.16);
+  color: #f3a9c6;
+}
+
+/* 민트 CTA: 네온 위 딥그린 텍스트 (더 강한 대비) */
+.quest-list-action.request,
+.quest-list-actions .quest-list-action.request,
+.quest-action,
+.quest-open-primary,
+.profile-submit,
+.proof-approve,
+.solo-start-button,
+#pushEnableButton,
+.share-icon-button.share-icon-chat,
+.brag-actions #sharePetButton,
+.proof-camera-toolbar button:first-child {
+  color: var(--on-mint);
+  font-weight: 800;
+}
+
+/* 대기/완료 칩 텍스트 밝게 */
+.quest-list-action.waiting,
+.quest-list-actions .quest-list-action.waiting {
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+  box-shadow: inset 0 0 0 1px rgba(246, 180, 78, 0.35);
+}
+
+.quest-list-action.done,
+.quest-list-actions .quest-list-action.done {
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+}
+
+/* 인증 스티키 푸터: 흰 페이드 → 다크 페이드 */
+.proof-modal .proof-actions {
+  background: linear-gradient(rgba(32, 38, 52, 0), #202634 24%);
+}
+
+/* 우정 보상 행 배경 */
+.friend-reward-list > div,
+.level-reward-list > div {
+  background: var(--surface-soft);
+}
+
+.level-reward-list div {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.level-reward-list div.unlocked {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* 출석 버튼(숨김 상태지만) · 열림 배너 흰 칩 */
+.mission-category.open .mission-category-head em,
+.mission-category.open .mission-category-head::after {
+  background: var(--surface-strong);
+}
+
+/* 게이트 요약/시트 그래버 */
+.gate-create-details {
+  background: var(--surface-warm);
+}
+
+.profile-card::before,
+.quest-modal-card::before,
+.notification-card::before,
+.login-card::before,
+.group-gate-card::before {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* 모달 배경 딤 */
+.login-modal,
+.profile-modal,
+.proof-modal,
+.quest-modal,
+.notification-modal {
+  background: rgba(8, 11, 17, 0.55);
+}
+
+/* 홈 미션 카드: 밝은 그라데이션 잔재 제거 */
+.home-mission-card {
+  background: var(--surface-strong);
+}
+
+.home-mission-card .label {
+  color: var(--mint);
+}
+
+/* 케어/행동 카운트, 채팅, 안내들 — 토큰이 처리하지만 명시 보정 */
+.attendance-button {
+  background: var(--amber-soft);
+  border-color: rgba(246, 180, 78, 0.4);
+  color: var(--amber-ink);
+}
+
+.pet-care-grid .feed-row button {
+  border-color: rgba(54, 214, 163, 0.35);
+  background: var(--accent-soft);
+}
+
+.pet-care-grid .feed-row button strong {
+  color: var(--mint-dark);
+}
+
+/* 픽셀 룸: 다크 UI 속 빛나는 창 — 테두리 미광 */
+.pixel-screen {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+/* Night Arcade 마감: 인풋·상점 잔재 */
+
+/* 전역 다크 인풋 (날짜/텍스트영역/셀렉트가 밝은 배경 + 밝은 글씨로 깨지던 것) */
+input,
+textarea,
+select {
+  background: var(--surface-soft);
+  color: var(--ink);
+  border-color: var(--soft-line);
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* 상점: 받기 가능 행 — 라이트 그라데이션 → 네온 링 */
+.friend-reward-list > div.ready,
+.friend-reward-list .ready,
+.craft-card.ready {
+  background: var(--accent-soft);
+  border: 1px solid rgba(54, 214, 163, 0.4);
+  color: var(--ink);
+  box-shadow: 0 0 0 2px rgba(54, 214, 163, 0.15);
+}
+
+/* 남은 수 카운트 칩(비활성 버튼) */
+.friend-reward-list button:disabled,
+.level-reward-list button:disabled,
+.group-reward-card button:disabled {
+  background: var(--surface-soft);
+  border-color: var(--soft-line);
+  color: var(--muted);
+}
+
+/* 우정/레벨 헤더 배지 다크 틴트 */
+.friend-reward-head > span {
+  background: rgba(231, 123, 166, 0.18);
+  color: #f3a9c6;
+}
+
+.level-reward-head > span {
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+}
+
+/* 받기 버튼(활성) 텍스트 대비 */
+.friend-reward-list .ready button:not(:disabled),
+.level-reward-list .ready button:not(:disabled),
+.group-reward-card.ready button:not(:disabled) {
+  color: var(--on-mint);
+}
+
+/* 인풋 다크 확정: base 레이어의 .profile-card input(흰 배경) 계열 제압 */
+.profile-card input,
+.profile-card textarea,
+.profile-card select,
+.quest-modal-card input,
+.quest-modal-card textarea,
+.notification-card input,
+.group-gate-card input,
+.group-gate-card textarea,
+.group-gate-card select,
+.login-card input,
+.room-join input,
+.daily-share-field textarea,
+#dailyShareNote {
+  background: var(--surface-soft) !important;
+  color: var(--ink) !important;
+  border-color: var(--soft-line) !important;
 }
