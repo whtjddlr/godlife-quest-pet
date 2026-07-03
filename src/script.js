@@ -6703,7 +6703,7 @@ function playTemptationPose(type) {
   clearPetPose();
   window.requestAnimationFrame(() => {
     petSprite.classList.add(className);
-    window.setTimeout(() => petSprite.classList.remove(className), 1500);
+    window.setTimeout(() => petSprite.classList.remove(className), 1900);
   });
 }
 
@@ -6711,7 +6711,7 @@ function playFeedPose() {
   clearPetPose();
   window.requestAnimationFrame(() => {
     petSprite.classList.add("feed-pose");
-    window.setTimeout(() => petSprite.classList.remove("feed-pose"), 1500);
+    window.setTimeout(() => petSprite.classList.remove("feed-pose"), 1900);
   });
 }
 
@@ -6743,7 +6743,7 @@ function playPetActionPose(actionId) {
       if (roomClass) {
         petRoom?.classList.remove(roomClass);
       }
-    }, 1500);
+    }, 1900);
   });
 }
 
