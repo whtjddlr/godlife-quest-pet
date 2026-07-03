@@ -6427,7 +6427,7 @@ function renderServerTime() {
     serverNow.textContent = `서버 ${serverTime.nowLabel}`;
   }
   if (dailyLeft) {
-    dailyLeft.textContent = `일일 갱신까지 ${formatLeft(missions.daily?.secondsLeft)}`;
+    dailyLeft.textContent = `갱신까지 ${formatLeft(missions.daily?.secondsLeft)}`;
   }
   if (dailyPeriodLabel) {
     dailyPeriodLabel.textContent = `${missions.daily?.key || ""} 고정`;
