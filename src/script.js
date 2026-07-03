@@ -3886,6 +3886,27 @@ function canClaimAttendance() {
   return Boolean(key && gameState?.attendance?.lastKey !== key);
 }
 
+// 출석 보상은 버튼 대신 접속 시 자동 수령한다 (하루 1회, 실패 시 다음 로드에 재시도).
+let attendanceAutoClaimInFlight = false;
+
+async function maybeAutoClaimAttendance() {
+  if (attendanceAutoClaimInFlight || !userId || !canClaimAttendance()) {
+    return;
+  }
+  attendanceAutoClaimInFlight = true;
+  try {
+    const result = await api("/api/attendance/claim");
+    applyState(result.state, result.reward);
+    if (!result.already) {
+      celebratePet();
+    }
+  } catch {
+    // 네트워크 실패 시 조용히 넘어가고 다음 상태 로드에서 재시도한다.
+  } finally {
+    attendanceAutoClaimInFlight = false;
+  }
+}
+
 function groupAttendanceProgressFromMembers(members = []) {
   const key = currentDailyKey();
   const attended = new Set();
@@ -7040,6 +7061,7 @@ loginForm?.addEventListener("submit", async (event) => {
       hideLoginModal();
       profileEditorOpen = false;
       applyState(result.state, result.reward, { animate: false });
+      void maybeAutoClaimAttendance();
     } catch (error) {
       userId = previousUserId;
       petMood.textContent = error.message;
@@ -8067,6 +8089,7 @@ async function loadState(options = {}) {
       return false;
     }
     applyState(nextState, null, { animate: options.animate !== true ? false : true });
+    void maybeAutoClaimAttendance();
     return true;
   } finally {
     window.clearTimeout(timer);
