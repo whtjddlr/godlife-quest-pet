@@ -14680,3 +14680,99 @@ body.safari-browser .tab-bar {
   transform: translateX(-50%);
   margin: 0 !important;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 히어로 레이아웃 재구성
+   "카드 안의 카드" 스택 → 게임 화면 구성으로:
+   1) 펫 룸이 흰 카드 껍데기를 벗고 좌우 풀블리드 히어로가 된다
+   2) 케어 버튼(밥주기/유흥/게임)이 룸 하단 경계에 겹쳐 뜨는 플로팅 캡슐
+   3) 섹션 페이지 헤더 컴팩트화, 여백 체계 재정렬
+   -------------------------------------------------------------------------- */
+
+/* 1. 펫 디바이스: 카드 껍데기 제거 → 풀블리드 */
+.pet-device {
+  margin: 6px 0 0 !important;
+  padding: 0 !important;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.pixel-screen {
+  height: 336px;
+  margin: 0;
+  border-radius: 0 0 32px 32px;
+  box-shadow:
+    inset 0 0 0 1px rgba(35, 43, 54, 0.08),
+    0 14px 30px rgba(35, 43, 54, 0.12);
+}
+
+@media (max-height: 760px) {
+  .pixel-screen {
+    height: 296px;
+  }
+}
+
+/* HUD는 플로팅 케어 행이 겹칠 자리를 비워 위로 */
+.pet-hud {
+  bottom: 42px;
+}
+
+/* 2. 케어 행: 룸 경계에 반쯤 걸쳐 뜨는 캡슐 */
+.pet-care-grid {
+  position: relative;
+  z-index: 6;
+  margin: -26px 18px 0 !important;
+}
+
+.pet-care-grid .feed-row button,
+.pet-care-grid .care-actions button {
+  border-radius: 18px;
+  box-shadow: 0 2px 6px rgba(35, 43, 54, 0.08), 0 12px 26px rgba(35, 43, 54, 0.14);
+}
+
+.pet-care-grid .care-actions button {
+  background: #ffffff;
+}
+
+/* 3. 하단 액션 존: 미션 카드가 좌우 여백을 물려받아 정렬 */
+.progress-panel {
+  margin: 12px 18px 0 !important;
+}
+
+/* 4. 섹션 페이지 헤더 컴팩트 */
+.feature-window-head {
+  margin-bottom: 6px;
+}
+
+#featureWindowClose {
+  width: 40px !important;
+  min-width: 40px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  flex-basis: 40px !important;
+  border-radius: 13px;
+  box-shadow: none;
+}
+
+.feature-window-head h2 {
+  font-size: 17px;
+}
+
+#featureWindow {
+  padding: max(10px, env(safe-area-inset-top)) 18px 8px !important;
+}
+
+/* 히어로 마감: 소품이 라운드 경계를 넘지 않게 클립, 높이는 화면 비례
+   (기존 --app-height×0.275 비례 규칙을 히어로 비율로 상향, !important로 확정) */
+.pixel-screen {
+  height: clamp(330px, calc(var(--app-height, 100dvh) * 0.5), 470px) !important;
+  overflow: hidden;
+}
+
+/* HUD는 비어 있는 하늘 상단에 — 펫·소품·케어 캡슐과 겹치지 않는다 */
+.pet-hud {
+  top: 12px;
+  bottom: auto;
+}
