@@ -2889,7 +2889,7 @@ function createQuestCard(quest) {
       <div class="quest-main">
         <div class="quest-topline">
           <span class="quest-type ${escapeHtml(quest.period || "")}">${escapeHtml(missionPeriodShortLabel(quest.period))} · ${escapeHtml(missionTypeLabel(quest.type))}</span>
-          <span class="quest-reward">${escapeHtml(rewardBits)}</span>
+          <span class="quest-reward">${rewardTextHtml(rewardBits)}</span>
         </div>
         <h3>${escapeHtml(displayTitle)}</h3>
         <div class="mission-reward-pills" aria-label="미션 보상">
@@ -3035,19 +3035,19 @@ function rewardPillsForQuest(quest) {
   const reward = quest.reward || {};
   const pills = [];
   if (reward.xp) {
-    pills.push({ className: "xp", label: `+${Math.round(Number(reward.xp))} XP` });
+    pills.push({ className: "xp", srLabel: "XP", label: `+${Math.round(Number(reward.xp))}` });
   }
   if (reward.coin) {
-    pills.push({ className: "coin", label: `+${Math.round(Number(reward.coin))} 코인` });
+    pills.push({ className: "coin", srLabel: "코인", label: `+${Math.round(Number(reward.coin))}` });
   }
   if (reward.bond) {
-    pills.push({ className: "bond", label: `우정 +${Math.round(Number(reward.bond))}` });
+    pills.push({ className: "bond", srLabel: "우정", label: `+${Math.round(Number(reward.bond))}` });
   }
   if (reward.health) {
-    pills.push({ className: "health", label: `컨디션 +${Math.round(Number(reward.health))}` });
+    pills.push({ className: "health", srLabel: "컨디션", label: `+${Math.round(Number(reward.health))}` });
   }
   return pills.slice(0, 4).map((pill) => (
-    `<span class="reward-pill ${escapeHtml(pill.className)}">${escapeHtml(pill.label)}</span>`
+    `<span class="reward-pill ${escapeHtml(pill.className)}" aria-label="${escapeHtml(`${pill.srLabel} ${pill.label}`)}">${escapeHtml(pill.label)}</span>`
   )).join("");
 }
 
@@ -4647,7 +4647,7 @@ function renderInventory() {
       card.innerHTML = `
         <span>${escapeHtml(rarityText(item.rarity))}</span>
         <strong>${escapeHtml(item.name)}</strong>
-        <small>${escapeHtml(item.effectLabel || "제작 재료")}</small>
+        <small>${rewardTextHtml(item.effectLabel || "제작 재료")}</small>
         <em>${escapeHtml(progress)}</em>
       `;
       inventoryGrid.appendChild(card);
@@ -4715,7 +4715,7 @@ function renderAccessories() {
       <div class="accessory-preview">${createPetStackSvg(character.id, accessory.id, null, activePetPalette())}</div>
       <div>
         <strong>${escapeHtml(accessory.name || recipe?.name || "액세서리")}</strong>
-        <span><em>${escapeHtml(slotLabel)}</em> ${escapeHtml(accessory.description || recipe?.effectLabel || "펫 꾸미기 아이템")}</span>
+        <span><em>${escapeHtml(slotLabel)}</em> ${rewardTextHtml(accessory.description || recipe?.effectLabel || "펫 꾸미기 아이템")}</span>
       </div>
       <button type="button" data-equip-accessory="${escapeHtml(accessory.id)}">${buttonLabel}</button>
     `;
@@ -5428,7 +5428,7 @@ function renderLevelRewards() {
         <div class="${level >= reward.level ? "unlocked" : ""}">
           <em>Lv.${reward.level}</em>
           <strong>${escapeHtml(reward.title)}</strong>
-          <small>${escapeHtml(reward.note)}</small>
+          <small>${rewardTextHtml(reward.note)}</small>
         </div>
       `).join("")}
     </div>
@@ -5475,7 +5475,7 @@ function renderFriendRewards() {
             <div>
               <em>${reward.requiredBond}</em>
               <strong>${escapeHtml(reward.title)}</strong>
-              <small>${escapeHtml(reward.note)}</small>
+              <small>${rewardTextHtml(reward.note)}</small>
             </div>
             <button type="button" data-claim-friend-reward="${escapeHtml(reward.id)}" ${ready ? "" : "disabled"}>
               ${ready ? "받기" : `${left}`}
@@ -5556,7 +5556,7 @@ function renderGachaResult() {
     <span class="gacha-item-mark" aria-hidden="true"></span>
     <span>
       <strong>${escapeHtml(name)}</strong>
-      <small>${escapeHtml(rarity)} · ${escapeHtml(typeLabel)} · ${escapeHtml(effect)}</small>
+      <small>${escapeHtml(rarity)} · ${escapeHtml(typeLabel)} · ${rewardTextHtml(effect)}</small>
     </span>
   `;
 }
@@ -5721,7 +5721,7 @@ function renderPetActions() {
           <span class="pet-action-icon" aria-hidden="true">${escapeHtml(action.icon)}</span>
           <span>
             <strong>${escapeHtml(action.label)}</strong>
-            <small>${escapeHtml(action.rewardText)}</small>
+            <small>${rewardTextHtml(action.rewardText)}</small>
           </span>
           <em>${escapeHtml(newlyUnlocked ? "NEW" : done ? "완료" : stateText)}</em>
         </button>
@@ -6448,6 +6448,16 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+// 보상 문구의 지표 단어(컨디션/코인/XP/우정)를 의미색 아이콘으로 치환한다.
+// escapeHtml 이후에 치환하므로 innerHTML에 안전하다. 스크린리더용 라벨 유지.
+function rewardTextHtml(value) {
+  return escapeHtml(value)
+    .replaceAll("컨디션", '<i class="rw rw-hp" role="img" aria-label="컨디션"></i>')
+    .replaceAll("코인", '<i class="rw rw-coin" role="img" aria-label="코인"></i>')
+    .replaceAll("XP", '<i class="rw rw-xp" role="img" aria-label="XP"></i>')
+    .replaceAll("우정", '<i class="rw rw-bond" role="img" aria-label="우정"></i>');
 }
 
 function today() {

@@ -14018,3 +14018,69 @@ a {
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 보상 문구 아이콘화 (.rw 인라인 아이콘 + 보상 칩)
+   -------------------------------------------------------------------------- */
+.rw {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-right: 1px;
+  vertical-align: -2px;
+  -webkit-mask: var(--rw-icon) center / contain no-repeat;
+  mask: var(--rw-icon) center / contain no-repeat;
+}
+
+.rw-hp {
+  background: #ef7d64;
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
+}
+
+.rw-coin {
+  background: #e9a13b;
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E");
+}
+
+.rw-xp {
+  background: #5f8fb4;
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E");
+}
+
+.rw-bond {
+  background: #e77ba6;
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8.4 4.2c1.2 0 2.3.5 3 1.4.2.24.56.24.76 0a3.9 3.9 0 0 1 3-1.4c2.3 0 4.1 1.8 4.1 4.1 0 3.4-3.4 6.1-6.2 8.4-.3.24-.72.24-1.02 0C9.2 14.4 5.8 11.7 5.8 8.3c0-2.3 1.8-4.1 4.1-4.1Z' transform='translate(-1.5 1.5) scale(.92)'/%3E%3Cpath fill='black' d='M17.5 13.6c.9 0 1.7.4 2.2 1 .15.18.42.18.57 0a2.9 2.9 0 0 1 2.2-1c1.7 0 3 1.3 3 3 0 2.5-2.5 4.5-4.6 6.2-.22.18-.53.18-.75 0-2.1-1.7-4.6-3.7-4.6-6.2 0-1.7 1.3-3 3-3Z' transform='translate(-4.5 -3.4) scale(.8)'/%3E%3C/svg%3E");
+}
+
+/* 보상 칩: 아이콘 + 숫자 */
+.reward-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.reward-pill::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+  background: currentColor;
+  -webkit-mask: var(--rw-icon) center / contain no-repeat;
+  mask: var(--rw-icon) center / contain no-repeat;
+}
+
+.reward-pill.xp {
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E");
+}
+
+.reward-pill.coin {
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E");
+}
+
+.reward-pill.health {
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
+}
+
+.reward-pill.bond {
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
+}
