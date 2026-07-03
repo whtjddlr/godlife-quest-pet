@@ -13184,3 +13184,85 @@ body.feature-window-open .mission-category-head span {
 .quick-share-card .share-icon-button {
   min-height: 36px;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 홈 정보 다이어트 & 호흡
+   상시 노출 안내문·중복 진행바를 정리하고, 케어 버튼을 한 행으로 병합해
+   화면에 숨 쉴 공간을 만든다. 라벨은 조용하게, 숫자가 말하게.
+   -------------------------------------------------------------------------- */
+
+/* 케어 영역: 밥주기 + 유흥/게임을 한 행으로 (기존 2행 → 1행) */
+.pet-care-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
+  align-items: stretch;
+}
+
+.pet-care-grid .care-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0 !important;
+}
+
+.pet-care-grid .pet-action-list {
+  grid-column: 1 / -1;
+}
+
+.pet-care-grid.has-actions {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
+}
+
+.pet-care-grid .feed-row button,
+.pet-care-grid .care-actions button {
+  min-height: 48px;
+  height: 100%;
+}
+
+/* 미션 카드: 상시 노출되던 사용법 안내문 제거 — 화살표 큐가 대신한다 */
+.home-mission-card em {
+  display: none;
+}
+
+.home-mission-card strong {
+  font-size: 17px;
+}
+
+/* 진행 카드: 일일 진행바 제거(미션 카드의 오늘 N/5와 중복), 텍스트 한 줄만 */
+.xp-progress-card .progress-track {
+  display: none;
+}
+
+.xp-progress-card .home-progress-line {
+  color: var(--muted);
+}
+
+/* 라벨 톤 다운: 굵은 대문자 라벨의 아우성 → 조용한 보조 텍스트 */
+.condition-card .label,
+.home-mini-metrics span,
+.xp-progress-card > div:first-child > span,
+.home-mission-card .label,
+.topbar .eyebrow {
+  font-weight: 600;
+}
+
+/* 호흡: 행 간격과 좌우 여백 확대 */
+.progress-panel {
+  gap: 10px;
+}
+
+.pet-device {
+  row-gap: 2px;
+}
+
+@media (max-width: 430px) {
+  .topbar,
+  .pet-device,
+  .progress-panel,
+  .tab-bar {
+    margin-inline: 18px;
+  }
+
+  .pixel-screen {
+    height: 260px;
+  }
+}
