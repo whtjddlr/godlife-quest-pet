@@ -15145,3 +15145,34 @@ body.safari-browser .tab-bar {
     margin-inline: 16px !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   iOS 패스 보정: 고정 요소를 앱 프레임 폭(430px)에 가둔다
+   데스크톱/태블릿에서 탭바·시트가 브라우저 전체 폭으로 퍼지던 문제
+   -------------------------------------------------------------------------- */
+.tab-bar,
+body.pwa-standalone .tab-bar,
+body.safari-browser .tab-bar {
+  left: 50% !important;
+  width: min(100vw, 430px);
+  transform: translateX(-50%);
+}
+
+.login-modal:not(.hidden),
+.profile-modal:not(.hidden),
+.proof-modal:not(.hidden),
+.quest-modal:not(.hidden),
+.notification-modal:not(.hidden) {
+  left: 50% !important;
+  right: auto !important;
+  width: min(100vw, 430px);
+  transform: translateX(-50%);
+}
+
+.profile-card,
+.quest-modal-card,
+.notification-card,
+.login-card,
+.group-gate-card {
+  width: min(100%, 430px) !important;
+}
