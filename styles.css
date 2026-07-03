@@ -13076,3 +13076,111 @@ body.feature-window-open .mission-category-head span {
   color: var(--ink);
   box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.16);
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 홈 하단 패널 배치 정규화
+   행마다 제각각이던 높이·비율·라운드·간격을 하나의 리듬으로 맞춘다.
+   -------------------------------------------------------------------------- */
+
+/* 패널 전체를 그리드로 묶어 흩어진 margin 대신 일정한 간격 사용 */
+.progress-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.progress-panel > * {
+  margin: 0 !important;
+}
+
+/* 상태 행: 1fr/74px/58px의 극단 비율 → 균형 잡힌 3열 */
+.home-status-row {
+  grid-template-columns: minmax(0, 1.55fr) minmax(96px, 1fr) minmax(80px, 0.85fr) !important;
+  gap: 8px !important;
+  align-items: stretch;
+}
+
+.condition-card,
+.home-mini-metrics,
+.attendance-button {
+  min-height: 58px !important;
+  border-radius: 14px;
+  padding: 9px 11px !important;
+}
+
+/* 컨디션 상태별 노랑/민트 틴트 제거 — 상태는 게이지가 말한다 */
+.condition-card,
+.condition-card[data-condition="spark"],
+.condition-card[data-condition="happy"],
+.condition-card[data-condition="steady"],
+.condition-card[data-condition="low"] {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.home-mini-metrics {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+}
+
+.home-mini-metrics span {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px !important;
+}
+
+.home-mini-metrics strong {
+  color: var(--ink);
+  font-size: 13px !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* XP 카드 = 진행 카드: 경험치와 오늘 진행률을 한 카드의 두 행으로 */
+.xp-progress-card {
+  padding: 11px 12px;
+  border-radius: 14px;
+  gap: 7px;
+}
+
+.xp-progress-card .home-progress-line {
+  margin: 3px 0 0 !important;
+  padding: 0;
+  font-size: 11px;
+}
+
+.xp-progress-card .home-progress-line strong {
+  font-size: 13px;
+}
+
+.xp-progress-card .progress-track {
+  margin: 0;
+}
+
+/* 라운드 리듬 통일: 주요 카드 16px, 행 카드 14px */
+.home-mission-card {
+  border-radius: 16px;
+}
+
+.quick-share-card {
+  min-height: 58px;
+  border-radius: 14px;
+  padding: 9px 11px;
+}
+
+.quick-share-card .quick-share-copy .label {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.quick-share-actions {
+  grid-template-columns: repeat(3, 36px);
+  gap: 6px;
+}
+
+.quick-share-card .share-icon-button {
+  min-height: 36px;
+}
