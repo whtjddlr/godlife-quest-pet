@@ -14304,3 +14304,122 @@ a {
     transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 펫 모션 리마스터
+   뻣뻣한 단발 흔들림 → 예비동작·스쿼시&스트레치·착지 반동이 있는 자연스러운
+   행동 연기. 각 행동이 실제 동작처럼 읽힌다 (산책=깡총깡총, 운동=스쿼트 3회,
+   런닝=잰걸음, 영상휴식=뒤로 기대 까딱, 밥/축하=기쁨 점프).
+   -------------------------------------------------------------------------- */
+
+.pixel-sprite.walk-pose {
+  animation: cp-pet-walk 1800ms linear;
+}
+
+.pixel-sprite.workout-pose,
+.pixel-sprite.bench-pose {
+  animation: cp-pet-workout 1700ms linear;
+}
+
+.pixel-sprite.treadmill-pose {
+  animation: cp-pet-run 1500ms linear;
+}
+
+.pixel-sprite.youtube-pose {
+  animation: cp-pet-chill 1800ms ease-in-out;
+}
+
+.pixel-sprite.feed-pose,
+.pixel-sprite.party-pose,
+.pixel-sprite.game-pose {
+  animation: cp-pet-joy 1300ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.pixel-sprite.success-pose {
+  animation: cp-pet-joy 1200ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.pixel-sprite.bump {
+  animation: cp-pet-bump 340ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+/* 산책: 오른쪽으로 세 걸음 깡총 → 잠시 둘러보고 → 되돌아오기 */
+@keyframes cp-pet-walk {
+  0% { transform: translateX(-50%) translateY(0) scale(1); }
+  6% { transform: translateX(calc(-50% + 5px)) translateY(-9px) scale(0.98, 1.05); }
+  12% { transform: translateX(calc(-50% + 11px)) translateY(0) scale(1.06, 0.93); }
+  18% { transform: translateX(calc(-50% + 16px)) translateY(-9px) scale(0.98, 1.05); }
+  24% { transform: translateX(calc(-50% + 22px)) translateY(0) scale(1.06, 0.93); }
+  30% { transform: translateX(calc(-50% + 26px)) translateY(-8px) scale(0.99, 1.04); }
+  36% { transform: translateX(calc(-50% + 30px)) translateY(0) scale(1.05, 0.94); }
+  46% { transform: translateX(calc(-50% + 30px)) translateY(0) rotate(3deg) scale(1); }
+  54% { transform: translateX(calc(-50% + 30px)) translateY(0) rotate(-2deg) scale(1); }
+  62% { transform: translateX(calc(-50% + 20px)) translateY(-10px) scale(0.98, 1.05); }
+  70% { transform: translateX(calc(-50% + 10px)) translateY(0) scale(1.07, 0.92); }
+  78% { transform: translateX(calc(-50% + 2px)) translateY(-10px) scale(0.98, 1.05); }
+  86% { transform: translateX(calc(-50% - 4px)) translateY(0) scale(1.07, 0.92); }
+  93% { transform: translateX(-50%) translateY(-4px) scale(0.99, 1.02); }
+  100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* 운동/벤치: 예비 웅크림 → 점프 스쿼트 3회, 갈수록 힘차게 */
+@keyframes cp-pet-workout {
+  0% { transform: translateX(-50%) translateY(0) scale(1); }
+  9% { transform: translateX(-50%) translateY(3px) scale(1.05, 0.93); }
+  20% { transform: translateX(-50%) translateY(-13px) scale(0.94, 1.09); }
+  30% { transform: translateX(-50%) translateY(0) scale(1.09, 0.89); }
+  42% { transform: translateX(-50%) translateY(-14px) scale(0.94, 1.1); }
+  52% { transform: translateX(-50%) translateY(0) scale(1.1, 0.88); }
+  65% { transform: translateX(-50%) translateY(-17px) scale(0.92, 1.12); }
+  76% { transform: translateX(-50%) translateY(0) scale(1.12, 0.86); }
+  86% { transform: translateX(-50%) translateY(-4px) scale(0.99, 1.03); }
+  100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+/* 런닝: 앞으로 살짝 기운 채 빠른 잰걸음 */
+@keyframes cp-pet-run {
+  0% { transform: translateX(-50%) translateY(0) rotate(0deg) scale(1); }
+  8% { transform: translateX(calc(-50% + 2px)) translateY(-6px) rotate(4deg) scale(0.99, 1.03); }
+  16% { transform: translateX(calc(-50% - 2px)) translateY(0) rotate(4deg) scale(1.04, 0.95); }
+  24% { transform: translateX(calc(-50% + 2px)) translateY(-6px) rotate(4deg) scale(0.99, 1.03); }
+  32% { transform: translateX(calc(-50% - 2px)) translateY(0) rotate(4deg) scale(1.04, 0.95); }
+  40% { transform: translateX(calc(-50% + 2px)) translateY(-6px) rotate(4deg) scale(0.99, 1.03); }
+  48% { transform: translateX(calc(-50% - 2px)) translateY(0) rotate(4deg) scale(1.04, 0.95); }
+  56% { transform: translateX(calc(-50% + 2px)) translateY(-7px) rotate(4deg) scale(0.99, 1.03); }
+  64% { transform: translateX(calc(-50% - 2px)) translateY(0) rotate(4deg) scale(1.04, 0.95); }
+  72% { transform: translateX(calc(-50% + 2px)) translateY(-6px) rotate(3deg) scale(0.99, 1.03); }
+  80% { transform: translateX(calc(-50% - 1px)) translateY(0) rotate(2deg) scale(1.03, 0.96); }
+  90% { transform: translateX(-50%) translateY(-2px) rotate(1deg) scale(1); }
+  100% { transform: translateX(-50%) translateY(0) rotate(0deg) scale(1); }
+}
+
+/* 영상휴식: 자리 잡고 뒤로 기대 느긋하게 까딱까딱 */
+@keyframes cp-pet-chill {
+  0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  12% { transform: translateX(calc(-50% + 4px)) translateY(2px) rotate(-6deg); }
+  30% { transform: translateX(calc(-50% + 4px)) translateY(2px) rotate(-4deg); }
+  48% { transform: translateX(calc(-50% + 4px)) translateY(2px) rotate(-7deg); }
+  66% { transform: translateX(calc(-50% + 4px)) translateY(2px) rotate(-4deg); }
+  82% { transform: translateX(calc(-50% + 2px)) translateY(1px) rotate(-2deg); }
+  100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+}
+
+/* 기쁨 점프: 웅크림 → 높이 점프 → 착지 스쿼시 → 작은 점프 → 정착 */
+@keyframes cp-pet-joy {
+  0% { transform: translateX(-50%) translateY(0) scale(1) rotate(0deg); }
+  12% { transform: translateX(-50%) translateY(3px) scale(1.07, 0.91) rotate(0deg); }
+  30% { transform: translateX(-50%) translateY(-19px) scale(0.95, 1.08) rotate(-4deg); }
+  46% { transform: translateX(-50%) translateY(0) scale(1.1, 0.88) rotate(0deg); }
+  58% { transform: translateX(-50%) translateY(-9px) scale(0.98, 1.04) rotate(4deg); }
+  70% { transform: translateX(-50%) translateY(0) scale(1.06, 0.93) rotate(0deg); }
+  82% { transform: translateX(-50%) translateY(-3px) scale(1, 1.01) rotate(0deg); }
+  100% { transform: translateX(-50%) translateY(0) scale(1) rotate(0deg); }
+}
+
+/* 부딪힘: 짧고 탄력 있게 */
+@keyframes cp-pet-bump {
+  0% { transform: translateX(-50%) translateY(0) scale(1); }
+  35% { transform: translateX(-50%) translateY(-7px) scale(0.97, 1.05); }
+  65% { transform: translateX(-50%) translateY(0) scale(1.06, 0.94); }
+  100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
