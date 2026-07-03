@@ -13904,3 +13904,37 @@ a {
   width: 22px;
   height: 22px;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 공유 액션 버튼: 수수께끼 원형 아이콘 → 아이콘+라벨 필
+   연필/노드/화살표만으로는 의미 해석이 필요했다. 짧은 라벨을 함께 보여준다.
+   -------------------------------------------------------------------------- */
+.quick-share-actions,
+.brag-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.quick-share-card .share-icon-button,
+.brag-actions .share-icon-button,
+.brag-actions #sharePetButton {
+  width: auto;
+  min-width: 0;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 13px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.quick-share-card .share-icon-button::before,
+.brag-actions .share-icon-button::before {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+}
