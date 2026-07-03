@@ -14464,3 +14464,132 @@ a {
   padding: 6px 12px;
   font-size: 11.5px;
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 스펙 컴플라이언스 패스 (design-system.md 금지 목록 전수 적용)
+   실사용 상태에서만 보이는 요소들(인증 승인, 방 관리, 채팅, 템플릿, 장착 칩,
+   AI 도구 등)에 남아 있던 레트로 아웃라인·옐로 버튼·오프셋 섀도를 교정한다.
+   픽셀 연출(reward-pop, 룸 장식, 메일함)은 원칙 1에 따라 유지.
+   -------------------------------------------------------------------------- */
+
+/* 주요 CTA → 민트 솔리드 */
+.proof-approve,
+.quest-open-primary,
+.template-actions button:last-child {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.proof-approve:active,
+.quest-open-primary:active,
+.template-actions button:last-child:active {
+  background: var(--mint-dark);
+}
+
+/* 보조 버튼 → 화이트 헤어라인 */
+.room-actions button,
+.member-poke-button,
+.verify-actions button,
+.notification-native-actions button,
+.routine-ai-tools button,
+.template-actions button,
+.message-presets button,
+.accessory-card button,
+.pet-card button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+/* 상태 칩: 선택/장착/준비 → 민트 링 언어 */
+.starter-card.selected,
+.accessory-card.equipped,
+.craft-card.ready,
+.pet-card.active,
+.mood-picker button.active {
+  border: 1px solid var(--mint);
+  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
+  background: #ffffff;
+}
+
+/* 페널티 상태는 의미색(코럴) 소프트 */
+.care-actions button.active-penalty {
+  border: 1px solid rgba(232, 106, 80, 0.45);
+  background: var(--coral-soft);
+  color: #a33f2b;
+  box-shadow: none;
+}
+
+/* 카드·박스·입력 → 화이트 + 헤어라인 */
+.proof-card,
+.proof-preview,
+.proof-photo-fallback,
+.proof-waiting,
+.notification-native-card,
+.routine-template-box,
+.self-rule-box,
+.starter-box,
+.theme-swatch-box,
+.goal-strip,
+.mission-open-card,
+.mission-tab,
+.member-mission-row,
+.palette-help,
+.room-join input,
+.daily-share-field textarea,
+.stat-grid div,
+.temptation-confirm-pet,
+.group-member-pet {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.mission-open-card:hover {
+  border-color: rgba(53, 163, 129, 0.4);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
+}
+
+.home-mission-card.dragging {
+  box-shadow: var(--shadow);
+}
+
+/* 작은 칩·배지 → 시스템 칩 */
+.rarity-badge,
+.reward-badge,
+.inventory-item em,
+.group-member-head span,
+.craft-head span,
+.game-row span,
+.room-meta span,
+.share-stats span,
+.member-mission-row em,
+.mission-open-number,
+.mission-open-state,
+.confidence,
+.starter-card em.mix,
+.gacha-item-mark {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* 채팅 버블 → 부드러운 화이트 */
+.chat-bubble {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+/* 공유 카드 내부 요소 */
+.share-mission,
+.share-accessory {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  box-shadow: none;
+}
