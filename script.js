@@ -3175,7 +3175,7 @@ function renderMissionOverview() {
   }
   if (homeMissionState) {
     homeMissionState.textContent = selectedMission
-      ? `오늘 ${selectedIndex + 1}/${total} · ${homeMissionStatusText(selectedMission)}`
+      ? `오늘 ${selectedIndex + 1}/${total}`
       : `오늘 ${doneCount}/${total}`;
   }
   if (homeMissionTitle) {
