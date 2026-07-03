@@ -2733,27 +2733,28 @@ function missionOpenTitle(quest = {}) {
   return "루틴 미션";
 }
 
-function questIconText(quest = {}) {
+// 카테고리 키를 반환하면 CSS가 data-icon 마스크로 아웃라인 아이콘을 그린다.
+function questIconKey(quest = {}) {
   const text = `${quest.type || ""} ${quest.title || ""}`;
   if (/기상|알람|일어나/.test(text)) {
-    return "시";
+    return "wake";
   }
   if (/운동|건강|러닝|헬스|물/.test(text)) {
-    return "하";
+    return "health";
   }
   if (/알고리즘|공부|개발|영어|학습|문제/.test(text)) {
-    return "두";
+    return "study";
   }
   if (/회고|정리|기록|일기/.test(text)) {
-    return "체";
+    return "note";
   }
   if (quest.period === "weekly") {
-    return "주";
+    return "weekly";
   }
   if (quest.period === "monthly") {
-    return "월";
+    return "monthly";
   }
-  return "별";
+  return "star";
 }
 
 function questListAction(quest = {}) {
@@ -2799,7 +2800,7 @@ function createMissionListCard(quest = {}, index = 0, listId = "dailyQuestList")
   const autoProgress = missionAutoProgressHtml(quest);
   return `
     <article class="quest-list-card ${escapeHtml(quest.state || "todo")}" style="--card-index: ${index % 4}">
-      <span class="quest-list-icon" aria-hidden="true">${escapeHtml(questIconText(quest))}</span>
+      <span class="quest-list-icon" data-icon="${escapeHtml(questIconKey(quest))}" aria-hidden="true"></span>
       <div class="quest-list-body">
         <div class="quest-list-meta">
           <span>${escapeHtml(missionPeriodShortLabel(quest.period))} · ${escapeHtml(missionTypeLabel(quest.type))}</span>
