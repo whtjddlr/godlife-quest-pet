@@ -12773,3 +12773,306 @@ body.feature-window-open .mission-category-head span {
 .room-code-chip {
   color: var(--mint-dark);
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 전 화면 통일 패스
+   그룹/상점/알림/프로필에 남아 있던 옛 그라데이션 카드, 주황·베이지 하드보더 칩,
+   무지개 진행바를 시스템 언어(흰 카드 + 헤어라인 + 단일 액센트)로 맞춘다.
+   -------------------------------------------------------------------------- */
+
+/* 풀스크린 창 배경: 핑크빛 틴트 → 앱 배경과 동일한 톤 */
+#featureWindow,
+.content-area.open {
+  background: var(--app-bg);
+}
+
+/* --- 그룹(인증) 화면 --- */
+.room-card,
+#panel-verify .room-card:not(.empty) {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
+}
+
+.room-code-chip,
+#panel-verify .room-code-chip {
+  border: 1px solid rgba(53, 163, 129, 0.4);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+.room-code-chip span,
+.room-code-chip strong {
+  color: var(--mint-dark);
+}
+
+.group-reward-card,
+#panel-verify .group-reward-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.group-reward-track {
+  background: rgba(35, 43, 54, 0.08);
+  border: none;
+}
+
+.group-reward-track span {
+  border-radius: 999px;
+  background: var(--mint);
+}
+
+.group-member-card,
+#panel-verify .group-member-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+/* --- 상점 화면 --- */
+.friend-reward-card,
+.level-reward-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
+}
+
+.friend-reward-list > div,
+.level-reward-list > div {
+  border: 1px solid var(--soft-line);
+  background: #fdfcfa;
+  box-shadow: none;
+}
+
+.friend-reward-list em,
+.level-reward-list em {
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  border: none;
+}
+
+.friend-reward-list button,
+.level-reward-list button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.friend-reward-list .ready button,
+.level-reward-list .ready button {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+}
+
+/* --- 알림함 --- */
+.notification-item {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.notification-icon {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+.notification-item strong em {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.notification-item.unread strong em {
+  border-color: rgba(53, 163, 129, 0.4);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+#pushEnableButton {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* --- 모달 공통: 두꺼운 레트로 아웃라인 버튼 → 헤어라인 --- */
+.modal-close-button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+/* --- 프로필 편집: 카운터/시간 선택 --- */
+.self-rule-stepper output {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.self-rule-stepper button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.time-row span {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.time-row span.active,
+.time-row span[aria-selected="true"] {
+  border-color: var(--mint);
+  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
+}
+
+/* --- 통일 패스 마감: 닫기 버튼, 읽음 상태, 보상 대기 칩, 희소성 칩 --- */
+.quest-modal-close {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: var(--ui-soft-shadow);
+}
+
+/* 읽음 상태: 그레이스케일 필터가 배지를 탁한 베이지로 만들던 것 정리 */
+.notification-item.read .notification-icon {
+  opacity: 0.55;
+  filter: none;
+}
+
+.group-reward-card button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.group-reward-card button:disabled {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.group-reward-card.ready button:not(:disabled) {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+}
+
+.starter-card em,
+.pet-card em {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* --- ID 기반 닫기/뒤로 버튼: 레트로 2px 아웃라인 + 오프셋 섀도 정리 --- */
+#featureWindowClose,
+#questModalClose,
+#notificationClose,
+#profileClose,
+#roomCancel,
+#temptationConfirmClose {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: var(--ui-soft-shadow);
+}
+
+/* --- 펫 소식(자랑) 화면 --- */
+.quick-share-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.quick-share-card button {
+  background: #ffffff;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--soft-line);
+}
+
+.quick-share-card .quick-share-primary {
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.quick-share-card [data-external-share] {
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+#panel-brag textarea,
+#dailyShareNote {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+}
+
+.achievement-card em {
+  border: 1px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.achievement-card.unlocked em {
+  border-color: rgba(53, 163, 129, 0.4);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* --- 펫 소식 작성 카드: 그라데이션 배경과 삼색 원형 버튼 통일 --- */
+.brag-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
+}
+
+.share-icon-button {
+  background: #ffffff;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--soft-line);
+}
+
+.share-icon-button.share-icon-chat {
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+/* --- 공유 아이콘 버튼: 삼색 그라데이션 원형 → 주요(민트)/보조(화이트) 위계 --- */
+.quick-share-card .quick-share-primary,
+.brag-actions #sharePetButton {
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.quick-share-card [data-external-share],
+.brag-actions [data-external-share],
+.quick-share-card [data-save-share-image],
+.brag-actions [data-save-share-image] {
+  background: #ffffff;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--soft-line);
+}
+
+/* --- 기상 시간 휠: 선택값의 레트로 아웃라인 → 액센트 링 --- */
+.wake-wheel-column button.active {
+  border: 1px solid var(--mint);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.16);
+}
