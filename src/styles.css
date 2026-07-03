@@ -14423,3 +14423,44 @@ a {
   65% { transform: translateX(-50%) translateY(0) scale(1.06, 0.94); }
   100% { transform: translateX(-50%) translateY(0) scale(1); }
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 그룹 보상 컴팩트 (design-system.md §5 그룹)
+   보상 카드 3개가 각각 큰 카드를 차지하던 것 → 1행 컴팩트 로우.
+   상세 문구는 진행바+남음 칩이 대신하므로 숨긴다 (원칙 2: 중복 금지).
+   -------------------------------------------------------------------------- */
+.group-reward-card {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.group-reward-card .label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.group-reward-card strong {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
+.group-reward-card p {
+  display: none;
+}
+
+.group-reward-track {
+  height: 5px;
+  margin-top: 6px;
+}
+
+.group-reward-card button {
+  min-height: 34px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+}
