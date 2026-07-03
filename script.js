@@ -5739,7 +5739,7 @@ function renderPetActions() {
           ${done ? "disabled" : ""}
           aria-label="${escapeHtml(`${action.label} ${newlyUnlocked ? "새로 열림" : stateText}`)}"
         >
-          <span class="pet-action-icon" aria-hidden="true">${escapeHtml(action.icon)}</span>
+          <span class="pet-action-icon" data-icon="${escapeHtml(action.id)}" aria-hidden="true"></span>
           <span>
             <strong>${escapeHtml(action.label)}</strong>
             <small>${rewardTextHtml(action.rewardText)}</small>
@@ -5838,7 +5838,7 @@ function renderPenalty() {
     button.classList.toggle("active-penalty", isOver || isActivePenalty);
     button.classList.toggle("within-limit", count > 0 && !isOver);
     button.classList.toggle("limit-reached", isReached);
-    button.innerHTML = `<span>${label}</span><small>${count}/${limit}회</small>`;
+    button.innerHTML = `<i class="care-ico" data-icon="${escapeHtml(type)}" aria-hidden="true"></i><span>${label}</span><small>${count}/${limit}회</small>`;
     button.title = isOver
       ? `이번 주 ${label} ${count}/${limit}회 · 기준 초과`
       : `이번 주 ${label} ${count}/${limit}회 · 초과 전까지 패널티 없음`;
