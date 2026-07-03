@@ -13408,3 +13408,35 @@ a {
     transform: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 간결화 패스
+   같은 정보를 두 번 말하지 않는다. 창 제목과 패널 제목의 중복, 보상 텍스트와
+   보상 칩의 중복, 미션 카드와 진행률의 중복을 정리한다.
+   -------------------------------------------------------------------------- */
+
+/* 창 머리에 이미 제목이 있으므로 패널 첫 섹션 제목(중복)은 숨긴다 */
+.content-area .panel > .section-title:first-child {
+  display: none !important;
+}
+
+/* 홈 진행 라인: "오늘 N%"는 미션 카드의 오늘 N/5와 중복 — 갱신 카운트다운만 남긴다 */
+.xp-progress-card .home-progress-line > span:first-child {
+  display: none;
+}
+
+.xp-progress-card .home-progress-line {
+  justify-content: flex-end;
+}
+
+/* 퀘스트 카드: 보상 텍스트(칩과 중복) 제거, 설명은 1줄로 */
+.quest-list-meta em {
+  display: none;
+}
+
+.quest-list-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
