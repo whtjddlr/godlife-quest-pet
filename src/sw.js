@@ -1,4 +1,4 @@
-const CACHE_NAME = "godlife-pwa-v13";
+const CACHE_NAME = "godlife-pwa-v14";
 const SHELL_ASSETS = [
   "/",
   "/index.html",
