@@ -14973,3 +14973,175 @@ body,
   border-left-width: 4px;
   border-left-color: var(--mint);
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — iOS 디자인 언어 패스 (HIG 참조)
+   1) 모달 → 바텀 시트 (그래버 핸들, 상단만 라운드, 슬라이드 업)
+   2) 탭바 → 풀폭 도킹 바 (필 제거, 틴트 액티브, 상단 헤어라인, 블러)
+   3) 섹션 페이지 → 라지 타이틀 (chevron 백 + 28px 좌측 정렬 제목)
+   4) 표준 16px 거터
+   -------------------------------------------------------------------------- */
+
+/* --- 1. 바텀 시트 모달 --- */
+.login-modal:not(.hidden),
+.profile-modal:not(.hidden),
+.proof-modal:not(.hidden),
+.quest-modal:not(.hidden),
+.notification-modal:not(.hidden) {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.profile-card,
+.quest-modal-card,
+.notification-card,
+.login-card,
+.group-gate-card {
+  position: relative;
+  width: 100% !important;
+  max-width: none !important;
+  max-height: 90dvh;
+  margin: 0 !important;
+  padding-top: 30px;
+  border-radius: 24px 24px 0 0;
+  border-bottom: none;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+/* 그래버 핸들 */
+.profile-card::before,
+.quest-modal-card::before,
+.notification-card::before,
+.login-card::before,
+.group-gate-card::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 40px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(35, 43, 54, 0.16);
+  transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .login-modal:not(.hidden) .profile-card,
+  .profile-modal:not(.hidden) .profile-card,
+  .quest-modal:not(.hidden) .quest-modal-card,
+  .notification-modal:not(.hidden) .notification-card,
+  .proof-modal:not(.hidden) .profile-card,
+  .login-modal:not(.hidden) .login-card,
+  .login-modal:not(.hidden) .group-gate-card {
+    animation: cpSheetIn 300ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+}
+
+@keyframes cpSheetIn {
+  from {
+    opacity: 0.4;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- 2. iOS 탭바: 풀폭 도킹, 필 제거, 틴트 액티브 --- */
+.tab-bar,
+body.pwa-standalone .tab-bar,
+body.safari-browser .tab-bar {
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 100vw;
+  transform: none;
+  padding: 8px 10px max(8px, env(safe-area-inset-bottom)) !important;
+  border: none;
+  border-top: 1px solid rgba(35, 43, 54, 0.09);
+  border-radius: 0;
+  background: rgba(252, 250, 245, 0.88);
+  box-shadow: none;
+}
+
+.tab-button,
+.tab-button.active {
+  min-height: 50px;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.tab-button {
+  color: #8b92a3;
+}
+
+.tab-button.active {
+  color: var(--mint-dark);
+}
+
+.tab-button strong {
+  font-size: 10.5px;
+  font-weight: 650;
+}
+
+.tab-button.active strong {
+  font-weight: 800;
+}
+
+/* 하단 예약 높이 조정 (도킹 바 기준) */
+:root {
+  --bottom-nav-height: 64px;
+  --bottom-nav-offset: 0px;
+  --bottom-nav-reserve: calc(64px + max(8px, env(safe-area-inset-bottom)) + 10px);
+}
+
+/* --- 3. 섹션 페이지: 라지 타이틀 --- */
+.feature-window-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+#featureWindowClose {
+  width: 34px !important;
+  min-width: 34px !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  color: var(--mint-dark);
+}
+
+#featureWindowClose::before {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.feature-window-head h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* --- 4. 표준 16px 거터 --- */
+#featureWindow {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+@media (max-width: 430px) {
+  .topbar,
+  .progress-panel {
+    margin-inline: 16px;
+  }
+
+  .pet-care-grid {
+    margin-inline: 16px !important;
+  }
+}
