@@ -691,8 +691,9 @@ function showRoomGateModal() {
     return;
   }
   roomGateModal.classList.remove("hidden");
-  setRoomGateMessage("먼저 함께할 방을 만들거나 초대코드로 들어가요. 그 다음 내 목표와 루틴을 설정해요.");
-  window.setTimeout(() => roomGateCode?.focus(), 0);
+  setRoomGateMessage("지금 바로 시작할 수 있어요. 그룹은 나중에 만들어도 돼요.");
+  // 모바일에서 입력창에 포커스하면 키보드가 바로 올라와 주요 행동(혼자 시작)을 가린다.
+  window.setTimeout(() => document.querySelector("#soloStartButton")?.focus(), 0);
 }
 
 function hideRoomGateModal() {
@@ -7112,6 +7113,16 @@ roomGateForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(roomGateForm);
   const payload = Object.fromEntries(formData.entries());
+  // 방 이름 입력이 접힌 영역으로 이동해 required 검증 대신 직접 확인한다.
+  if (!String(payload.name || "").trim()) {
+    const createDetails = document.querySelector("#gateCreateDetails");
+    if (createDetails) {
+      createDetails.open = true;
+    }
+    setRoomGateMessage("방 이름을 입력해 주세요.", "error");
+    roomGateForm.querySelector("input[name='name']")?.focus();
+    return;
+  }
   await withSubmitBusy(event, "만드는 중", async () => {
     try {
       setRoomGateMessage("새 그룹 방을 만드는 중이에요.");
@@ -7124,6 +7135,37 @@ roomGateForm?.addEventListener("submit", async (event) => {
       showReward("실패!");
     }
   });
+});
+
+// 온보딩 지름길: 그룹 없이 나만의 방으로 바로 시작 (기존 /api/rooms 재사용)
+const soloStartButton = document.querySelector("#soloStartButton");
+
+soloStartButton?.addEventListener("click", async () => {
+  const nickname = getSavedNickname().trim();
+  await withButtonBusy(soloStartButton, "시작 중", async () => {
+    try {
+      setRoomGateMessage("나만의 방을 만드는 중이에요. 나중에 친구를 초대할 수 있어요.");
+      const result = await api("/api/rooms", {
+        name: nickname ? `${nickname.slice(0, 12)}의 루틴방` : "나의 루틴방",
+        goal: "혼자서 꾸준히 루틴 인증하기",
+        capacity: 4,
+        proofMode: "photo",
+      });
+      hideRoomGateModal();
+      applyState(result.state, result.reward);
+    } catch (error) {
+      setRoomGateMessage(error.message || "방을 만들 수 없어요. 잠시 후 다시 시도해 주세요.", "error");
+      showReward("실패!");
+    }
+  });
+});
+
+// 초대코드 입력에서 Enter를 누르면 폼 제출(방 만들기) 대신 방 들어가기를 실행한다.
+roomGateCode?.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    roomGateForm?.querySelector("[data-gate-join-room]")?.click();
+  }
 });
 
 proofPhoto?.addEventListener("change", async () => {

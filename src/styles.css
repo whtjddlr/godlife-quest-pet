@@ -12509,3 +12509,60 @@ textarea:focus {
   border-color: var(--mint-dark);
   box-shadow: 0 0 0 3px rgba(127, 212, 184, 0.25);
 }
+
+/* --------------------------------------------------------------------------
+   UX Pass — 온보딩 간소화 (혼자 먼저 시작하기 + 그룹 만들기 접기)
+   -------------------------------------------------------------------------- */
+.solo-start-button {
+  background: linear-gradient(135deg, #8be0bd, #5cc9a2);
+  border: none;
+  color: #10402f;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(46, 138, 113, 0.2), 0 10px 22px rgba(46, 138, 113, 0.24);
+}
+
+.solo-start-button:active {
+  transform: translateY(1px);
+}
+
+.gate-solo-note {
+  margin: 6px 2px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.gate-create-details {
+  border: 1px solid var(--soft-line);
+  border-radius: var(--ui-control-radius, 14px);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.gate-create-details summary {
+  padding: 12px 14px;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  list-style-position: inside;
+}
+
+.gate-create-details summary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: inherit;
+}
+
+.gate-create-details[open] summary {
+  border-bottom: 1px solid var(--soft-line);
+}
+
+.gate-create-details label,
+.gate-create-details .profile-grid,
+.gate-create-details .profile-submit {
+  margin: 10px 12px;
+}
+
+.gate-create-details .profile-submit {
+  width: calc(100% - 24px);
+}
