@@ -60,7 +60,6 @@
             <button class="icon-button" aria-label="프로필 수정" data-open-profile="true">
               <span class="icon-dot"></span>
             </button>
-            <button class="mini-action-button ghost" type="button" data-logout="true" aria-label="로그아웃">로그아웃</button>
           </div>
         </header>
 
@@ -110,6 +109,26 @@
               </div>
             </div>
             <div id="rewardPop" class="reward-pop" aria-live="polite"></div>
+            <div class="pet-hud" aria-label="펫 상태 요약">
+              <span class="hud-chip" aria-label="컨디션">
+                <i class="rw rw-hp" aria-hidden="true"></i>
+                <strong><span id="petHealth">50</span></strong>
+                <span class="hud-bar" aria-hidden="true"><span id="healthBar"></span></span>
+              </span>
+              <span class="hud-chip" aria-label="연속 출석">
+                <i class="rw rw-streak" aria-hidden="true"></i>
+                <strong id="streakCount">0일</strong>
+              </span>
+              <span class="hud-chip" aria-label="코인">
+                <i class="rw rw-coin" aria-hidden="true"></i>
+                <strong id="petCoin">0</strong>
+              </span>
+              <span class="hud-chip" aria-label="경험치">
+                <i class="rw rw-xp" aria-hidden="true"></i>
+                <strong id="xpProgressText">0/100</strong>
+                <span class="hud-bar" aria-hidden="true"><span id="xpBar"></span></span>
+              </span>
+            </div>
             <div class="screen-caption">
               <span id="petMood">그룹 인증을 기다리는 중</span>
             </div>
@@ -161,44 +180,18 @@
             </span>
           </button>
 
-          <div class="home-status-row">
-            <div class="condition-card" aria-label="컨디션">
-              <div>
-                <span class="label">컨디션</span>
-                <strong><span id="petHealth">50</span></strong>
-              </div>
-              <div class="condition-track" aria-hidden="true">
-                <span id="healthBar"></span>
-              </div>
-            </div>
-            <div class="home-mini-metrics" aria-label="핵심 상태">
-              <span>출석 <strong id="streakCount">0일</strong></span>
-              <span>코인 <strong id="petCoin">0</strong></span>
-            </div>
-            <button class="attendance-button" id="attendanceButton" type="button">
+          <div class="mission-timer-line" aria-label="일일 갱신">
+            <span id="dailyLeft">갱신까지 --:--</span>
+          </div>
+
+          <!-- 화면에서 내려간 값들: JS 참조 유지를 위해 숨김 보관 (출석은 자동 수령) -->
+          <div class="hidden-home-values" aria-hidden="true">
+            <button class="attendance-button" id="attendanceButton" type="button" tabindex="-1">
               <span id="attendanceLabel">출석</span>
               <strong id="attendanceReward">+20</strong>
             </button>
-          </div>
-
-          <div class="xp-progress-card" aria-label="경험치와 오늘 진행">
-            <div>
-              <span>XP</span>
-              <strong id="xpProgressText">0/100</strong>
-            </div>
-            <div class="xp-track" aria-hidden="true">
-              <span id="xpBar"></span>
-            </div>
-            <div class="home-progress-line">
-              <span>오늘 <strong><span id="completionRate">0</span>%</strong></span>
-              <span id="dailyLeft">갱신까지 --:--</span>
-            </div>
-            <div class="progress-track" aria-hidden="true">
-              <span id="completionBar"></span>
-            </div>
-          </div>
-
-          <div class="hidden-home-values" aria-hidden="true">
+            <span>오늘 <strong><span id="completionRate">0</span>%</strong></span>
+            <span class="progress-track"><span id="completionBar"></span></span>
             <span id="petXp">0/100</span>
             <span id="petBond">0</span>
             <span id="weeklyLeft">5개</span>
@@ -597,6 +590,7 @@
             </div>
           </div>
           <button class="profile-submit" id="profileSubmit" type="submit">내 미션 만들기</button>
+          <button class="profile-logout" type="button" data-logout="true" aria-label="로그아웃">로그아웃</button>
         </form>
       </section>
       <section class="proof-modal hidden" id="roomModal" aria-label="그룹 방 만들기">

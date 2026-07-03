@@ -14084,3 +14084,102 @@ a {
 .reward-pill.bond {
   --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
 }
+
+/* --------------------------------------------------------------------------
+   Calm Pixel — 홈 재구성: 상태를 펫 룸 HUD로
+   상태 카드 2행이 사라지고, 펫 룸 하단에 게임 HUD 칩(❤·🔥·🪙·⚡)이 얹힌다.
+   출석 보상은 자동 수령(숨김 처리), 갱신 타이머는 한 줄로 내려간다.
+   -------------------------------------------------------------------------- */
+
+.pixel-screen {
+  position: relative;
+}
+
+.pet-hud {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 26px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(35, 43, 54, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-size: 11.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 6px rgba(35, 43, 54, 0.12);
+}
+
+.hud-chip .rw {
+  margin: 0;
+  vertical-align: 0;
+}
+
+.hud-bar {
+  width: 26px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(35, 43, 54, 0.12);
+  overflow: hidden;
+}
+
+.hud-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--mint);
+}
+
+#xpBar {
+  background: #5f8fb4;
+}
+
+/* 연속 출석 불꽃 아이콘 */
+.rw-streak {
+  background: #f08c3e;
+  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.2 2.4c.1-.5-.5-.9-.9-.6C9 4.2 10.9 7.6 9.2 9.6 8.2 10.8 6.9 10.3 6.5 9c-.13-.44-.7-.57-.98-.2A7.8 7.8 0 0 0 4 13.6 8 8 0 0 0 12 21.5a8 8 0 0 0 8-7.9c0-4.5-3.9-6.3-4.9-9.6-.14-.47-.77-.55-1-.12-.5.9-.8 2.1-.62 3.4.14 1-.9 1.8-1.8 1.3-1.3-.7-1-3.6 1.5-6.2Z'/%3E%3C/svg%3E");
+}
+
+/* 갱신 타이머 한 줄 */
+.mission-timer-line {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* 숨김 보관 값들 */
+.hidden-home-values .attendance-button,
+.hidden-home-values .progress-track {
+  display: none;
+}
+
+/* 설정 모달 로그아웃 */
+.profile-logout {
+  min-height: 44px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--ui-control-radius);
+  background: #ffffff;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hud-chip,
+.hud-chip strong {
+  white-space: nowrap;
+}
