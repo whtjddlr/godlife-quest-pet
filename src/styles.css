@@ -12259,11 +12259,12 @@ body.feature-window-open .content-area .panel.active {
 }
 
 /* ==========================================================================
-   Visual Refresh 2.0 — 디자인 토큰 & 컴포넌트 폴리시 레이어
-   기존 파스텔 픽셀 펫 아이덴티티는 유지하고, 폰트·대비·그림자·위계를 정리한다.
+   Calm Pixel Redesign — 전면 리디자인 레이어
+   컨셉: 픽셀 펫이 유일한 주인공. UI는 화이트+웜그레이 위에 단일 그린 액센트만 쓰는
+   차분한 무대가 된다. 다색 그라데이션·노랑 배경·민트 프레임 등 톤을 흩트리던
+   요소를 모두 걷어내고, 색은 의미(보상=앰버, 알림=코럴)에만 배정한다.
    ========================================================================== */
 
-/* 픽셀 액센트 폰트 실제 로드 (기존 CSS가 참조만 하고 로드하지 않던 폰트) */
 @font-face {
   font-family: "DungGeunMo";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/DungGeunMo.woff") format("woff");
@@ -12273,39 +12274,52 @@ body.feature-window-open .content-area .panel.active {
 }
 
 :root {
-  /* 잉크/보조 텍스트 대비 강화 */
-  --ink: #22304a;
-  --muted: #5b6478;
+  /* 텍스트 */
+  --ink: #232b36;
+  --muted: #6a7280;
 
-  /* 표면: 더 깨끗한 크림 톤 */
-  --paper: #fdf8ee;
-  --panel: #fffdf8;
-  --surface: rgba(255, 253, 248, 0.94);
-  --surface-strong: #fffdf8;
+  /* 무대(배경)와 표면 */
+  --paper: #f6f3ec;
+  --panel: #ffffff;
+  --app-bg: #f6f3ec;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --surface-soft: #f2f7f4;
+  --surface-warm: #fbf7ef;
+  --surface-cool: #f1f6f9;
 
-  /* 포인트 컬러: 채도를 살짝 올려 선명하게 */
-  --mint: #7fd4b8;
-  --mint-dark: #2e8a71;
-  --coral: #ff8a70;
-  --blue: #6db5e8;
-  --yellow: #ffd35e;
-  --lilac: #c2b1ff;
+  /* 단일 브랜드 액센트: 딥 민트그린 */
+  --mint: #35a381;
+  --mint-dark: #23745b;
+  --accent-soft: #e4f2ec;
 
-  --soft-line: rgba(34, 48, 74, 0.12);
-  --ui-soft-border: rgba(34, 48, 74, 0.1);
+  /* 의미 색상: 보상(앰버) / 알림·주의(코럴)에만 사용 */
+  --yellow: #eda23b;
+  --amber-soft: #fbf0dc;
+  --coral: #e86a50;
+  --coral-soft: #fdece7;
+  --blue: #5f8fb4;
+  --lilac: #a99bd6;
 
-  /* 그림자: 크고 흐린 단일 그림자 → 가까운 접촉 그림자 + 은은한 원거리 그림자 2겹 */
-  --shadow: 0 2px 6px rgba(34, 48, 74, 0.07), 0 16px 36px rgba(34, 48, 74, 0.11);
-  --ui-soft-shadow: 0 1px 4px rgba(34, 48, 74, 0.06), 0 12px 26px rgba(34, 48, 74, 0.09);
+  --line: #232b36;
+  --soft-line: rgba(35, 43, 54, 0.1);
+  --ui-soft-border: rgba(35, 43, 54, 0.09);
+  --shadow: 0 1px 2px rgba(35, 43, 54, 0.05), 0 10px 26px rgba(35, 43, 54, 0.08);
+  --ui-soft-shadow: 0 1px 2px rgba(35, 43, 54, 0.04), 0 8px 22px rgba(35, 43, 54, 0.07);
+  --ui-card-radius: 20px;
+  --ui-control-radius: 12px;
 
-  --app-bg:
-    linear-gradient(135deg, rgba(127, 212, 184, 0.24), transparent 30%),
-    linear-gradient(225deg, rgba(255, 138, 112, 0.16), transparent 32%),
-    #f9f4e9;
-  --tab-active-bg: linear-gradient(135deg, #ff9078, #6fc9a9);
+  /* 펫 화면: 채도 낮춘 하늘/잔디. 픽셀 아트가 주인공이 되도록 배경은 물러난다 */
+  --screen-bg: linear-gradient(#e4f1f7 0 58%, #d9ecdb 58% 100%);
+  --room-bg-lv2: linear-gradient(#e7f3f8 0 58%, #dceede 58% 100%);
+  --room-bg-lv3: linear-gradient(#eaf4f9 0 57%, #dff0e1 57% 100%);
+  --room-bg-lv4: linear-gradient(#faf1e2 0 14%, #e7f3f8 14% 58%, #dceede 58% 100%);
+  --device-bg: #fffdf9;
+  --home-mission-bg: #ffffff;
+  --tab-active-bg: var(--accent-soft);
+  --modal-bg: rgba(255, 255, 255, 0.98);
 }
 
-/* Pretendard Variable이 로드되므로 본문 자간을 살짝 조여 또렷하게 */
 body {
   font-family:
     "Pretendard Variable",
@@ -12315,47 +12329,28 @@ body {
     system-ui,
     sans-serif;
   letter-spacing: -0.01em;
+  background: var(--app-bg);
 }
 
-/* 키보드 포커스 가시성 (접근성) */
 :where(button, a, input, select, textarea, [role="tab"]):focus-visible {
-  outline: 2px solid var(--blue);
+  outline: 2px solid var(--mint);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* 하단 내비게이션: 비활성 탭 대비 강화, 활성 탭 그라데이션 정돈 */
-.tab-button {
-  color: #68718a;
-  transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+/* --- 헤더: 조용한 유리 표면 위 아이콘 --- */
+.top-actions .install-button,
+.top-actions .notify-button,
+.top-actions .icon-button,
+.top-actions .mini-action-button {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
 }
 
-.tab-button:active {
-  transform: scale(0.96);
-}
-
-.tab-button.active {
-  background: var(--tab-active-bg);
-  box-shadow: 0 8px 18px rgba(255, 138, 112, 0.28);
-}
-
-/* 주요 CTA 버튼 press 피드백 */
-.quest-open-primary:active,
-.quick-share-card .quick-share-primary:active,
-.room-primary:active,
-.feed-row button:active {
-  transform: translateY(1px) scale(0.99);
-}
-
-/* --------------------------------------------------------------------------
-   Visual Refresh 2.0 — 컴포넌트 패스
-   -------------------------------------------------------------------------- */
-
-/* 헤더: 방 이름은 조용하게, 닉네임은 또렷하게. 우측 액션은 동일한 원형 그리드로 통일 */
 .topbar .eyebrow {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
@@ -12363,36 +12358,22 @@ body {
   letter-spacing: -0.02em;
 }
 
-.top-actions .install-button,
-.top-actions .notify-button,
-.top-actions .icon-button,
-.top-actions .mini-action-button {
-  border: 1px solid var(--soft-line);
-  background: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 6px rgba(34, 48, 74, 0.06);
-}
-
-/* 펫 디바이스 프레임: 민트 톤 정돈 + 화면과 프레임의 경계를 또렷하게 */
+/* --- 펫 디바이스: 채도 높은 민트 프레임 → 아이보리 액자 --- */
 .pet-device {
-  --device-bg:
-    radial-gradient(circle at 18% 16%, rgba(255, 216, 107, 0.5), transparent 20%),
-    #8fd6c3;
-  box-shadow:
-    0 2px 6px rgba(34, 48, 74, 0.08),
-    0 18px 40px rgba(46, 138, 113, 0.22);
+  border: 1px solid var(--soft-line);
+  box-shadow: var(--shadow);
 }
 
 .pixel-screen {
-  box-shadow:
-    inset 0 0 0 2px rgba(34, 48, 74, 0.16),
-    inset 0 -14px 26px rgba(34, 48, 74, 0.08);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(35, 43, 54, 0.12);
 }
 
-/* 케어 버튼: 밥주기(주요) vs 유흥/게임(보조) 위계 부여 */
+/* --- 케어 버튼: 밥주기(액센트 소프트) / 유흥·게임(화이트 보조) --- */
 .pet-care-grid .feed-row button {
-  border: 1px solid rgba(46, 138, 113, 0.28);
-  background: linear-gradient(160deg, #f2fff6, #dff7e8);
-  box-shadow: 0 2px 6px rgba(46, 138, 113, 0.12);
+  border: 1px solid rgba(53, 163, 129, 0.35);
+  background: var(--accent-soft);
+  box-shadow: none;
 }
 
 .pet-care-grid .feed-row button strong {
@@ -12401,14 +12382,14 @@ body {
 
 .care-actions button {
   border: 1px solid var(--soft-line);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 1px 4px rgba(34, 48, 74, 0.05);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  background: #ffffff;
+  box-shadow: none;
+  transition: transform 0.12s ease, background 0.12s ease;
 }
 
 .care-actions button:active {
   transform: translateY(1px);
-  box-shadow: none;
+  background: var(--surface-soft);
 }
 
 .care-actions button small {
@@ -12416,44 +12397,43 @@ body {
   font-weight: 700;
 }
 
-/* 오늘의 미션 카드: 화면의 단일 주요 행동으로 승격 */
+/* --- 오늘의 미션 카드: 흰 카드 + 좌측 액센트 레일, CTA 칩은 브랜드색 --- */
 .home-mission-card {
-  border: 1.5px solid rgba(255, 138, 112, 0.4);
-  background:
-    linear-gradient(120deg, rgba(255, 245, 235, 0.98), rgba(240, 252, 244, 0.98));
-  box-shadow:
-    0 2px 6px rgba(34, 48, 74, 0.06),
-    0 14px 30px rgba(255, 138, 112, 0.16);
+  border: 1px solid var(--soft-line);
+  border-left: 4px solid var(--mint);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
 }
 
 .home-mission-card .label {
   font-size: 11px;
   font-weight: 800;
-  color: #c96a4e;
-  letter-spacing: 0.01em;
-}
-
-.home-mission-card strong {
-  letter-spacing: -0.015em;
+  color: var(--mint-dark);
 }
 
 .home-mission-card em {
   color: var(--muted);
 }
 
-/* 상태 카드(컨디션/연속·코인/출석): 같은 표면 언어로 통일 */
+.home-mission-card::after {
+  background: var(--mint);
+  box-shadow: 0 6px 14px rgba(53, 163, 129, 0.35);
+}
+
+/* --- 상태 카드: 동일한 흰 표면, 색은 숫자·의미에만 --- */
 .condition-card,
 .home-mini-metrics,
-.attendance-button {
+.xp-progress-card {
   border: 1px solid var(--soft-line);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 1px 4px rgba(34, 48, 74, 0.05);
+  background: #ffffff;
+  box-shadow: none;
 }
 
 .attendance-button {
-  border-color: rgba(255, 211, 94, 0.7);
-  background: linear-gradient(160deg, #fff7dd, #ffedb5);
-  box-shadow: 0 2px 8px rgba(214, 158, 20, 0.18);
+  border: 1px solid rgba(237, 162, 59, 0.45);
+  background: var(--amber-soft);
+  box-shadow: none;
+  color: #8a5a12;
 }
 
 .condition-card .label {
@@ -12461,34 +12441,116 @@ body {
   font-weight: 700;
 }
 
-/* 하단 5탭 내비게이션: 라벨 대비와 활성 상태 정돈 */
-.tab-bar {
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow:
-    0 2px 6px rgba(34, 48, 74, 0.06),
-    0 14px 30px rgba(34, 48, 74, 0.14),
-    inset 0 0 0 1px rgba(34, 48, 74, 0.07);
+/* 무지개 게이지 → 단일 액센트 게이지 */
+.condition-track {
+  border: none;
+  background: rgba(35, 43, 54, 0.08);
 }
 
-/* 홈 하단 일일 진행 트랙: 바랜 노란 띠 → XP 바와 같은 중립 트랙 언어로 통일 */
-.progress-panel .progress-track {
-  background: rgba(34, 48, 74, 0.08);
-  border-color: transparent;
+.condition-track span {
+  border-radius: 999px;
+  background: var(--mint);
+}
+
+.progress-panel .progress-track,
+.progress-track {
+  border: none;
+  background: rgba(35, 43, 54, 0.08);
 }
 
 .progress-track span {
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--coral), var(--yellow) 55%, var(--mint));
+  background: var(--mint);
 }
 
-/* 모달 카드: 리프레시된 그림자/보더 토큰 적용 + 타이틀 자간 */
+/* --- 하단 내비게이션: 흰 바 + 액센트 소프트 활성 필 --- */
+.tab-bar {
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.tab-button {
+  color: #7a8291;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+}
+
+.tab-button:active {
+  transform: scale(0.96);
+}
+
+.tab-button.active {
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+.tab-button.active::before {
+  opacity: 1;
+}
+
+/* --- 퀘스트 화면 --- */
+.mission-category-head {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.mission-category-head strong,
+.mission-category-head em {
+  color: var(--ink);
+}
+
+.mission-category-head span {
+  color: var(--muted);
+}
+
+.quest-list-card {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.quest-list-action.request {
+  border: none;
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.quest-list-action.request:active {
+  background: var(--mint-dark);
+}
+
+.quest-list-action.waiting {
+  background: var(--amber-soft);
+  color: #8a5a12;
+  border: 1px solid rgba(237, 162, 59, 0.4);
+}
+
+.quest-list-action.done {
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+  border: 1px solid var(--soft-line);
+}
+
+/* --- 모달: 크림 그라데이션 → 순백 카드 --- */
 .profile-card,
 .quest-modal-card,
 .notification-card,
 .login-card,
 .group-gate-card {
-  border-color: var(--ui-soft-border);
-  box-shadow: var(--ui-soft-shadow);
+  border: 1px solid var(--ui-soft-border);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.login-modal,
+.profile-modal,
+.proof-modal,
+.quest-modal,
+.notification-modal {
+  background: rgba(35, 43, 54, 0.4);
+  backdrop-filter: blur(4px);
 }
 
 .login-card h2,
@@ -12496,7 +12558,6 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* 입력 필드: 포커스 상태를 명확하게 */
 input,
 select,
 textarea {
@@ -12506,23 +12567,28 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--mint-dark);
-  box-shadow: 0 0 0 3px rgba(127, 212, 184, 0.25);
+  border-color: var(--mint);
+  box-shadow: 0 0 0 3px rgba(53, 163, 129, 0.18);
 }
 
-/* --------------------------------------------------------------------------
-   UX Pass — 온보딩 간소화 (혼자 먼저 시작하기 + 그룹 만들기 접기)
-   -------------------------------------------------------------------------- */
-.solo-start-button {
-  background: linear-gradient(135deg, #8be0bd, #5cc9a2);
+/* 주요 제출 버튼: 노란 젤리 → 브랜드 솔리드 */
+.profile-submit {
+  background: var(--mint);
   border: none;
-  color: #10402f;
+  color: #ffffff;
   font-weight: 800;
-  box-shadow: 0 2px 6px rgba(46, 138, 113, 0.2), 0 10px 22px rgba(46, 138, 113, 0.24);
+  box-shadow: none;
 }
 
-.solo-start-button:active {
+.profile-submit:active {
+  background: var(--mint-dark);
   transform: translateY(1px);
+}
+
+/* --- 온보딩 (시작하기 모달) --- */
+.solo-start-button {
+  background: var(--mint);
+  color: #ffffff;
 }
 
 .gate-solo-note {
@@ -12535,8 +12601,8 @@ textarea:focus {
 
 .gate-create-details {
   border: 1px solid var(--soft-line);
-  border-radius: var(--ui-control-radius, 14px);
-  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--ui-control-radius);
+  background: var(--surface-warm);
 }
 
 .gate-create-details summary {
@@ -12546,11 +12612,6 @@ textarea:focus {
   font-size: 13px;
   font-weight: 800;
   list-style-position: inside;
-}
-
-.gate-create-details summary:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: inherit;
 }
 
 .gate-create-details[open] summary {
@@ -12565,4 +12626,150 @@ textarea:focus {
 
 .gate-create-details .profile-submit {
   width: calc(100% - 24px);
+}
+
+.room-gate-join button {
+  background: #ffffff;
+  border: 1px solid var(--soft-line);
+  color: var(--ink);
+}
+
+/* --- 시간대별 하늘: 컨셉은 유지, 팔레트만 채도를 낮춰 통일감 있게 --- */
+.screen-grid[data-sky-phase="dawn"] {
+  background:
+    radial-gradient(circle at 78% 24%, rgba(255, 226, 132, 0.3) 0 13%, transparent 24%),
+    linear-gradient(#f4dcc4 0 22%, #e2eef4 44% 62%, #d6e8d4 62% 100%);
+}
+
+.screen-grid[data-sky-phase="morning"] {
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255, 240, 164, 0.24) 0 12%, transparent 25%),
+    linear-gradient(#e2f1f7 0 62%, #d6e8d4 62% 100%);
+}
+
+.screen-grid[data-sky-phase="day"] {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 244, 166, 0.28) 0 12%, transparent 25%),
+    linear-gradient(#ddeef7 0 62%, #d2e6d0 62% 100%);
+}
+
+.screen-grid[data-sky-phase="evening"] {
+  background:
+    radial-gradient(circle at 80% 30%, rgba(240, 178, 122, 0.3) 0 15%, transparent 27%),
+    linear-gradient(#efd6bd 0 24%, #dcdaea 48% 62%, #c9dcc6 62% 100%);
+}
+
+.screen-grid[data-sky-phase="night"] {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.07) 0 10%, transparent 24%),
+    linear-gradient(#242e42 0 62%, #59685a 62% 100%);
+}
+
+/* --- 퀘스트 액션: 후반부 그라데이션 규칙보다 우선순위를 맞춰 재정의 --- */
+.quest-list-actions .quest-list-action.request {
+  background: var(--mint);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.quest-list-actions .quest-list-action.request:active {
+  background: var(--mint-dark);
+}
+
+.quest-list-actions .quest-list-action.waiting {
+  background: var(--amber-soft);
+  color: #8a5a12;
+  box-shadow: inset 0 0 0 1px rgba(237, 162, 59, 0.4);
+}
+
+.quest-list-actions .quest-list-action.done {
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+  box-shadow: inset 0 0 0 1px var(--soft-line);
+}
+
+.quest-list-actions .quest-list-detail {
+  background: #ffffff;
+  color: var(--muted);
+  box-shadow: inset 0 0 0 1px var(--soft-line);
+}
+
+/* --- 퀘스트 카테고리 배너: 레트로 칩과 흰 날짜 텍스트 정리 --- */
+.mission-category-head,
+body.feature-window-open .mission-category-head {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  background-color: #ffffff;
+}
+
+.mission-category-head strong {
+  color: var(--ink);
+}
+
+.mission-category-head span,
+body.feature-window-open .mission-category-head span {
+  color: var(--muted);
+}
+
+.mission-category-head em {
+  border: 1px solid rgba(53, 163, 129, 0.4);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+.mission-category-head::after {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+/* --- 풀스크린 창 뒤로가기: 두꺼운 레트로 아웃라인 → 조용한 원형 --- */
+#featureWindowClose {
+  border: 1px solid var(--soft-line);
+  background: #ffffff;
+  box-shadow: var(--ui-soft-shadow);
+  color: var(--ink);
+}
+
+/* --- 열림 상태 카테고리 배너: 흰 글씨/핑크 그라데이션/하드 섀도 정리 --- */
+.mission-category.open .mission-category-head {
+  background: var(--accent-soft);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+.mission-category.open .mission-category-head strong {
+  color: var(--ink);
+}
+
+.mission-category.open .mission-category-head span {
+  color: var(--mint-dark);
+}
+
+.mission-category.open .mission-category-head em {
+  border: 1px solid rgba(53, 163, 129, 0.4);
+  background: #ffffff;
+  color: var(--mint-dark);
+}
+
+.mission-category.open .mission-category-head::after {
+  background: #ffffff;
+  color: var(--mint-dark);
+}
+
+/* --- XP 바: 크림 트랙 → 중립 트랙 + 앰버 채움(보상 의미색) --- */
+.xp-track {
+  background: rgba(35, 43, 54, 0.08);
+  border: none;
+}
+
+#xpBar {
+  border-radius: 999px;
+  background: var(--yellow);
+}
+
+/* 초대코드 칩: 액센트 소프트 배경에서 읽히는 텍스트 색 */
+.room-code-chip {
+  color: var(--mint-dark);
 }
