@@ -23,6 +23,10 @@ Live Demo: https://godlife-mu.vercel.app
 - Vercel Functions
 - Supabase/Postgres 연동 옵션
 
+## 디자인
+
+UI는 **Calm Pixel** 디자인 시스템을 따릅니다 — 픽셀 펫이 유일한 주인공, UI는 단일 민트 액센트의 차분한 무대. 토큰·아이콘 문법·화면 구조·모션 언어는 [docs/design-system.md](docs/design-system.md)에 정리되어 있습니다.
+
 ## 로컬 실행
 
 ```bash
