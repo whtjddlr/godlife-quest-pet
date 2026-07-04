@@ -13750,3 +13750,59 @@ a {
 .pixel-shelf {
   display: none !important;
 }
+
+/* ==========================================================================
+   PIXEL COZY — 레거시 잔재 청소 (전 화면 감사에서 발견)
+   ========================================================================== */
+/* 1. 그룹 방 카드: 옐로-그린 그라데이션 → 패널 카드 */
+.room-card:not(.empty),
+#panel-verify .room-card:not(.empty),
+.room-card.room-effect-streak {
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--hard);
+}
+
+.room-card.empty {
+  border: 2px solid var(--soft-line);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: none;
+}
+
+/* 2. 기상 시간 휠: 노란 하이라이트 그라데이션 밴드 → 소프트 서피스 */
+.wake-wheel-picker {
+  background: var(--surface-soft);
+}
+
+.wake-wheel-column button.active {
+  border: 2px solid var(--line);
+  background: #fdfdf9;
+  color: var(--mint-dark);
+  box-shadow: var(--hard-soft);
+}
+
+/* 3. 퀘스트 상세 이전/다음 페이저: 파란 키 → 크림 게임 키 */
+.quest-pager button,
+.quest-pager button:not(:disabled) {
+  border: 2px solid var(--soft-line);
+  background: #fdfdf9;
+  color: var(--ink);
+  box-shadow: var(--hard-soft);
+}
+
+.quest-pager button:disabled {
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* 4. 그룹 보상 진행바: 차가운 블루그레이 트랙 + 무지개 채움 → 웜 트랙 + 민트 */
+.group-reward-track {
+  background: rgba(70, 60, 40, 0.12);
+}
+
+.group-reward-track span {
+  background: var(--mint);
+}
