@@ -12304,9 +12304,9 @@ body.feature-window-open .content-area .panel.active {
   --soft-line: rgba(70, 60, 40, 0.18);
   --ui-soft-border: rgba(70, 60, 40, 0.16);
   --hard: 0 3px 0 rgba(70, 60, 40, 0.92);
-  --hard-soft: 0 3px 0 rgba(70, 60, 40, 0.12);
-  --shadow: 0 3px 0 rgba(70, 60, 40, 0.12);
-  --ui-soft-shadow: 0 2px 0 rgba(70, 60, 40, 0.1);
+  --hard-soft: 0 1px 0 rgba(70, 60, 40, 0.16);
+  --shadow: 0 1px 0 rgba(70, 60, 40, 0.12);
+  --ui-soft-shadow: 0 1px 0 rgba(70, 60, 40, 0.1);
   --ui-card-radius: 14px;
   --ui-control-radius: 10px;
   --font-pixel: "DungGeunMo", "Neo둥근모", ui-monospace, monospace;
