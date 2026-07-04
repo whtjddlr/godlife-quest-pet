@@ -13596,3 +13596,103 @@ a {
   65% { transform: translateX(-50%) translateY(0) scale(1.06, 0.94); }
   100% { transform: translateX(-50%) translateY(0) scale(1); }
 }
+
+/* --------------------------------------------------------------------------
+   PIXEL COZY — 케어 존 색감 정리
+   상태별로 제각각이던 파스텔(민트/노랑)을 세피아 팔레트 안으로:
+   버튼 몸통은 항상 크림, 상태는 카운트 색과 보더로만 말한다.
+   밥주기는 탁한 올리브 대신 프리믹스 라이트 리프.
+   -------------------------------------------------------------------------- */
+
+.pet-care-grid .feed-row button {
+  background: #e9efcf;
+}
+
+.care-actions button.within-limit,
+.care-actions button.limit-reached {
+  background: #fffdf4;
+  border-color: var(--soft-line);
+}
+
+.care-actions button.within-limit small {
+  color: var(--amber-ink);
+  font-weight: 800;
+}
+
+.care-actions button.limit-reached {
+  border-color: rgba(217, 152, 46, 0.55);
+  background: var(--amber-soft);
+}
+
+.care-actions button.limit-reached small {
+  color: var(--amber-ink);
+  font-weight: 800;
+}
+
+.pet-action-button em {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 완료 상태 행동 키: 차분하게 가라앉힘 */
+.pet-action-button.done,
+.pet-action-button:disabled {
+  background: var(--surface-soft);
+  box-shadow: none;
+}
+
+.pet-action-button.done em,
+.pet-action-button:disabled em {
+  border-color: rgba(122, 162, 62, 0.45);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* --------------------------------------------------------------------------
+   퀵 공유 행: 초록 덩어리(라벨 숨김 아이콘 필) → 라벨 있는 게임 키
+   base의 font-size:0 그리드 규칙을 동급 셀렉터로 제압한다.
+   -------------------------------------------------------------------------- */
+.quick-share-card .share-icon-button,
+.quick-share-card .quick-share-primary,
+.brag-actions .share-icon-button,
+.brag-actions #sharePetButton {
+  width: auto;
+  min-width: 0;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 11px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.quick-share-card .share-icon-button::before,
+.brag-actions .share-icon-button::before {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+}
+
+.quick-share-card .quick-share-primary {
+  border: 2px solid var(--line);
+  background: var(--mint);
+  color: var(--on-mint);
+  box-shadow: 0 2px 0 rgba(70, 60, 40, 0.9);
+}
+
+.quick-share-card [data-external-share],
+.quick-share-card [data-save-share-image] {
+  border: 2px solid var(--soft-line);
+  background: #fffdf4;
+  color: var(--muted);
+  box-shadow: var(--hard-soft);
+}
+
+.quick-share-copy .label {
+  border: 1.5px solid var(--soft-line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--muted);
+}
