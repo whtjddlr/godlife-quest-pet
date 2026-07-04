@@ -13806,3 +13806,34 @@ a {
 .group-reward-track span {
   background: var(--mint);
 }
+
+/* ==========================================================================
+   PIXEL COZY — 펫 행동 버튼 슬림화: 한 줄 칩 (보상은 누를 때 팝으로)
+   ========================================================================== */
+.pet-action-button,
+.pet-care-grid.has-actions .pet-action-button,
+.pet-care-grid.has-many-actions .pet-action-button {
+  min-height: 32px;
+  height: auto;
+  padding: 3px 38px 3px 9px;
+  border-radius: 9px;
+}
+
+.pet-action-button small {
+  display: none;
+}
+
+.pet-action-button strong {
+  font-size: 12px;
+}
+
+.pet-action-button em {
+  right: 6px;
+  padding: 2px 6px;
+  font-size: 8.5px;
+}
+
+.pet-care-grid .pet-action-list,
+.pet-action-list {
+  gap: 6px;
+}
