@@ -12259,12 +12259,13 @@ body.feature-window-open .content-area .panel.active {
 }
 
 /* ==========================================================================
-   Calm Pixel Redesign — 전면 리디자인 레이어
-   컨셉: 픽셀 펫이 유일한 주인공. UI는 화이트+웜그레이 위에 단일 그린 액센트만 쓰는
-   차분한 무대가 된다. 다색 그라데이션·노랑 배경·민트 프레임 등 톤을 흩트리던
-   요소를 모두 걷어내고, 색은 의미(보상=앰버, 알림=코럴)에만 배정한다.
+   PIXEL COZY — 단일 시스템 레이어 (v3 아트 디렉션, 제로베이스 리라이트)
+   게임보이/다마고치 감성 전면: 따뜻한 세피아, 픽셀 폰트 타이틀,
+   청키 2px 보더 + 하드 섀도의 "게임 버튼"(누르면 물리적으로 눌린다),
+   베젤을 두른 디바이스 스크린. 픽셀 아트(룸·소품·포즈)는 원본 보존.
    ========================================================================== */
 
+/* --- 0. 폰트 --- */
 @font-face {
   font-family: "DungGeunMo";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/DungGeunMo.woff") format("woff");
@@ -12273,1054 +12274,109 @@ body.feature-window-open .content-area .panel.active {
   font-display: swap;
 }
 
+/* --- 1. 토큰 --- */
 :root {
-  /* 텍스트 */
-  --ink: #232b36;
-  --muted: #6a7280;
-
-  /* 무대(배경)와 표면 */
-  --paper: #f6f3ec;
-  --panel: #ffffff;
-  --app-bg: #f6f3ec;
-  --surface: #ffffff;
-  --surface-strong: #ffffff;
-  --surface-soft: #f2f7f4;
-  --surface-warm: #fbf7ef;
-  --surface-cool: #f1f6f9;
-
-  /* 단일 브랜드 액센트: 딥 민트그린 */
-  --mint: #35a381;
-  --mint-dark: #23745b;
-  --accent-soft: #e4f2ec;
-
-  /* 의미 색상: 보상(앰버) / 알림·주의(코럴)에만 사용 */
-  --yellow: #eda23b;
-  --amber-soft: #fbf0dc;
-  --coral: #e86a50;
-  --coral-soft: #fdece7;
-  --blue: #5f8fb4;
-  --lilac: #a99bd6;
-
-  --line: #232b36;
-  --soft-line: rgba(35, 43, 54, 0.1);
-  --ui-soft-border: rgba(35, 43, 54, 0.09);
-  --shadow: 0 1px 2px rgba(35, 43, 54, 0.05), 0 10px 26px rgba(35, 43, 54, 0.08);
-  --ui-soft-shadow: 0 1px 2px rgba(35, 43, 54, 0.04), 0 8px 22px rgba(35, 43, 54, 0.07);
-  --ui-card-radius: 20px;
-  --ui-control-radius: 12px;
-
-  /* 펫 화면: 채도 낮춘 하늘/잔디. 픽셀 아트가 주인공이 되도록 배경은 물러난다 */
-  --screen-bg: linear-gradient(#e4f1f7 0 58%, #d9ecdb 58% 100%);
-  --room-bg-lv2: linear-gradient(#e7f3f8 0 58%, #dceede 58% 100%);
-  --room-bg-lv3: linear-gradient(#eaf4f9 0 57%, #dff0e1 57% 100%);
-  --room-bg-lv4: linear-gradient(#faf1e2 0 14%, #e7f3f8 14% 58%, #dceede 58% 100%);
-  --device-bg: #fffdf9;
-  --home-mission-bg: #ffffff;
+  --ink: #463c28;
+  --muted: #8a7a58;
+  --paper: #f2e7d0;
+  --panel: #fbf5e6;
+  --app-bg: #f2e7d0;
+  --surface: #fbf5e6;
+  --surface-strong: #fbf5e6;
+  --surface-soft: #efe4c8;
+  --surface-warm: #f6ecd6;
+  --surface-cool: #eae2cc;
+  --bezel: #e3d6b6;
+  --mint: #7aa23e;            /* GB 리프 그린 (기존 변수명 유지) */
+  --mint-dark: #587c26;
+  --on-mint: #223510;
+  --accent-soft: rgba(122, 162, 62, 0.18);
+  --yellow: #d9982e;
+  --amber-soft: rgba(217, 152, 46, 0.16);
+  --amber-ink: #9a6a14;
+  --coral: #d96448;
+  --coral-soft: rgba(217, 100, 72, 0.14);
+  --coral-ink: #b04a30;
+  --blue: #6c8bb0;
+  --lilac: #a08cc0;
+  --pink: #c97795;
+  --line: #463c28;
+  --soft-line: rgba(70, 60, 40, 0.18);
+  --ui-soft-border: rgba(70, 60, 40, 0.16);
+  --hard: 0 3px 0 rgba(70, 60, 40, 0.92);
+  --hard-soft: 0 3px 0 rgba(70, 60, 40, 0.12);
+  --shadow: 0 3px 0 rgba(70, 60, 40, 0.12);
+  --ui-soft-shadow: 0 2px 0 rgba(70, 60, 40, 0.1);
+  --ui-card-radius: 14px;
+  --ui-control-radius: 10px;
+  --font-pixel: "DungGeunMo", "Neo둥근모", ui-monospace, monospace;
   --tab-active-bg: var(--accent-soft);
-  --modal-bg: rgba(255, 255, 255, 0.98);
+  --modal-bg: var(--panel);
+  --screen-bg: linear-gradient(#ccefff 0 46%, #b8e5c8 46% 100%);
+  --bottom-nav-height: 62px;
+  --bottom-nav-offset: 0px;
+  --bottom-nav-reserve: calc(62px + max(8px, env(safe-area-inset-bottom)) + 10px);
+  color-scheme: light;
 }
 
+/* --- 2. 베이스 --- */
 body {
-  font-family:
-    "Pretendard Variable",
-    "Pretendard",
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    system-ui,
-    sans-serif;
-  letter-spacing: -0.01em;
-  background: var(--app-bg);
+  font-family: "Pretendard Variable", "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  background-color: var(--app-bg);
+  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
+  background-size: 20px 20px;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 :where(button, a, input, select, textarea, [role="tab"]):focus-visible {
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--mint-dark);
   outline-offset: 2px;
-  border-radius: 6px;
-}
-
-/* --- 헤더: 조용한 유리 표면 위 아이콘 --- */
-.top-actions .install-button,
-.top-actions .notify-button,
-.top-actions .icon-button,
-.top-actions .mini-action-button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.topbar .eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-}
-
-.topbar h1 {
-  letter-spacing: -0.02em;
-}
-
-/* --- 펫 디바이스: 채도 높은 민트 프레임 → 아이보리 액자 --- */
-.pet-device {
-  border: 1px solid var(--soft-line);
-  box-shadow: var(--shadow);
-}
-
-.pixel-screen {
-  border-radius: 18px;
-  box-shadow: inset 0 0 0 1px rgba(35, 43, 54, 0.12);
-}
-
-/* --- 케어 버튼: 밥주기(액센트 소프트) / 유흥·게임(화이트 보조) --- */
-.pet-care-grid .feed-row button {
-  border: 1px solid rgba(53, 163, 129, 0.35);
-  background: var(--accent-soft);
-  box-shadow: none;
-}
-
-.pet-care-grid .feed-row button strong {
-  color: var(--mint-dark);
-}
-
-.care-actions button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-  transition: transform 0.12s ease, background 0.12s ease;
-}
-
-.care-actions button:active {
-  transform: translateY(1px);
-  background: var(--surface-soft);
-}
-
-.care-actions button small {
-  color: var(--muted);
-  font-weight: 700;
-}
-
-/* --- 오늘의 미션 카드: 흰 카드 + 좌측 액센트 레일, CTA 칩은 브랜드색 --- */
-.home-mission-card {
-  border: 1px solid var(--soft-line);
-  border-left: 4px solid var(--mint);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-.home-mission-card .label {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--mint-dark);
-}
-
-.home-mission-card em {
-  color: var(--muted);
-}
-
-.home-mission-card::after {
-  background: var(--mint);
-  box-shadow: 0 6px 14px rgba(53, 163, 129, 0.35);
-}
-
-/* --- 상태 카드: 동일한 흰 표면, 색은 숫자·의미에만 --- */
-.condition-card,
-.home-mini-metrics,
-.xp-progress-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.attendance-button {
-  border: 1px solid rgba(237, 162, 59, 0.45);
-  background: var(--amber-soft);
-  box-shadow: none;
-  color: var(--amber-ink, #8a5a12);
-}
-
-.condition-card .label {
-  color: var(--muted);
-  font-weight: 700;
-}
-
-/* 무지개 게이지 → 단일 액센트 게이지 */
-.condition-track {
-  border: none;
-  background: rgba(35, 43, 54, 0.08);
-}
-
-.condition-track span {
-  border-radius: 999px;
-  background: var(--mint);
-}
-
-.progress-panel .progress-track,
-.progress-track {
-  border: none;
-  background: rgba(35, 43, 54, 0.08);
-}
-
-.progress-track span {
-  border-radius: 999px;
-  background: var(--mint);
-}
-
-/* --- 하단 내비게이션: 흰 바 + 액센트 소프트 활성 필 --- */
-.tab-bar {
-  background: var(--surface-strong);
-  box-shadow: var(--shadow);
-}
-
-.tab-button {
-  color: #7a8291;
-  transition: color 0.15s ease, background 0.15s ease, transform 0.12s ease;
-}
-
-.tab-button:active {
-  transform: scale(0.96);
-}
-
-.tab-button.active {
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  box-shadow: none;
-}
-
-.tab-button.active::before {
-  opacity: 1;
-}
-
-/* --- 퀘스트 화면 --- */
-.mission-category-head {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-}
-
-.mission-category-head strong,
-.mission-category-head em {
-  color: var(--ink);
-}
-
-.mission-category-head span {
-  color: var(--muted);
-}
-
-.quest-list-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.quest-list-action.request {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.quest-list-action.request:active {
-  background: var(--mint-dark);
-}
-
-.quest-list-action.waiting {
-  background: var(--amber-soft);
-  color: var(--amber-ink, #8a5a12);
-  border: 1px solid rgba(237, 162, 59, 0.4);
-}
-
-.quest-list-action.done {
-  background: var(--surface-soft);
-  color: var(--mint-dark);
-  border: 1px solid var(--soft-line);
-}
-
-/* --- 모달: 크림 그라데이션 → 순백 카드 --- */
-.profile-card,
-.quest-modal-card,
-.notification-card,
-.login-card,
-.group-gate-card {
-  border: 1px solid var(--ui-soft-border);
-  background: var(--surface-strong);
-  box-shadow: var(--shadow);
-}
-
-.login-modal,
-.profile-modal,
-.proof-modal,
-.quest-modal,
-.notification-modal {
-  background: rgba(35, 43, 54, 0.4);
-  backdrop-filter: blur(4px);
-}
-
-.login-card h2,
-.group-gate-card h2 {
-  letter-spacing: -0.02em;
 }
 
 input,
-select,
-textarea {
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+textarea,
+select {
+  border: 2px solid var(--soft-line);
+  background: #fffdf4;
+  color: var(--ink);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
 input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--mint);
-  box-shadow: 0 0 0 3px rgba(53, 163, 129, 0.18);
+textarea:focus,
+select:focus {
+  border-color: var(--mint-dark);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-/* 주요 제출 버튼: 노란 젤리 → 브랜드 솔리드 */
-.profile-submit {
-  background: var(--mint);
-  border: none;
-  color: var(--on-mint, #ffffff);
-  font-weight: 800;
-  box-shadow: none;
-}
-
-.profile-submit:active {
-  background: var(--mint-dark);
-  transform: translateY(1px);
-}
-
-/* --- 온보딩 (시작하기 모달) --- */
-.solo-start-button {
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-}
-
-.gate-solo-note {
-  margin: 6px 2px 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.gate-create-details {
-  border: 1px solid var(--soft-line);
-  border-radius: var(--ui-control-radius);
-  background: var(--surface-warm);
-}
-
-.gate-create-details summary {
-  padding: 12px 14px;
-  cursor: pointer;
-  color: var(--ink);
-  font-size: 13px;
-  font-weight: 800;
-  list-style-position: inside;
-}
-
-.gate-create-details[open] summary {
-  border-bottom: 1px solid var(--soft-line);
-}
-
-.gate-create-details label,
-.gate-create-details .profile-grid,
-.gate-create-details .profile-submit {
-  margin: 10px 12px;
-}
-
-.gate-create-details .profile-submit {
-  width: calc(100% - 24px);
-}
-
-.room-gate-join button {
-  background: var(--surface-strong);
-  border: 1px solid var(--soft-line);
-  color: var(--ink);
-}
-
-/* --- 시간대별 하늘: 컨셉은 유지, 팔레트만 채도를 낮춰 통일감 있게 --- */
-.screen-grid[data-sky-phase="dawn"] {
-  background:
-    radial-gradient(circle at 78% 24%, rgba(255, 226, 132, 0.3) 0 13%, transparent 24%),
-    linear-gradient(#f4dcc4 0 22%, #e2eef4 44% 62%, #d6e8d4 62% 100%);
-}
-
-.screen-grid[data-sky-phase="morning"] {
-  background:
-    radial-gradient(circle at 78% 20%, rgba(255, 240, 164, 0.24) 0 12%, transparent 25%),
-    linear-gradient(#e2f1f7 0 62%, #d6e8d4 62% 100%);
-}
-
-.screen-grid[data-sky-phase="day"] {
-  background:
-    radial-gradient(circle at 78% 18%, rgba(255, 244, 166, 0.28) 0 12%, transparent 25%),
-    linear-gradient(#ddeef7 0 62%, #d2e6d0 62% 100%);
-}
-
-.screen-grid[data-sky-phase="evening"] {
-  background:
-    radial-gradient(circle at 80% 30%, rgba(240, 178, 122, 0.3) 0 15%, transparent 27%),
-    linear-gradient(#efd6bd 0 24%, #dcdaea 48% 62%, #c9dcc6 62% 100%);
-}
-
-.screen-grid[data-sky-phase="night"] {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.07) 0 10%, transparent 24%),
-    linear-gradient(#242e42 0 62%, #59685a 62% 100%);
-}
-
-/* --- 퀘스트 액션: 후반부 그라데이션 규칙보다 우선순위를 맞춰 재정의 --- */
-.quest-list-actions .quest-list-action.request {
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.quest-list-actions .quest-list-action.request:active {
-  background: var(--mint-dark);
-}
-
-.quest-list-actions .quest-list-action.waiting {
-  background: var(--amber-soft);
-  color: var(--amber-ink, #8a5a12);
-  box-shadow: inset 0 0 0 1px rgba(237, 162, 59, 0.4);
-}
-
-.quest-list-actions .quest-list-action.done {
-  background: var(--surface-soft);
-  color: var(--mint-dark);
-  box-shadow: inset 0 0 0 1px var(--soft-line);
-}
-
-.quest-list-actions .quest-list-detail {
-  background: var(--surface-strong);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 1px var(--soft-line);
-}
-
-/* --- 퀘스트 카테고리 배너: 레트로 칩과 흰 날짜 텍스트 정리 --- */
-.mission-category-head,
-body.feature-window-open .mission-category-head {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  background-color: var(--surface-strong);
-}
-
-.mission-category-head strong {
-  color: var(--ink);
-}
-
-.mission-category-head span,
-body.feature-window-open .mission-category-head span {
+input::placeholder,
+textarea::placeholder {
   color: var(--muted);
 }
 
-.mission-category-head em {
-  border: 1px solid rgba(53, 163, 129, 0.4);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-}
-
-.mission-category-head::after {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--muted);
-  font-weight: 800;
-}
-
-/* --- 풀스크린 창 뒤로가기: 두꺼운 레트로 아웃라인 → 조용한 원형 --- */
-#featureWindowClose {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-  color: var(--ink);
-}
-
-/* --- 열림 상태 카테고리 배너: 흰 글씨/핑크 그라데이션/하드 섀도 정리 --- */
-.mission-category.open .mission-category-head {
-  background: var(--accent-soft);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.mission-category.open .mission-category-head strong {
-  color: var(--ink);
-}
-
-.mission-category.open .mission-category-head span {
-  color: var(--mint-dark);
-}
-
-.mission-category.open .mission-category-head em {
-  border: 1px solid rgba(53, 163, 129, 0.4);
-  background: var(--surface-strong);
-  color: var(--mint-dark);
-}
-
-.mission-category.open .mission-category-head::after {
-  background: var(--surface-strong);
-  color: var(--mint-dark);
-}
-
-/* --- XP 바: 크림 트랙 → 중립 트랙 + 앰버 채움(보상 의미색) --- */
-.xp-track {
-  background: rgba(35, 43, 54, 0.08);
-  border: none;
-}
-
-#xpBar {
-  border-radius: 999px;
-  background: var(--yellow);
-}
-
-/* 초대코드 칩: 액센트 소프트 배경에서 읽히는 텍스트 색 */
-.room-code-chip {
-  color: var(--mint-dark);
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 전 화면 통일 패스
-   그룹/상점/알림/프로필에 남아 있던 옛 그라데이션 카드, 주황·베이지 하드보더 칩,
-   무지개 진행바를 시스템 언어(흰 카드 + 헤어라인 + 단일 액센트)로 맞춘다.
-   -------------------------------------------------------------------------- */
-
-/* 풀스크린 창 배경: 핑크빛 틴트 → 앱 배경과 동일한 톤 */
-#featureWindow,
-.content-area.open {
-  background: var(--app-bg);
-}
-
-/* --- 그룹(인증) 화면 --- */
-.room-card,
-#panel-verify .room-card:not(.empty) {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-.room-code-chip,
-#panel-verify .room-code-chip {
-  border: 1px solid rgba(53, 163, 129, 0.4);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  box-shadow: none;
-}
-
-.room-code-chip span,
-.room-code-chip strong {
-  color: var(--mint-dark);
-}
-
-.group-reward-card,
-#panel-verify .group-reward-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.group-reward-track {
-  background: rgba(35, 43, 54, 0.08);
-  border: none;
-}
-
-.group-reward-track span {
-  border-radius: 999px;
-  background: var(--mint);
-}
-
-.group-member-card,
-#panel-verify .group-member-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-/* --- 상점 화면 --- */
-.friend-reward-card,
-.level-reward-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-.friend-reward-list > div,
-.level-reward-list > div {
-  border: 1px solid var(--soft-line);
-  background: #fdfcfa;
-  box-shadow: none;
-}
-
-.friend-reward-list em,
-.level-reward-list em {
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  border: none;
-}
-
-.friend-reward-list button,
-.level-reward-list button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.friend-reward-list .ready button,
-.level-reward-list .ready button {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-}
-
-/* --- 알림함 --- */
-.notification-item {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.notification-icon {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--mint-dark);
-  box-shadow: none;
-}
-
-.notification-item strong em {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  box-shadow: none;
-}
-
-.notification-item.unread strong em {
-  border-color: rgba(53, 163, 129, 0.4);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-}
-
-#pushEnableButton {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-/* --- 모달 공통: 두꺼운 레트로 아웃라인 버튼 → 헤어라인 --- */
-.modal-close-button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-/* --- 프로필 편집: 카운터/시간 선택 --- */
-.self-rule-stepper output {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.self-rule-stepper button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.time-row span {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.time-row span.active,
-.time-row span[aria-selected="true"] {
-  border-color: var(--mint);
-  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
-}
-
-/* --- 통일 패스 마감: 닫기 버튼, 읽음 상태, 보상 대기 칩, 희소성 칩 --- */
-.quest-modal-close {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-/* 읽음 상태: 그레이스케일 필터가 배지를 탁한 베이지로 만들던 것 정리 */
-.notification-item.read .notification-icon {
-  opacity: 0.55;
-  filter: none;
-}
-
-.group-reward-card button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.group-reward-card button:disabled {
-  background: var(--surface-soft);
-  color: var(--muted);
-}
-
-.group-reward-card.ready button:not(:disabled) {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-}
-
-.starter-card em,
-.pet-card em {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  box-shadow: none;
-}
-
-/* --- ID 기반 닫기/뒤로 버튼: 레트로 2px 아웃라인 + 오프셋 섀도 정리 --- */
-#featureWindowClose,
-#questModalClose,
-#notificationClose,
-#profileClose,
-#roomCancel,
-#temptationConfirmClose {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-/* --- 펫 소식(자랑) 화면 --- */
-.quick-share-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.quick-share-card button {
-  background: var(--surface-strong);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 1px var(--soft-line);
-}
-
-.quick-share-card .quick-share-primary {
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.quick-share-card [data-external-share] {
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  box-shadow: none;
-}
-
-#panel-brag textarea,
-#dailyShareNote {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-}
-
-.achievement-card em {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-}
-
-.achievement-card.unlocked em {
-  border-color: rgba(53, 163, 129, 0.4);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-}
-
-/* --- 펫 소식 작성 카드: 그라데이션 배경과 삼색 원형 버튼 통일 --- */
-.brag-card {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-.share-icon-button {
-  background: var(--surface-strong);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 1px var(--soft-line);
-}
-
-.share-icon-button.share-icon-chat {
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-/* --- 공유 아이콘 버튼: 삼색 그라데이션 원형 → 주요(민트)/보조(화이트) 위계 --- */
-.quick-share-card .quick-share-primary,
-.brag-actions #sharePetButton {
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.quick-share-card [data-external-share],
-.brag-actions [data-external-share],
-.quick-share-card [data-save-share-image],
-.brag-actions [data-save-share-image] {
-  background: var(--surface-strong);
-  color: var(--muted);
-  box-shadow: inset 0 0 0 1px var(--soft-line);
-}
-
-/* --- 기상 시간 휠: 선택값의 레트로 아웃라인 → 액센트 링 --- */
-.wake-wheel-column button.active {
-  border: 1px solid var(--mint);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.16);
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 홈 하단 패널 배치 정규화
-   행마다 제각각이던 높이·비율·라운드·간격을 하나의 리듬으로 맞춘다.
-   -------------------------------------------------------------------------- */
-
-/* 패널 전체를 그리드로 묶어 흩어진 margin 대신 일정한 간격 사용 */
-.progress-panel {
-  display: grid;
-  gap: 8px;
-}
-
-.progress-panel > * {
-  margin: 0 !important;
-}
-
-/* 상태 행: 1fr/74px/58px의 극단 비율 → 균형 잡힌 3열 */
-.home-status-row {
-  grid-template-columns: minmax(0, 1.55fr) minmax(96px, 1fr) minmax(80px, 0.85fr) !important;
-  gap: 8px !important;
-  align-items: stretch;
-}
-
-.condition-card,
-.home-mini-metrics,
-.attendance-button {
-  min-height: 58px !important;
-  border-radius: 14px;
-  padding: 9px 11px !important;
-}
-
-/* 컨디션 상태별 노랑/민트 틴트 제거 — 상태는 게이지가 말한다 */
-.condition-card,
-.condition-card[data-condition="spark"],
-.condition-card[data-condition="happy"],
-.condition-card[data-condition="steady"],
-.condition-card[data-condition="low"] {
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.home-mini-metrics {
-  display: grid;
-  align-content: center;
-  gap: 5px;
-}
-
-.home-mini-metrics span {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 11px !important;
-}
-
-.home-mini-metrics strong {
-  color: var(--ink);
-  font-size: 13px !important;
-  font-variant-numeric: tabular-nums;
-}
-
-/* XP 카드 = 진행 카드: 경험치와 오늘 진행률을 한 카드의 두 행으로 */
-.xp-progress-card {
-  padding: 11px 12px;
-  border-radius: 14px;
-  gap: 7px;
-}
-
-.xp-progress-card .home-progress-line {
-  margin: 3px 0 0 !important;
-  padding: 0;
-  font-size: 11px;
-}
-
-.xp-progress-card .home-progress-line strong {
-  font-size: 13px;
-}
-
-.xp-progress-card .progress-track {
-  margin: 0;
-}
-
-/* 라운드 리듬 통일: 주요 카드 16px, 행 카드 14px */
-.home-mission-card {
-  border-radius: 16px;
-}
-
-.quick-share-card {
-  min-height: 58px;
-  border-radius: 14px;
-  padding: 9px 11px;
-}
-
-.quick-share-card .quick-share-copy .label {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-}
-
-.quick-share-actions {
-  grid-template-columns: repeat(3, 36px);
-  gap: 6px;
-}
-
-.quick-share-card .share-icon-button {
-  min-height: 36px;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 홈 정보 다이어트 & 호흡
-   상시 노출 안내문·중복 진행바를 정리하고, 케어 버튼을 한 행으로 병합해
-   화면에 숨 쉴 공간을 만든다. 라벨은 조용하게, 숫자가 말하게.
-   -------------------------------------------------------------------------- */
-
-/* 케어 영역: 밥주기 + 유흥/게임을 한 행으로 (기존 2행 → 1행) */
-.pet-care-grid {
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
-  align-items: stretch;
-}
-
-.pet-care-grid .care-actions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
-  margin: 0 !important;
-}
-
-.pet-care-grid .pet-action-list {
-  grid-column: 1 / -1;
-}
-
-.pet-care-grid.has-actions {
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 2fr);
-}
-
-.pet-care-grid .feed-row button,
-.pet-care-grid .care-actions button {
-  min-height: 48px;
-  height: 100%;
-}
-
-/* 미션 카드: 상시 노출되던 사용법 안내문 제거 — 화살표 큐가 대신한다 */
-.home-mission-card em {
-  display: none;
-}
-
-.home-mission-card strong {
-  font-size: 17px;
-}
-
-/* 진행 카드: 일일 진행바 제거(미션 카드의 오늘 N/5와 중복), 텍스트 한 줄만 */
-.xp-progress-card .progress-track {
-  display: none;
-}
-
-.xp-progress-card .home-progress-line {
-  color: var(--muted);
-}
-
-/* 라벨 톤 다운: 굵은 대문자 라벨의 아우성 → 조용한 보조 텍스트 */
-.condition-card .label,
-.home-mini-metrics span,
-.xp-progress-card > div:first-child > span,
-.home-mission-card .label,
-.topbar .eyebrow {
-  font-weight: 600;
-}
-
-/* 호흡: 행 간격과 좌우 여백 확대 */
-.progress-panel {
-  gap: 10px;
-}
-
-.pet-device {
-  row-gap: 2px;
-}
-
-@media (max-width: 430px) {
-  .topbar,
-  .pet-device,
-  .progress-panel,
-  .tab-bar {
-    margin-inline: 18px;
-  }
-
-  .pixel-screen {
-    height: 260px;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 모션 · 일관성 · 크기 안정 패스
-   1) 창/모달에 동일한 등장 모션  2) 전 화면 타이포 위계 통일
-   3) 탭·데이터 변화에도 화면 크기가 흔들리지 않게 고정
-   -------------------------------------------------------------------------- */
-
-/* --- 1. 화면 크기 안정 --- */
-
-/* 풀스크린 창: 내용 길이에 따라 높이가 달라지던 것 → 항상 같은 높이로 고정 */
-.content-area {
-  bottom: 10px;
-  max-height: none;
-  border-color: transparent;
-  box-shadow: 0 2px 8px rgba(35, 43, 54, 0.06), 0 16px 40px rgba(35, 43, 54, 0.12);
-  backdrop-filter: none;
-}
-
-/* 값이 바뀌어도 숫자 폭이 흔들리지 않게 */
+/* 픽셀 폰트 디스플레이: 제목·큰 숫자 = 이 테마의 시그니처 */
+.feature-window-head h2,
+.section-title h2,
+.login-card h2,
+.group-gate-card h2,
+.quest-modal-head h2,
+.notification-card .section-title h2,
+.topbar h1,
 .condition-card strong,
-.home-mini-metrics strong,
-.attendance-button strong,
-.xp-progress-card strong,
-.home-progress-line strong,
-.quest-reward,
-.mission-category-head em {
-  font-variant-numeric: tabular-nums;
+.hud-chip strong,
+.gacha-cost strong {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  letter-spacing: 0;
 }
-
-/* 미션 카드: 제목 길이와 무관하게 높이 고정, 1줄 말줄임 */
-.home-mission-card {
-  min-height: 78px;
-  align-content: center;
-}
-
-.home-mission-card strong {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* 닉네임이 길어도 헤더 아이콘을 밀지 않게 */
-.brand-lockup h1 {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* --- 2. 전 화면 타이포 위계 통일 --- */
 
 .section-title h2 {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: 18px;
 }
 
 .section-title span {
@@ -13329,506 +12385,143 @@ body.feature-window-open .mission-category-head span {
   font-weight: 500;
 }
 
-.feature-window-head h2 {
-  font-size: 18px;
-  font-weight: 750;
-  letter-spacing: -0.02em;
+.topbar h1 {
+  font-size: 21px;
 }
 
-.mission-category-head strong {
-  font-weight: 700;
+/* --- 3. 게임 버튼 시스템 --- */
+/* 주요(그린 키): 2px 잉크 보더 + 하드 섀도, 누르면 3px 내려앉음 */
+.profile-submit,
+.quest-list-action.request,
+.quest-list-actions .quest-list-action.request,
+.quest-action,
+.quest-open-primary,
+.proof-approve,
+.solo-start-button,
+#pushEnableButton,
+.share-icon-button.share-icon-chat,
+.brag-actions #sharePetButton,
+.quick-share-card .quick-share-primary,
+.proof-camera-toolbar button:first-child,
+.template-actions button:last-child,
+.gacha-card button:not(:disabled) {
+  border: 2px solid var(--line);
+  border-radius: var(--ui-control-radius);
+  background: var(--mint);
+  color: var(--on-mint);
+  font-weight: 800;
+  box-shadow: var(--hard);
 }
 
-.mission-category-head span,
-.quest-overview span,
-.home-progress-line span {
-  font-weight: 500;
-}
-
-/* 퀘스트 안내 바: 레트로 보더·그라데이션 → 조용한 흰 카드 */
-.quest-overview {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
+.profile-submit:active,
+.quest-list-action.request:active,
+.quest-list-actions .quest-list-action.request:active,
+.quest-action:active,
+.quest-open-primary:active,
+.proof-approve:active,
+.solo-start-button:active,
+#pushEnableButton:active,
+.share-icon-button.share-icon-chat:active,
+.brag-actions #sharePetButton:active,
+.quick-share-card .quick-share-primary:active,
+.proof-camera-toolbar button:first-child:active,
+.template-actions button:last-child:active,
+.gacha-card button:not(:disabled):active {
+  transform: translateY(3px);
   box-shadow: none;
 }
 
-.quest-overview strong {
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* --- 3. 부드러운 흐름 (모션) --- */
-
-button,
-[role="tab"],
-.tab-button,
-a {
-  transition:
-    background-color 0.16s ease,
-    border-color 0.16s ease,
-    box-shadow 0.16s ease,
-    color 0.16s ease,
-    transform 0.14s ease;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  /* 탭 창 열림: 동일한 등장 커브 */
-  #featureWindow.open .content-area {
-    animation: cpWindowIn 240ms cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-
-  /* 모달 카드 등장: 창과 같은 언어의 짧은 슬라이드 업 */
-  .login-modal:not(.hidden) .profile-card,
-  .profile-modal:not(.hidden) .profile-card,
-  .quest-modal:not(.hidden) .quest-modal-card,
-  .notification-modal:not(.hidden) .notification-card,
-  .proof-modal:not(.hidden) .profile-card {
-    animation: cpModalIn 200ms ease-out;
-  }
-}
-
-@keyframes cpWindowIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes cpModalIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 간결화 패스
-   같은 정보를 두 번 말하지 않는다. 창 제목과 패널 제목의 중복, 보상 텍스트와
-   보상 칩의 중복, 미션 카드와 진행률의 중복을 정리한다.
-   -------------------------------------------------------------------------- */
-
-/* 창 머리에 이미 제목이 있으므로 패널 첫 섹션 제목(중복)은 숨긴다 */
-.content-area .panel > .section-title:first-child {
-  display: none !important;
-}
-
-/* 홈 진행 라인: "오늘 N%"는 미션 카드의 오늘 N/5와 중복 — 갱신 카운트다운만 남긴다 */
-.xp-progress-card .home-progress-line > span:first-child {
-  display: none;
-}
-
-.xp-progress-card .home-progress-line {
-  justify-content: flex-end;
-}
-
-/* 퀘스트 카드: 보상 텍스트(칩과 중복) 제거, 설명은 1줄로 */
-.quest-list-meta em {
-  display: none;
-}
-
-.quest-list-body p {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 상점 사이징 패스
-   빈 카드가 그려지던 버그를 고치고, 성장 보상 그리드·뽑기 카드가
-   내용에 맞는 크기만 차지하도록 압축한다.
-   -------------------------------------------------------------------------- */
-
-/* hidden 속성이 display:grid 규칙에 눌려 빈 카드 띠로 그려지던 버그 수정 */
-[hidden] {
-  display: none !important;
-}
-
-/* 성장 보상: 셀 패딩·간격 압축 (2열 유지) */
-.level-reward-card {
-  padding: 12px;
-}
-
-.level-reward-list {
-  gap: 6px;
-}
-
-.level-reward-list div {
-  padding: 8px 10px;
-  border-radius: 12px;
-}
-
-.level-reward-list div.unlocked {
-  background: var(--accent-soft);
-}
-
-.level-reward-list em {
-  margin-bottom: 1px;
-}
-
-/* 뽑기 카드: 옆 열 전체를 차지하던 거대 버튼 → 하단 일반 버튼 */
-.gacha-card {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
-  padding: 12px;
-}
-
-.gacha-card button {
-  width: 100%;
-  min-width: 0;
-  min-height: 44px;
-  padding: 10px;
-  border: none;
-  border-radius: 12px;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-}
-
-.gacha-card button:disabled {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  opacity: 1;
-}
-
-/* 코인 비용 배지: 레트로 옐로 → 앰버 소프트 */
-.gacha-cost {
-  border: 1px solid rgba(237, 162, 59, 0.45);
-  background: var(--amber-soft);
-  color: var(--amber-ink, #8a5a12);
-}
-
-/* 확률 칩: 큰 블록 → 컴팩트 칩 */
-.gacha-odd {
-  min-height: 34px;
-  padding: 6px 9px;
-  border-radius: 10px;
-}
-
-.gacha-odds {
-  gap: 6px;
-}
-
-/* 최근 결과 필: 내용 높이만 차지 */
-.gacha-result-pill {
-  min-height: 0;
-  padding: 9px 11px;
-}
-
-/* 우정 보상 행 압축 */
-.friend-reward-card {
-  padding: 12px;
-}
-
-.friend-reward-list {
-  gap: 6px;
-}
-
-.friend-reward-list > div {
-  padding: 8px 10px;
-  border-radius: 12px;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 딥 스테이트 스윕
-   퀘스트 상세·사진 인증·그룹원 카드·색상 변경·보관함 등 깊은 상태 화면에
-   남아 있던 레트로 요소(주황 그라데이션, 2px 아웃라인)를 시스템 언어로 정리.
-   -------------------------------------------------------------------------- */
-
-/* --- 퀘스트 상세 모달 --- */
-.quest-action {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.quest-action:active {
-  background: var(--mint-dark);
-}
-
-.quest-item {
-  border: 1px solid var(--soft-line);
-}
-
+/* 보조(크림 키) */
+.quest-list-actions .quest-list-detail,
+.quest-pager button,
+.quest-share,
 .quest-edit,
-.quest-share {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
+.quest-links .link-add,
+.quest-links .quest-link,
+.care-actions button,
+.room-actions button,
+.room-gate-join button,
+.member-mission-button,
+.member-poke-button,
+.verify-actions button,
+.notification-native-actions button,
+.routine-ai-tools button,
+.template-actions button,
+.message-presets button,
+.accessory-card button,
+.pet-card button,
+.proof-actions .ghost,
+.temptation-confirm-card .proof-actions .ghost,
+.proof-camera-toolbar button,
+.modal-close-button,
+.quest-modal-close,
+.profile-logout,
+.self-rule-stepper button,
+.friend-reward-list button,
+.level-reward-list button,
+.group-reward-card button,
+.share-icon-button,
+.quick-share-card button,
+.accessory-filter-bar button,
+.palette-option {
+  border: 2px solid var(--soft-line);
+  border-radius: var(--ui-control-radius);
+  background: #fffdf4;
   color: var(--ink);
+  box-shadow: var(--hard-soft);
+}
+
+.quest-list-actions .quest-list-detail:active,
+.quest-pager button:active,
+.care-actions button:active,
+.modal-close-button:active,
+.quest-modal-close:active,
+.profile-logout:active,
+.share-icon-button:active {
+  transform: translateY(2px);
   box-shadow: none;
 }
 
-.quest-pager button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.quest-swipe-hint {
-  border: 1px dashed var(--soft-line);
+/* 비활성/카운트 키 */
+.friend-reward-list button:disabled,
+.level-reward-list button:disabled,
+.group-reward-card button:disabled,
+.gacha-card button:disabled {
+  border-color: var(--soft-line);
   background: var(--surface-soft);
   color: var(--muted);
-}
-
-/* --- 사진 인증 모달 --- */
-.proof-camera-toolbar button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-}
-
-.proof-camera-toolbar button:first-child {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
   box-shadow: none;
-}
-
-.profile-card input[type="file"] {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-}
-
-.profile-card input[type="file"]::file-selector-button {
-  border: 1px solid rgba(53, 163, 129, 0.4);
-  border-radius: 10px;
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  font-weight: 700;
-}
-
-.proof-actions {
-  background: transparent;
-}
-
-.proof-actions .ghost,
-.temptation-confirm-card .proof-actions .ghost {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-/* --- 그룹원 카드 --- */
-.group-member-bars span {
-  border: none;
-  background: rgba(35, 43, 54, 0.08);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.group-member-bars span::before {
-  background: var(--mint);
-}
-
-.group-member-bars em {
-  color: var(--ink);
-}
-
-.member-mission-button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-/* --- 상점: 색상 변경 스와치 / 보관함 필터 --- */
-.palette-option {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.palette-option.active {
-  border-color: var(--mint);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
-}
-
-.accessory-filter-bar button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.accessory-filter-bar button.active,
-.accessory-filter-bar button[aria-pressed="true"] {
-  border-color: var(--mint);
-  background: var(--accent-soft);
-  color: var(--mint-dark);
-}
-
-/* 안내(빈 상태) 카드: 2px 아웃라인 → 헤어라인 */
-.proof-empty {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-/* 펫 도감 희소성 카드: 라디얼 핑크 → 옅은 플랫 틴트 */
-.pet-card.rare {
-  background: #f3f7fd;
-}
-
-.pet-card.epic {
-  background: #f6f2fd;
-}
-
-.pet-card.legend {
-  background: #fdf3f0;
-}
-
-/* --- 프로필: 테마색 선택 스와치 --- */
-.theme-swatch-button {
-  border: 1px solid var(--soft-line);
-  box-shadow: none;
-}
-
-.theme-swatch-button.active,
-.theme-swatch-button[aria-pressed="true"] {
-  border-color: var(--mint);
-  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.2);
-}
-
-/* 딥 스윕 마감: 퀘스트 칩·링크 버튼, 인증 하단 스티키 띠 */
-.quest-type,
-.quest-links .link-add,
-.quest-links .quest-link {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-.quest-item .quest-type {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--mint-dark);
-}
-
-/* 스티키 푸터는 스크롤 내용 위에 뜨므로 배경이 필요 — 크림 대신 흰색 페이드 */
-.proof-modal .proof-actions {
-  background: linear-gradient(rgba(255, 255, 255, 0), #ffffff 24%);
-  box-shadow: none;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 아이콘 리프레시
-   제각각이던 필(fill) 아이콘을 하나의 라운드 아웃라인 세트(스트로크 2px,
-   둥근 끝단)로 교체한다. UI 아이콘은 가늘고 조용하게, 픽셀 아트만 도톰하게.
-   -------------------------------------------------------------------------- */
-
-/* --- 하단 탭 5종 --- */
-.tab-button[data-home-button] {
-  --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3Cpath d='M9 21v-6h6v6'/%3E%3C/svg%3E");
-}
-
-.tab-button[data-panel="daily"] {
-  --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8' y='2' width='8' height='4' rx='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E");
-}
-
-.tab-button[data-panel="verify"] {
-  --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E");
-}
-
-.tab-button[data-panel="brag"] {
-  --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 4-1.7 5a2 2 0 0 1-1.3 1.3L4 12l5 1.7a2 2 0 0 1 1.3 1.3L12 20l1.7-5a2 2 0 0 1 1.3-1.3L20 12l-5-1.7a2 2 0 0 1-1.3-1.3Z'/%3E%3Cpath d='M19 3v4'/%3E%3Cpath d='M17 5h4'/%3E%3C/svg%3E");
-}
-
-.tab-button[data-panel="growth"] {
-  --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z'/%3E%3Cpath d='M3 6h18'/%3E%3Cpath d='M16 10a4 4 0 0 1-8 0'/%3E%3C/svg%3E");
-}
-
-/* --- 헤더 4종 --- */
-.install-button::before {
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.notify-mark {
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/%3E%3Cpath d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.icon-dot {
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.mini-action-button.ghost[data-logout]::before {
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3Cpath d='m16 17 5-5-5-5'/%3E%3Cpath d='M21 12H9'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3Cpath d='m16 17 5-5-5-5'/%3E%3Cpath d='M21 12H9'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* 아웃라인 아이콘은 살짝 크게 보정 (필 아이콘 대비 시각 무게가 가벼움) */
-.tab-button::before {
-  width: 23px;
-  height: 23px;
   opacity: 1;
 }
 
-/* --------------------------------------------------------------------------
-   Calm Pixel — 퀘스트 카테고리 아이콘
-   한 글자 텍스트 배지(시/두/하...) → 탭바와 같은 라운드 아웃라인 아이콘.
-   배경/색상은 기존 카드별 파스텔 로테이션을 그대로 사용한다.
-   -------------------------------------------------------------------------- */
-.quest-list-icon::before {
-  content: "";
+/* 상태 링(선택/장착/준비) */
+.starter-card.selected,
+.accessory-card.equipped,
+.craft-card.ready,
+.pet-card.active,
+.mood-picker button.active,
+.palette-option.active,
+.accessory-filter-bar button.active,
+.theme-swatch-button.active,
+.wake-wheel-column button.active {
+  border: 2px solid var(--mint-dark);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: var(--hard-soft);
+}
+
+.care-actions button.active-penalty {
+  border-color: rgba(217, 100, 72, 0.6);
+  background: var(--coral-soft);
+  color: var(--coral-ink);
+}
+
+/* --- 4. 아이콘 라이브러리 (통통한 필 마스크) --- */
+.tab-button::before {
   width: 22px;
   height: 22px;
-  display: block;
-  background: currentColor;
-  -webkit-mask: var(--quest-icon) center / contain no-repeat;
-  mask: var(--quest-icon) center / contain no-repeat;
 }
 
-.quest-list-icon[data-icon="wake"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v6'/%3E%3Cpath d='m8 6 4-4 4 4'/%3E%3Cpath d='M16 18a4 4 0 0 0-8 0'/%3E%3Cpath d='M2 18h2'/%3E%3Cpath d='M20 18h2'/%3E%3Cpath d='m5 13 1.4 1.4'/%3E%3Cpath d='m19 13-1.4 1.4'/%3E%3Cpath d='M3 22h18'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="health"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6.5 6.5v11'/%3E%3Cpath d='M3.5 9v6'/%3E%3Cpath d='M17.5 6.5v11'/%3E%3Cpath d='M20.5 9v6'/%3E%3Cpath d='M6.5 12h11'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="study"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z'/%3E%3Cpath d='M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="note"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 20h9'/%3E%3Cpath d='M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="weekly"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='17' rx='2'/%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="monthly"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='17' rx='2'/%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 15h8'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="star"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3 2.7 5.6 6.3.9-4.5 4.4 1 6.1-5.5-2.9-5.5 2.9 1-6.1L3 9.5l6.3-.9Z'/%3E%3C/svg%3E");
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 아이콘 v3: 통통한 필 + 라운드
-   가는 아웃라인이 밋밋하다는 피드백 반영. 둥근 모서리의 도톰한 필 아이콘으로
-   교체해 펫의 귀여운 감성과 무게를 맞춘다. (탭 5 · 헤더 4 · 퀘스트 7)
-   -------------------------------------------------------------------------- */
-
-/* --- 하단 탭 --- */
 .tab-button[data-home-button] {
   --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11.1 2.9a1.5 1.5 0 0 1 1.8 0l7.5 6.1c.38.3.6.77.6 1.26V19a2.3 2.3 0 0 1-2.3 2.3h-3.3v-4.5a3.4 3.4 0 0 0-6.8 0v4.5H5.3A2.3 2.3 0 0 1 3 19v-8.74c0-.49.22-.95.6-1.26Z'/%3E%3C/svg%3E");
 }
@@ -13849,7 +12542,6 @@ a {
   --tab-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7.4 7.2V6.4a4.6 4.6 0 0 1 9.2 0v.8h1c1.2 0 2.1.9 2.2 2l.9 9a3.4 3.4 0 0 1-3.4 3.8H6.7a3.4 3.4 0 0 1-3.4-3.8l.9-9c.1-1.1 1-2 2.2-2Zm2.3 0h4.6v-.8a2.3 2.3 0 0 0-4.6 0Z'/%3E%3C/svg%3E");
 }
 
-/* --- 헤더 --- */
 .install-button::before {
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2.4c.75 0 1.35.6 1.35 1.35v5.7l1.7-1.7a1.35 1.35 0 0 1 1.9 1.9l-4 4a1.35 1.35 0 0 1-1.9 0l-4-4a1.35 1.35 0 1 1 1.9-1.9l1.7 1.7v-5.7c0-.75.6-1.35 1.35-1.35Z'/%3E%3Cpath fill='black' d='M4.3 14.3c.75 0 1.35.6 1.35 1.35v2.25c0 .5.4.9.9.9h10.9c.5 0 .9-.4.9-.9v-2.25a1.35 1.35 0 1 1 2.7 0v2.25a3.6 3.6 0 0 1-3.6 3.6H6.55a3.6 3.6 0 0 1-3.6-3.6v-2.25c0-.75.6-1.35 1.35-1.35Z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2.4c.75 0 1.35.6 1.35 1.35v5.7l1.7-1.7a1.35 1.35 0 0 1 1.9 1.9l-4 4a1.35 1.35 0 0 1-1.9 0l-4-4a1.35 1.35 0 1 1 1.9-1.9l1.7 1.7v-5.7c0-.75.6-1.35 1.35-1.35Z'/%3E%3Cpath fill='black' d='M4.3 14.3c.75 0 1.35.6 1.35 1.35v2.25c0 .5.4.9.9.9h10.9c.5 0 .9-.4.9-.9v-2.25a1.35 1.35 0 1 1 2.7 0v2.25a3.6 3.6 0 0 1-3.6 3.6H6.55a3.6 3.6 0 0 1-3.6-3.6v-2.25c0-.75.6-1.35 1.35-1.35Z'/%3E%3C/svg%3E") center / contain no-repeat;
@@ -13865,163 +12557,7 @@ a {
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='black' x='2.6' y='4.6' width='18.8' height='2.6' rx='1.3'/%3E%3Ccircle fill='black' cx='15.6' cy='5.9' r='2.9'/%3E%3Crect fill='black' x='2.6' y='10.7' width='18.8' height='2.6' rx='1.3'/%3E%3Ccircle fill='black' cx='8.4' cy='12' r='2.9'/%3E%3Crect fill='black' x='2.6' y='16.8' width='18.8' height='2.6' rx='1.3'/%3E%3Ccircle fill='black' cx='16.4' cy='18.1' r='2.9'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-.mini-action-button.ghost[data-logout]::before {
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5.8 3h5.4a2.8 2.8 0 0 1 2.8 2.8v.9a1.25 1.25 0 1 1-2.5 0v-.9c0-.17-.13-.3-.3-.3H5.8c-.17 0-.3.13-.3.3v12.4c0 .17.13.3.3.3h5.4c.17 0 .3-.13.3-.3v-.9a1.25 1.25 0 1 1 2.5 0v.9a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 18.2V5.8A2.8 2.8 0 0 1 5.8 3Z'/%3E%3Cpath fill='black' d='M16.2 8.1a1.25 1.25 0 0 1 1.8 0l3 3a1.25 1.25 0 0 1 0 1.8l-3 3a1.25 1.25 0 1 1-1.8-1.8l.9-.85H10a1.25 1.25 0 1 1 0-2.5h7.1l-.9-.85a1.25 1.25 0 0 1 0-1.8Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5.8 3h5.4a2.8 2.8 0 0 1 2.8 2.8v.9a1.25 1.25 0 1 1-2.5 0v-.9c0-.17-.13-.3-.3-.3H5.8c-.17 0-.3.13-.3.3v12.4c0 .17.13.3.3.3h5.4c.17 0 .3-.13.3-.3v-.9a1.25 1.25 0 1 1 2.5 0v.9a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 18.2V5.8A2.8 2.8 0 0 1 5.8 3Z'/%3E%3Cpath fill='black' d='M16.2 8.1a1.25 1.25 0 0 1 1.8 0l3 3a1.25 1.25 0 0 1 0 1.8l-3 3a1.25 1.25 0 1 1-1.8-1.8l.9-.85H10a1.25 1.25 0 1 1 0-2.5h7.1l-.9-.85a1.25 1.25 0 0 1 0-1.8Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* --- 퀘스트 카테고리 --- */
-.quest-list-icon[data-icon="wake"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2.6c.66 0 1.2.54 1.2 1.2v1.9l1.2-1.2a1.2 1.2 0 0 1 1.7 1.7L12.85 9.4a1.2 1.2 0 0 1-1.7 0L7.9 6.2a1.2 1.2 0 0 1 1.7-1.7l1.2 1.2V3.8c0-.66.54-1.2 1.2-1.2Z' transform='rotate(180 12 6)'/%3E%3Cpath fill='black' d='M6.6 17.2a5.4 5.4 0 0 1 10.8 0Z'/%3E%3Crect fill='black' x='2.4' y='18.6' width='19.2' height='2.5' rx='1.25'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="health"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='black' x='1.8' y='9.2' width='2.6' height='5.6' rx='1.3'/%3E%3Crect fill='black' x='5.2' y='6.6' width='3.2' height='10.8' rx='1.6'/%3E%3Crect fill='black' x='15.6' y='6.6' width='3.2' height='10.8' rx='1.6'/%3E%3Crect fill='black' x='19.6' y='9.2' width='2.6' height='5.6' rx='1.3'/%3E%3Crect fill='black' x='8' y='10.7' width='8' height='2.6' rx='1.3'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="study"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 5c0-.75.63-1.35 1.38-1.28 2.2.2 4.6.83 6.02 2.05v14.4c-1.62-1.13-4.06-1.66-6.16-1.84A1.32 1.32 0 0 1 3.4 17Z'/%3E%3Cpath fill='black' d='M20.6 5c0-.75-.63-1.35-1.38-1.28-2.2.2-4.6.83-6.02 2.05v14.4c1.62-1.13 4.06-1.66 6.16-1.84A1.32 1.32 0 0 0 20.6 17Z'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="note"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M15.5 4.3a3 3 0 0 1 4.2 4.2l-9.6 9.6c-.34.34-.76.58-1.22.7l-3.6.9a1 1 0 0 1-1.2-1.2l.9-3.6c.12-.46.36-.88.7-1.22Z'/%3E%3Crect fill='black' x='4' y='19.5' width='16' height='2.4' rx='1.2'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="weekly"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25ZM5.5 10.2v8.2c0 .6.5 1.1 1.1 1.1h10.8c.6 0 1.1-.5 1.1-1.1v-8.2Z'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="monthly"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25ZM5.5 10.2v8.2c0 .6.5 1.1 1.1 1.1h10.8c.6 0 1.1-.5 1.1-1.1v-8.2Z'/%3E%3Ccircle fill='black' cx='9.2' cy='14.4' r='1.5'/%3E%3Ccircle fill='black' cx='14.8' cy='14.4' r='1.5'/%3E%3C/svg%3E");
-}
-
-.quest-list-icon[data-icon="star"] {
-  --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11.4 3.1c.24-.5 1-.5 1.2 0l2.3 4.9 5.3.7c.55.07.77.75.37 1.13l-3.9 3.7.98 5.3c.1.54-.47.96-.96.7L12 17l-4.7 2.5c-.48.26-1.06-.16-.96-.7l.98-5.3-3.9-3.7c-.4-.38-.18-1.06.37-1.13l5.3-.7Z'/%3E%3C/svg%3E");
-}
-
-/* 필 아이콘은 시각 무게가 있으므로 원래 크기로 */
-.tab-button::before {
-  width: 22px;
-  height: 22px;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 공유 액션 버튼: 수수께끼 원형 아이콘 → 아이콘+라벨 필
-   연필/노드/화살표만으로는 의미 해석이 필요했다. 짧은 라벨을 함께 보여준다.
-   -------------------------------------------------------------------------- */
-.quick-share-actions,
-.brag-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-}
-
-.quick-share-card .share-icon-button,
-.brag-actions .share-icon-button,
-.brag-actions #sharePetButton {
-  width: auto;
-  min-width: 0;
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 13px;
-  border-radius: 999px;
-  font-size: 12.5px;
-  font-weight: 750;
-  line-height: 1;
-}
-
-.quick-share-card .share-icon-button::before,
-.brag-actions .share-icon-button::before {
-  width: 15px;
-  height: 15px;
-  flex: 0 0 auto;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 상태 지표 아이콘화
-   컨디션/출석/코인/XP 단어 라벨 → 의미색 아이콘 + 숫자.
-   텍스트는 font-size 0으로 감춰 스크린리더에는 그대로 읽힌다.
-   -------------------------------------------------------------------------- */
-
-/* 컨디션 → 하트 (코럴) */
-.condition-card .label {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0;
-}
-
-.condition-card .label::before {
-  content: "";
-  width: 17px;
-  height: 17px;
-  background: #ef7d64;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* 출석(연속) → 불꽃 (앰버) / 코인 → 동전 */
-.home-mini-metrics span {
-  font-size: 0 !important;
-  align-items: center;
-}
-
-.home-mini-metrics span::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  flex: 0 0 auto;
-}
-
-.home-mini-metrics span:first-child::before {
-  background: #f08c3e;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.2 2.4c.1-.5-.5-.9-.9-.6C9 4.2 10.9 7.6 9.2 9.6 8.2 10.8 6.9 10.3 6.5 9c-.13-.44-.7-.57-.98-.2A7.8 7.8 0 0 0 4 13.6 8 8 0 0 0 12 21.5a8 8 0 0 0 8-7.9c0-4.5-3.9-6.3-4.9-9.6-.14-.47-.77-.55-1-.12-.5.9-.8 2.1-.62 3.4.14 1-.9 1.8-1.8 1.3-1.3-.7-1-3.6 1.5-6.2Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.2 2.4c.1-.5-.5-.9-.9-.6C9 4.2 10.9 7.6 9.2 9.6 8.2 10.8 6.9 10.3 6.5 9c-.13-.44-.7-.57-.98-.2A7.8 7.8 0 0 0 4 13.6 8 8 0 0 0 12 21.5a8 8 0 0 0 8-7.9c0-4.5-3.9-6.3-4.9-9.6-.14-.47-.77-.55-1-.12-.5.9-.8 2.1-.62 3.4.14 1-.9 1.8-1.8 1.3-1.3-.7-1-3.6 1.5-6.2Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-.home-mini-metrics span:last-child::before {
-  background: #e9a13b;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* XP → 번개 (블루) */
-.xp-progress-card > div:first-child > span:first-child {
-  display: inline-flex;
-  align-items: center;
-  font-size: 0;
-}
-
-.xp-progress-card > div:first-child > span:first-child::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  background: #5f8fb4;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* 출석 버튼 → 캘린더 체크 아이콘 + 보상 숫자 */
-.attendance-button #attendanceLabel {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0;
-}
-
-.attendance-button #attendanceLabel::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  background: var(--amber-ink, #b57b1c);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25Zm4.9 14.5 4.5-4.5-1.6-1.6-3.7 3.7-1.6-1.6-1.6 1.6Z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 보상 문구 아이콘화 (.rw 인라인 아이콘 + 보상 칩)
-   -------------------------------------------------------------------------- */
+/* 지표 아이콘(.rw) */
 .rw {
   display: inline-block;
   width: 13px;
@@ -14032,31 +12568,529 @@ a {
   mask: var(--rw-icon) center / contain no-repeat;
 }
 
-.rw-hp {
-  background: #ef7d64;
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
+.rw-hp { background: var(--coral); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E"); }
+.rw-coin { background: var(--yellow); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E"); }
+.rw-xp { background: var(--blue); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E"); }
+.rw-bond { background: var(--pink); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E"); }
+.rw-streak { background: var(--coral); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.2 2.4c.1-.5-.5-.9-.9-.6C9 4.2 10.9 7.6 9.2 9.6 8.2 10.8 6.9 10.3 6.5 9c-.13-.44-.7-.57-.98-.2A7.8 7.8 0 0 0 4 13.6 8 8 0 0 0 12 21.5a8 8 0 0 0 8-7.9c0-4.5-3.9-6.3-4.9-9.6-.14-.47-.77-.55-1-.12-.5.9-.8 2.1-.62 3.4.14 1-.9 1.8-1.8 1.3-1.3-.7-1-3.6 1.5-6.2Z'/%3E%3C/svg%3E"); }
+
+/* 퀘스트 카테고리 아이콘 */
+.quest-list-icon { font-size: 0; display: grid; place-items: center; border: 2px solid var(--soft-line); border-radius: 12px; background: var(--surface-soft); color: var(--mint-dark); box-shadow: var(--hard-soft); }
+.quest-list-card:nth-child(3n + 2) .quest-list-icon { background: var(--surface-soft); color: var(--blue); }
+.quest-list-card:nth-child(3n) .quest-list-icon { background: var(--surface-soft); color: var(--yellow); }
+.quest-list-icon::before { content: ""; width: 22px; height: 22px; background: currentColor; -webkit-mask: var(--quest-icon) center / contain no-repeat; mask: var(--quest-icon) center / contain no-repeat; }
+.quest-list-icon[data-icon="wake"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2.6c.66 0 1.2.54 1.2 1.2v1.9l1.2-1.2a1.2 1.2 0 0 1 1.7 1.7L12.85 9.4a1.2 1.2 0 0 1-1.7 0L7.9 6.2a1.2 1.2 0 0 1 1.7-1.7l1.2 1.2V3.8c0-.66.54-1.2 1.2-1.2Z' transform='rotate(180 12 6)'/%3E%3Cpath fill='black' d='M6.6 17.2a5.4 5.4 0 0 1 10.8 0Z'/%3E%3Crect fill='black' x='2.4' y='18.6' width='19.2' height='2.5' rx='1.25'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="health"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='black' x='1.8' y='9.2' width='2.6' height='5.6' rx='1.3'/%3E%3Crect fill='black' x='5.2' y='6.6' width='3.2' height='10.8' rx='1.6'/%3E%3Crect fill='black' x='15.6' y='6.6' width='3.2' height='10.8' rx='1.6'/%3E%3Crect fill='black' x='19.6' y='9.2' width='2.6' height='5.6' rx='1.3'/%3E%3Crect fill='black' x='8' y='10.7' width='8' height='2.6' rx='1.3'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="study"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 4.8c0-.7.6-1.3 1.3-1.2 2.2.2 4.6.8 6 2v14.2c-1.6-1.1-4-1.6-6.1-1.8-.7 0-1.2-.6-1.2-1.3Z'/%3E%3Cpath fill='black' d='M20.6 4.8c0-.7-.6-1.3-1.3-1.2-2.2.2-4.6.8-6 2v14.2c1.6-1.1 4-1.6 6.1-1.8.7 0 1.2-.6 1.2-1.3Z'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="note"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M15.5 4.3a3 3 0 0 1 4.2 4.2l-9.6 9.6c-.34.34-.76.58-1.22.7l-3.6.9a1 1 0 0 1-1.2-1.2l.9-3.6c.12-.46.36-.88.7-1.22Z'/%3E%3Crect fill='black' x='4' y='19.6' width='16' height='2.2' rx='1.1'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="weekly"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25ZM5.5 10.2v8.2c0 .6.5 1.1 1.1 1.1h10.8c.6 0 1.1-.5 1.1-1.1v-8.2Z'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="monthly"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 2.4c.7 0 1.25.55 1.25 1.25v.55h7.5v-.55a1.25 1.25 0 1 1 2.5 0v.72A3.6 3.6 0 0 1 21 7.9v10.5a3.6 3.6 0 0 1-3.6 3.6H6.6A3.6 3.6 0 0 1 3 18.4V7.9a3.6 3.6 0 0 1 2.75-3.53v-.72c0-.7.55-1.25 1.25-1.25ZM5.5 10.2v8.2c0 .6.5 1.1 1.1 1.1h10.8c.6 0 1.1-.5 1.1-1.1v-8.2Z'/%3E%3Ccircle fill='black' cx='9.2' cy='14.4' r='1.5'/%3E%3Ccircle fill='black' cx='14.8' cy='14.4' r='1.5'/%3E%3C/svg%3E"); }
+.quest-list-icon[data-icon="star"] { --quest-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11.4 3.1c.24-.5 1-.5 1.2 0l2.3 4.9 5.3.7c.55.07.77.75.37 1.13l-3.9 3.7.98 5.3c.1.54-.47.96-.96.7L12 17l-4.7 2.5c-.48.26-1.06-.16-.96-.7l.98-5.3-3.9-3.7c-.4-.38-.18-1.06.37-1.13l5.3-.7Z'/%3E%3C/svg%3E"); }
+
+/* 케어/펫 행동 아이콘 */
+.care-ico { display: inline-block; width: 15px; height: 15px; margin-bottom: 1px; background: currentColor; opacity: 0.8; -webkit-mask: var(--care-icon) center / contain no-repeat; mask: var(--care-icon) center / contain no-repeat; }
+.care-ico[data-icon="party"] { --care-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4.6 3.4h14.8c.9 0 1.4 1 .9 1.7L14 12.6v5h2.6a1.2 1.2 0 1 1 0 2.4H7.4a1.2 1.2 0 1 1 0-2.4H10v-5L3.7 5.1c-.5-.7 0-1.7.9-1.7Z'/%3E%3C/svg%3E"); }
+.care-ico[data-icon="game"] { --care-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7.4 6h9.2a5.4 5.4 0 0 1 5.35 6.15l-.55 3.9a2.9 2.9 0 0 1-5.2 1.3l-1.3-1.75h-5.8L7.8 17.35a2.9 2.9 0 0 1-5.2-1.3l-.55-3.9A5.4 5.4 0 0 1 7.4 6Zm.1 3.2a1 1 0 0 0-1 1v.8h-.8a1 1 0 1 0 0 2h.8v.8a1 1 0 1 0 2 0V13h.8a1 1 0 1 0 0-2h-.8v-.8a1 1 0 0 0-1-1Zm8 .2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm2.6 2.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z'/%3E%3C/svg%3E"); }
+
+.pet-action-icon { font-size: 0; display: grid; place-items: center; }
+.pet-action-icon::before { content: ""; width: 18px; height: 18px; background: currentColor; -webkit-mask: var(--pa-icon) center / contain no-repeat; mask: var(--pa-icon) center / contain no-repeat; }
+.pet-action-icon[data-icon="walk"] { --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse fill='black' cx='7.2' cy='6.2' rx='2.4' ry='3.1'/%3E%3Cellipse fill='black' cx='16.8' cy='6.2' rx='2.4' ry='3.1'/%3E%3Cellipse fill='black' cx='3.6' cy='11.6' rx='2' ry='2.6'/%3E%3Cellipse fill='black' cx='20.4' cy='11.6' rx='2' ry='2.6'/%3E%3Cpath fill='black' d='M12 10.4c3.1 0 5.9 2.3 5.9 5.4 0 2.6-1.9 4.6-4.4 4.6-.5 0-1-.1-1.5-.2-.5.1-1 .2-1.5.2-2.5 0-4.4-2-4.4-4.6 0-3.1 2.8-5.4 5.9-5.4Z'/%3E%3C/svg%3E"); }
+.pet-action-icon[data-icon="workout"] { --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 5.5A4.5 4.5 0 0 1 11.5 10v.5H20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7A4.5 4.5 0 0 1 2.5 14v-4A4.5 4.5 0 0 1 7 5.5Zm0 2.6A1.9 1.9 0 0 0 5.1 10v4A1.9 1.9 0 0 0 7 15.9 1.9 1.9 0 0 0 8.9 14v-4A1.9 1.9 0 0 0 7 8.1Z'/%3E%3C/svg%3E"); }
+.pet-action-icon[data-icon="youtube"] { --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9.2 4.6 19 10.3a2 2 0 0 1 0 3.4l-9.8 5.7A2 2 0 0 1 6.2 17.7V6.3a2 2 0 0 1 3-1.7Z'/%3E%3C/svg%3E"); }
+.pet-action-icon[data-icon="bench"] { --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='black' x='2.6' y='9' width='18.8' height='3.4' rx='1.7'/%3E%3Crect fill='black' x='4.4' y='13' width='2.6' height='6.4' rx='1.3'/%3E%3Crect fill='black' x='17' y='13' width='2.6' height='6.4' rx='1.3'/%3E%3Crect fill='black' x='4.4' y='4.6' width='15.2' height='2.8' rx='1.4'/%3E%3C/svg%3E"); }
+.pet-action-icon[data-icon="treadmill"] { --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 8.6c.8.9 2 1.5 3.3 1.5 1 0 1.9-.3 2.6-.9l1.9 1.3c1 .7 2.2 1.2 3.4 1.4l4.4.7a3 3 0 0 1 2.5 3v.9c0 .8-.7 1.5-1.5 1.5H4a1.6 1.6 0 0 1-1.6-1.6V9.7c0-.6.6-1.5 1-1.1Z'/%3E%3Crect fill='black' x='2.4' y='16.6' width='19.2' height='2.2' rx='1.1'/%3E%3C/svg%3E"); }
+
+/* --- 5. 구조: 진짜 탭 + 게임 데크 --- */
+.tab-bar,
+body.pwa-standalone .tab-bar,
+body.safari-browser .tab-bar {
+  position: fixed !important;
+  top: auto !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  width: min(100vw, 430px);
+  transform: translateX(-50%);
+  margin: 0 !important;
+  z-index: 60;
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+  padding: 8px 10px max(8px, env(safe-area-inset-bottom)) !important;
+  border: none;
+  border-top: 2px solid var(--soft-line);
+  border-radius: 0;
+  background: #ece0c4;
+  box-shadow: none;
 }
 
-.rw-coin {
-  background: #e9a13b;
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E");
+body.feature-window-open .tab-bar {
+  display: grid !important;
+  z-index: 92;
 }
 
-.rw-xp {
-  background: #5f8fb4;
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E");
+.tab-button,
+.tab-button.active {
+  min-height: 52px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+  color: #9a8b68;
+  font-weight: 650;
 }
 
-.rw-bond {
-  background: #e77ba6;
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8.4 4.2c1.2 0 2.3.5 3 1.4.2.24.56.24.76 0a3.9 3.9 0 0 1 3-1.4c2.3 0 4.1 1.8 4.1 4.1 0 3.4-3.4 6.1-6.2 8.4-.3.24-.72.24-1.02 0C9.2 14.4 5.8 11.7 5.8 8.3c0-2.3 1.8-4.1 4.1-4.1Z' transform='translate(-1.5 1.5) scale(.92)'/%3E%3Cpath fill='black' d='M17.5 13.6c.9 0 1.7.4 2.2 1 .15.18.42.18.57 0a2.9 2.9 0 0 1 2.2-1c1.7 0 3 1.3 3 3 0 2.5-2.5 4.5-4.6 6.2-.22.18-.53.18-.75 0-2.1-1.7-4.6-3.7-4.6-6.2 0-1.7 1.3-3 3-3Z' transform='translate(-4.5 -3.4) scale(.8)'/%3E%3C/svg%3E");
+.tab-button strong {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  font-weight: 400;
 }
 
-/* 보상 칩: 아이콘 + 숫자 */
+.tab-button span {
+  display: none;
+}
+
+.tab-button.active {
+  border-color: var(--line);
+  background: var(--panel);
+  color: var(--mint-dark);
+  box-shadow: var(--hard);
+}
+
+.tab-button:active {
+  transform: translateY(2px);
+}
+
+/* 페이지 셸(featureWindow) */
+#featureWindow {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--bottom-nav-reserve) - 8px);
+  padding: max(10px, env(safe-area-inset-top)) 16px 8px !important;
+  border: none;
+  border-radius: 0;
+  background-color: var(--app-bg);
+  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
+  background-size: 20px 20px;
+  box-shadow: none;
+  backdrop-filter: none;
+  z-index: 20;
+}
+
+body.feature-window-open .content-area.open,
+body.feature-window-open.pwa-standalone .content-area.open,
+body.feature-window-open.safari-browser .content-area.open {
+  inset: 0 0 calc(var(--bottom-nav-reserve) - 8px) 0 !important;
+  padding: max(10px, env(safe-area-inset-top)) 16px 8px !important;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--app-bg);
+  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
+  background-size: 20px 20px;
+  box-shadow: none;
+}
+
+.feature-window-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.feature-window-head .label,
+.content-area .panel > .section-title:first-child {
+  display: none !important;
+}
+
+.feature-window-head h2 {
+  font-size: 24px;
+}
+
+#featureWindowClose {
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  flex-basis: 36px !important;
+  border: 2px solid var(--soft-line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--mint-dark);
+  box-shadow: var(--hard-soft);
+}
+
+#featureWindowClose:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.phone-frame,
+body.pwa-standalone .phone-frame,
+body.safari-browser .phone-frame {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--bottom-nav-reserve) !important;
+}
+
+/* --- 6. 홈: 다마고치 디바이스 --- */
+.topbar {
+  margin-inline: 16px;
+}
+
+.top-actions .install-button,
+.top-actions .notify-button,
+.top-actions .icon-button,
+.top-actions .mini-action-button {
+  border: 2px solid var(--soft-line);
+  background: var(--panel);
+  color: var(--muted);
+  box-shadow: var(--hard-soft);
+}
+
+.pet-device {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex !important;
+  flex-direction: column;
+  margin: 8px 12px 0 !important;
+  padding: 8px !important;
+  border: 2px solid var(--line);
+  border-radius: 22px;
+  background: var(--bezel);
+  box-shadow: var(--hard);
+}
+
+.pixel-screen {
+  height: auto !important;
+  min-height: 260px;
+  flex: 1 1 auto;
+  margin: 0;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+/* HUD: 하늘 위 픽셀 배지 */
+.pet-hud {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: auto;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  box-shadow: 0 2px 0 rgba(70, 60, 40, 0.85);
+}
+
+.hud-chip strong {
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.hud-bar {
+  width: 24px;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(70, 60, 40, 0.18);
+  overflow: hidden;
+}
+
+.hud-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--mint);
+}
+
+#xpBar {
+  background: var(--blue);
+}
+
+/* 케어 그리드 */
+.pet-care-grid {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+  gap: 8px !important;
+  margin: 8px 2px 2px !important;
+}
+
+.pet-care-grid.has-actions {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+}
+
+.pet-care-grid .care-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 !important;
+}
+
+.pet-care-grid .pet-action-list,
+.pet-action-list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 !important;
+  padding: 0;
+  overflow: visible;
+}
+
+.pet-care-grid .feed-row {
+  margin: 0 !important;
+}
+
+.pet-care-grid .feed-row button {
+  width: 100%;
+  min-height: 52px;
+  height: 100%;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  box-shadow: var(--hard);
+}
+
+.pet-care-grid .feed-row button strong {
+  color: var(--mint-dark);
+}
+
+.pet-care-grid .feed-row button:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.care-actions button {
+  min-height: 52px;
+  height: 100%;
+}
+
+.care-actions button small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.pet-action-button {
+  flex: none;
+  width: 100%;
+  min-height: 54px;
+  border: 2px solid var(--soft-line);
+  border-radius: 12px;
+  background: #fffdf4;
+  box-shadow: var(--hard-soft);
+}
+
+.pet-action-button em {
+  border: 2px solid var(--soft-line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* 미션 카드: 카트리지 */
+.progress-panel {
+  flex: 0 0 auto;
+  display: grid;
+  gap: 8px;
+  margin: 10px 12px 4px !important;
+}
+
+.progress-panel > * {
+  margin: 0 !important;
+}
+
+.home-mission-card {
+  min-height: 76px;
+  align-content: center;
+  border: 2px solid var(--line);
+  border-left: 8px solid var(--mint);
+  border-radius: 14px;
+  background: var(--panel);
+  box-shadow: var(--hard);
+}
+
+.home-mission-card:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(70, 60, 40, 0.92);
+}
+
+.home-mission-card .label {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--mint-dark);
+}
+
+.home-mission-card strong {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 17px;
+}
+
+.home-mission-card em {
+  display: none;
+}
+
+.home-mission-card::after {
+  border: 2px solid var(--line);
+  background: var(--mint);
+  color: var(--on-mint);
+  box-shadow: 0 2px 0 rgba(70, 60, 40, 0.9);
+}
+
+.mission-timer-line {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.hidden-home-values .attendance-button,
+.hidden-home-values .progress-track {
+  display: none;
+}
+
+.brand-lockup h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* --- 7. 카드 공통 + 화면들 --- */
+.quest-list-card,
+.quest-overview,
+.mission-category-head,
+.room-card,
+.group-reward-card,
+.group-member-card,
+.brag-card,
+.friend-reward-card,
+.level-reward-card,
+.gacha-card,
+.quick-share-card,
+.notification-item,
+.achievement-card,
+.mission-open-card,
+.proof-card,
+.proof-empty,
+.quest-item {
+  border: 2px solid var(--soft-line);
+  border-radius: var(--ui-card-radius);
+  background: var(--panel);
+  box-shadow: var(--hard-soft);
+}
+
+.mission-category-head {
+  color: var(--ink);
+}
+
+.mission-category-head strong {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.mission-category-head span,
+body.feature-window-open .mission-category-head span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.mission-category-head em {
+  border: 2px solid var(--line);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.mission-category-head::after {
+  border: 2px solid var(--soft-line);
+  background: var(--panel);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.mission-category.open .mission-category-head {
+  background: var(--accent-soft);
+  color: var(--ink);
+  box-shadow: var(--hard-soft);
+}
+
+.mission-category.open .mission-category-head strong {
+  color: var(--ink);
+}
+
+.mission-category.open .mission-category-head span {
+  color: var(--mint-dark);
+}
+
+.mission-category.open .mission-category-head em,
+.mission-category.open .mission-category-head::after {
+  background: var(--panel);
+  color: var(--mint-dark);
+}
+
+.quest-list-meta em {
+  display: none;
+}
+
+.quest-list-body p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.quest-list-action.waiting,
+.quest-list-actions .quest-list-action.waiting {
+  border: 2px solid rgba(217, 152, 46, 0.55);
+  border-radius: var(--ui-control-radius);
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+  box-shadow: var(--hard-soft);
+}
+
+.quest-list-action.done,
+.quest-list-actions .quest-list-action.done {
+  border: 2px solid var(--soft-line);
+  border-radius: var(--ui-control-radius);
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+/* 보상 칩 */
 .reward-pill {
   display: inline-flex;
   align-items: center;
   gap: 3px;
+  border: 1.5px solid var(--soft-line);
+  font-variant-numeric: tabular-nums;
 }
 
 .reward-pill::before {
@@ -14069,281 +13103,425 @@ a {
   mask: var(--rw-icon) center / contain no-repeat;
 }
 
-.reward-pill.xp {
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E");
+.reward-pill.xp { background: rgba(108, 139, 176, 0.14); color: #4d6f96; --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.6 2.3c.5-.6 1.5-.2 1.4.6l-.9 6.1h4.4c.7 0 1.1.8.66 1.34l-8.76 11.4c-.5.6-1.5.2-1.4-.6l.9-6.1H5.5c-.7 0-1.1-.8-.66-1.34Z'/%3E%3C/svg%3E"); }
+.reward-pill.coin { background: var(--amber-soft); color: var(--amber-ink); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E"); }
+.reward-pill.health { background: var(--coral-soft); color: var(--coral-ink); --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E"); }
+.reward-pill.bond { background: rgba(201, 119, 149, 0.16); color: #a75677; --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E"); }
+
+/* 그룹 */
+.room-code-chip,
+#panel-verify .room-code-chip {
+  border: 2px solid var(--line);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: var(--hard-soft);
 }
 
-.reward-pill.coin {
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 2.4a9.6 9.6 0 1 1 0 19.2 9.6 9.6 0 0 1 0-19.2Zm0 3.1a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm-1.5 3h3.4a1.15 1.15 0 1 1 0 2.3h-.28c.18.37.28.79.28 1.2s-.1.83-.28 1.2h.28a1.15 1.15 0 1 1 0 2.3h-3.4a1.15 1.15 0 0 1-.63-2.12c.4-.26.63-.67.63-1.38 0-.71-.23-1.12-.63-1.38a1.15 1.15 0 0 1 .63-2.12Z'/%3E%3C/svg%3E");
+.room-code-chip span,
+.room-code-chip strong {
+  color: var(--mint-dark);
 }
 
-.reward-pill.health {
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
+.room-code-chip strong {
+  font-family: var(--font-pixel);
 }
 
-.reward-pill.bond {
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 21c-.4 0-.8-.14-1.1-.4C7.2 17.5 2.6 13.9 2.6 9.3 2.6 6.2 5 3.8 8 3.8c1.6 0 3.1.74 4 1.9a5.2 5.2 0 0 1 4-1.9c3 0 5.4 2.4 5.4 5.5 0 4.6-4.6 8.2-8.3 11.3-.3.26-.7.4-1.1.4Z'/%3E%3C/svg%3E");
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 홈 재구성: 상태를 펫 룸 HUD로
-   상태 카드 2행이 사라지고, 펫 룸 하단에 게임 HUD 칩(❤·🔥·🪙·⚡)이 얹힌다.
-   출석 보상은 자동 수령(숨김 처리), 갱신 타이머는 한 줄로 내려간다.
-   -------------------------------------------------------------------------- */
-
-.pixel-screen {
-  position: relative;
-}
-
-.pet-hud {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  pointer-events: none;
-}
-
-.hud-chip {
-  display: inline-flex;
+.group-reward-card {
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 4px;
-  min-height: 26px;
-  padding: 4px 9px;
-  border-radius: 999px;
-  border: 1px solid rgba(35, 43, 54, 0.1);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--ink);
-  font-size: 11.5px;
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  box-shadow: 0 2px 6px rgba(35, 43, 54, 0.12);
+  gap: 10px;
+  padding: 10px 12px;
 }
 
-.hud-chip .rw {
-  margin: 0;
-  vertical-align: 0;
-}
+.group-reward-card .label { font-size: 10px; font-weight: 600; color: var(--muted); }
+.group-reward-card strong { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 13px; }
+.group-reward-card p { display: none; }
 
-.hud-bar {
-  width: 26px;
-  height: 4px;
-  border-radius: 999px;
-  background: rgba(35, 43, 54, 0.12);
+.group-reward-track {
+  height: 6px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(70, 60, 40, 0.15);
   overflow: hidden;
 }
 
-.hud-bar > span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
+.group-reward-track span {
+  border-radius: 3px;
   background: var(--mint);
 }
 
-#xpBar {
-  background: #5f8fb4;
+.group-member-bars span {
+  border: none;
+  border-radius: 4px;
+  background: rgba(70, 60, 40, 0.15);
+  overflow: hidden;
 }
 
-/* 연속 출석 불꽃 아이콘 */
-.rw-streak {
-  background: #f08c3e;
-  --rw-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M13.2 2.4c.1-.5-.5-.9-.9-.6C9 4.2 10.9 7.6 9.2 9.6 8.2 10.8 6.9 10.3 6.5 9c-.13-.44-.7-.57-.98-.2A7.8 7.8 0 0 0 4 13.6 8 8 0 0 0 12 21.5a8 8 0 0 0 8-7.9c0-4.5-3.9-6.3-4.9-9.6-.14-.47-.77-.55-1-.12-.5.9-.8 2.1-.62 3.4.14 1-.9 1.8-1.8 1.3-1.3-.7-1-3.6 1.5-6.2Z'/%3E%3C/svg%3E");
+.group-member-bars span::before {
+  background: var(--mint);
 }
 
-/* 갱신 타이머 한 줄 */
-.mission-timer-line {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 4px;
+.group-member-bars em {
+  color: var(--ink);
+}
+
+/* 진행 트랙 공통 */
+.progress-track,
+.condition-track,
+.xp-track {
+  border: none;
+  border-radius: 4px;
+  background: rgba(70, 60, 40, 0.15);
+  overflow: hidden;
+}
+
+.progress-track span,
+.condition-track span {
+  border-radius: 4px;
+  background: var(--mint);
+}
+
+/* 상점 */
+.friend-reward-list > div,
+.level-reward-list div {
+  border: 2px solid var(--soft-line);
+  border-radius: 12px;
+  background: #fffdf4;
   color: var(--muted);
-  font-size: 11px;
-  font-weight: 500;
+  box-shadow: none;
 }
 
-/* 숨김 보관 값들 */
-.hidden-home-values .attendance-button,
-.hidden-home-values .progress-track {
-  display: none;
+.friend-reward-list > div.ready,
+.friend-reward-list .ready {
+  border-color: var(--mint-dark);
+  background: var(--accent-soft);
+  color: var(--ink);
 }
 
-/* 설정 모달 로그아웃 */
+.level-reward-list div.unlocked {
+  border-color: rgba(122, 162, 62, 0.5);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.friend-reward-list em,
+.level-reward-list em {
+  border: none;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.gacha-cost {
+  border: 2px solid var(--line);
+  background: var(--amber-soft);
+  color: var(--amber-ink);
+  box-shadow: 0 2px 0 rgba(70, 60, 40, 0.85);
+}
+
+.gacha-odd {
+  min-height: 34px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  border: 1.5px solid var(--soft-line);
+  box-shadow: none;
+}
+
+.gacha-result-pill {
+  min-height: 0;
+  padding: 9px 11px;
+  border: 2px solid var(--soft-line);
+  border-radius: 12px;
+}
+
+.pet-card.rare { background: #eef2f8; }
+.pet-card.epic { background: #f0ecf8; }
+.pet-card.legend { background: #f8ede9; }
+.starter-card em,
+.pet-card em {
+  border: 1.5px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* 소식/알림 */
+.share-icon-button { width: auto; min-width: 0; min-height: 38px; display: inline-flex; align-items: center; gap: 6px; padding: 0 13px; border-radius: 999px; font-size: 12.5px; font-weight: 750; line-height: 1; }
+.quick-share-actions, .brag-actions { display: flex; justify-content: flex-end; gap: 6px; }
+.quick-share-card .share-icon-button::before, .brag-actions .share-icon-button::before { width: 15px; height: 15px; flex: 0 0 auto; }
+.quick-share-card .quick-share-primary, .brag-actions #sharePetButton { background: var(--mint); color: var(--on-mint); }
+.quick-share-card [data-external-share], .brag-actions [data-external-share], .quick-share-card [data-save-share-image], .brag-actions [data-save-share-image] { background: #fffdf4; color: var(--muted); }
+
+.notification-icon {
+  border: 2px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+.notification-item strong em {
+  border: 1.5px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.notification-item.unread strong em {
+  border-color: rgba(122, 162, 62, 0.5);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+.notification-item.read .notification-icon {
+  opacity: 0.55;
+  filter: none;
+}
+
+.achievement-card em {
+  border: 1.5px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.achievement-card.unlocked em {
+  border-color: rgba(122, 162, 62, 0.5);
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* --- 8. 시트 모달 --- */
+.login-modal:not(.hidden),
+.profile-modal:not(.hidden),
+.proof-modal:not(.hidden),
+.quest-modal:not(.hidden),
+.notification-modal:not(.hidden) {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  left: 50% !important;
+  right: auto !important;
+  width: min(100vw, 430px);
+  transform: translateX(-50%);
+  padding: 0 !important;
+  background: rgba(52, 43, 26, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+.profile-card,
+.quest-modal-card,
+.notification-card,
+.login-card,
+.group-gate-card {
+  position: relative;
+  width: min(100%, 430px) !important;
+  max-width: none !important;
+  max-height: 90dvh;
+  margin: 0 !important;
+  padding-top: 30px;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  border: 2px solid var(--line);
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  background: var(--panel);
+  box-shadow: 0 -3px 0 rgba(70, 60, 40, 0.15);
+}
+
+.profile-card::before,
+.quest-modal-card::before,
+.notification-card::before,
+.login-card::before,
+.group-gate-card::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 42px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(70, 60, 40, 0.25);
+  transform: translateX(-50%);
+}
+
+.proof-modal .proof-actions {
+  background: linear-gradient(rgba(251, 245, 230, 0), var(--panel) 24%);
+  box-shadow: none;
+}
+
+.profile-card input[type="file"] {
+  border: 2px solid var(--soft-line);
+  background: var(--surface-soft);
+}
+
+.profile-card input[type="file"]::file-selector-button {
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  font-weight: 700;
+}
+
+/* 온보딩 */
+.solo-start-button {
+  width: 100%;
+}
+
+.gate-solo-note {
+  margin: 6px 2px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.gate-create-details {
+  border: 2px solid var(--soft-line);
+  border-radius: 12px;
+  background: var(--surface-warm);
+}
+
+.gate-create-details summary {
+  padding: 12px 14px;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  list-style-position: inside;
+}
+
+.gate-create-details[open] summary {
+  border-bottom: 2px solid var(--soft-line);
+}
+
+.gate-create-details label,
+.gate-create-details .profile-grid,
+.gate-create-details .profile-submit {
+  margin: 10px 12px;
+}
+
+.gate-create-details .profile-submit {
+  width: calc(100% - 24px);
+}
+
 .profile-logout {
   min-height: 44px;
-  border: 1px solid var(--soft-line);
-  border-radius: var(--ui-control-radius);
-  background: var(--surface-strong);
   color: var(--muted);
   font-weight: 700;
 }
 
-.hud-chip,
-.hud-chip strong {
-  white-space: nowrap;
+.quest-swipe-hint {
+  border: 2px dashed var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
 }
 
-/* --------------------------------------------------------------------------
-   Calm Pixel — 마이크로 모션 & 아이콘 마감
-   펫 행동의 기하 문자(◇▶▰) → 통통한 필 아이콘, 유흥/게임에 아이콘 추가,
-   탭 패널 진입 페이드, 인터랙티브 요소 공통 프레스 피드백.
-   -------------------------------------------------------------------------- */
-
-/* --- 펫 행동 아이콘 --- */
-.pet-action-icon {
-  font-size: 0;
-  display: grid;
-  place-items: center;
+.quest-type {
+  border: 1.5px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--mint-dark);
 }
 
-.pet-action-icon::before {
-  content: "";
-  width: 18px;
-  height: 18px;
-  background: currentColor;
-  -webkit-mask: var(--pa-icon) center / contain no-repeat;
-  mask: var(--pa-icon) center / contain no-repeat;
+/* 채팅/기타 */
+.chat-bubble {
+  border: 2px solid var(--soft-line);
+  background: #fffdf4;
+  box-shadow: none;
 }
 
-/* 산책 → 발자국 */
-.pet-action-icon[data-icon="walk"] {
-  --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse fill='black' cx='7.2' cy='6.2' rx='2.4' ry='3.1'/%3E%3Cellipse fill='black' cx='16.8' cy='6.2' rx='2.4' ry='3.1'/%3E%3Cellipse fill='black' cx='3.6' cy='11.6' rx='2' ry='2.6'/%3E%3Cellipse fill='black' cx='20.4' cy='11.6' rx='2' ry='2.6'/%3E%3Cpath fill='black' d='M12 10.4c3.1 0 5.9 2.3 5.9 5.4 0 2.6-1.9 4.6-4.4 4.6-.5 0-1-.1-1.5-.2-.5.1-1 .2-1.5.2-2.5 0-4.4-2-4.4-4.6 0-3.1 2.8-5.4 5.9-5.4Z'/%3E%3C/svg%3E");
+.proof-photo-fallback,
+.proof-preview,
+.proof-waiting,
+.notification-native-card,
+.routine-template-box,
+.self-rule-box,
+.starter-box,
+.theme-swatch-box,
+.goal-strip,
+.mission-tab,
+.member-mission-row,
+.palette-help,
+.stat-grid div,
+.temptation-confirm-pet,
+.group-member-pet {
+  border: 2px solid var(--soft-line);
+  background: var(--panel);
+  box-shadow: none;
 }
 
-/* 운동매트 → 말린 매트 */
-.pet-action-icon[data-icon="workout"] {
-  --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7 5.5A4.5 4.5 0 0 1 11.5 10v.5H20a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7A4.5 4.5 0 0 1 2.5 14v-4A4.5 4.5 0 0 1 7 5.5Zm0 2.6A1.9 1.9 0 0 0 5.1 10v4A1.9 1.9 0 0 0 7 15.9 1.9 1.9 0 0 0 8.9 14v-4A1.9 1.9 0 0 0 7 8.1Z'/%3E%3C/svg%3E");
+.rarity-badge,
+.reward-badge,
+.inventory-item em,
+.group-member-head span,
+.craft-head span,
+.game-row span,
+.room-meta span,
+.share-stats span,
+.member-mission-row em,
+.mission-open-number,
+.mission-open-state,
+.confidence,
+.starter-card em.mix,
+.gacha-item-mark {
+  border: 1.5px solid var(--soft-line);
+  background: var(--surface-soft);
+  color: var(--muted);
+  box-shadow: none;
 }
 
-/* 영상휴식 → 플레이 */
-.pet-action-icon[data-icon="youtube"] {
-  --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M9.2 4.6 19 10.3a2 2 0 0 1 0 3.4l-9.8 5.7A2 2 0 0 1 6.2 17.7V6.3a2 2 0 0 1 3-1.7Z'/%3E%3C/svg%3E");
+/* --- 9. 모션 --- */
+button,
+[role="tab"],
+a {
+  transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.1s ease, color 0.14s ease, transform 0.1s ease;
 }
 
-/* 벤치 → 벤치 */
-.pet-action-icon[data-icon="bench"] {
-  --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect fill='black' x='2.6' y='9' width='18.8' height='3.4' rx='1.7'/%3E%3Crect fill='black' x='4.4' y='13' width='2.6' height='6.4' rx='1.3'/%3E%3Crect fill='black' x='17' y='13' width='2.6' height='6.4' rx='1.3'/%3E%3Crect fill='black' x='4.4' y='4.6' width='15.2' height='2.8' rx='1.4'/%3E%3C/svg%3E");
-}
-
-/* 런닝 → 운동화 */
-.pet-action-icon[data-icon="treadmill"] {
-  --pa-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 8.6c.8.9 2 1.5 3.3 1.5 1 0 1.9-.3 2.6-.9l1.9 1.3c1 .7 2.2 1.2 3.4 1.4l4.4.7a3 3 0 0 1 2.5 3v.9c0 .8-.7 1.5-1.5 1.5H4a1.6 1.6 0 0 1-1.6-1.6V9.7c0-.6.6-1.5 1-1.1Z'/%3E%3Crect fill='black' x='2.4' y='16.6' width='19.2' height='2.2' rx='1.1'/%3E%3C/svg%3E");
-}
-
-/* --- 유흥/게임 아이콘 --- */
-.care-ico {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-bottom: 1px;
-  background: currentColor;
-  opacity: 0.75;
-  -webkit-mask: var(--care-icon) center / contain no-repeat;
-  mask: var(--care-icon) center / contain no-repeat;
-}
-
-.care-ico[data-icon="party"] {
-  --care-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4.6 3.4h14.8c.9 0 1.4 1 .9 1.7L14 12.6v5h2.6a1.2 1.2 0 1 1 0 2.4H7.4a1.2 1.2 0 1 1 0-2.4H10v-5L3.7 5.1c-.5-.7 0-1.7.9-1.7Z'/%3E%3C/svg%3E");
-}
-
-.care-ico[data-icon="game"] {
-  --care-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M7.4 6h9.2a5.4 5.4 0 0 1 5.35 6.15l-.55 3.9a2.9 2.9 0 0 1-5.2 1.3l-1.3-1.75h-5.8L7.8 17.35a2.9 2.9 0 0 1-5.2-1.3l-.55-3.9A5.4 5.4 0 0 1 7.4 6Zm.1 3.2a1 1 0 0 0-1 1v.8h-.8a1 1 0 1 0 0 2h.8v.8a1 1 0 1 0 2 0V13h.8a1 1 0 1 0 0-2h-.8v-.8a1 1 0 0 0-1-1Zm8 .2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm2.6 2.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z'/%3E%3C/svg%3E");
-}
-
-/* --- 전환/클릭 모션 --- */
 @media (prefers-reduced-motion: no-preference) {
-  /* 창 안에서 탭 패널이 나타날 때 부드러운 페이드 업 */
+  #featureWindow.open {
+    animation: pcPageIn 200ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
   .content-area .panel {
-    animation: cpPanelIn 240ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    animation: pcPanelIn 200ms cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 
-  /* 프레스 피드백: 주요 인터랙티브 요소 공통 */
-  .quest-list-action:active,
-  .quest-list-detail:active,
-  .quest-action:active,
-  .quest-pager button:active,
-  .profile-submit:active,
-  .profile-logout:active,
-  .care-actions button:active,
-  .pet-care-grid .feed-row button:active,
-  .pet-action-button:active,
-  .share-icon-button:active,
-  .gacha-card button:active,
-  .room-code-chip:active,
-  .member-mission-button:active,
-  .accessory-filter-bar button:active,
-  .palette-option:active,
-  .modal-close-button:active,
-  .quest-modal-close:active,
-  #featureWindowClose:active,
-  .top-actions button:active {
-    transform: translateY(1px) scale(0.97);
-  }
-
-  .home-mission-card:active {
-    transform: scale(0.99);
-  }
-
-  .quest-list-card,
-  .room-card,
-  .group-reward-card,
-  .brag-card,
-  .achievement-card {
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  .login-modal:not(.hidden) .profile-card,
+  .profile-modal:not(.hidden) .profile-card,
+  .quest-modal:not(.hidden) .quest-modal-card,
+  .notification-modal:not(.hidden) .notification-card,
+  .proof-modal:not(.hidden) .profile-card,
+  .login-modal:not(.hidden) .login-card,
+  .login-modal:not(.hidden) .group-gate-card {
+    animation: pcSheetIn 280ms cubic-bezier(0.2, 0.7, 0.3, 1);
   }
 }
 
-@keyframes cpPanelIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+@keyframes pcPageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
 }
 
-/* --------------------------------------------------------------------------
-   Calm Pixel — 펫 모션 리마스터
-   뻣뻣한 단발 흔들림 → 예비동작·스쿼시&스트레치·착지 반동이 있는 자연스러운
-   행동 연기. 각 행동이 실제 동작처럼 읽힌다 (산책=깡총깡총, 운동=스쿼트 3회,
-   런닝=잰걸음, 영상휴식=뒤로 기대 까딱, 밥/축하=기쁨 점프).
-   -------------------------------------------------------------------------- */
-
-.pixel-sprite.walk-pose {
-  animation: cp-pet-walk 1800ms linear;
+@keyframes pcPanelIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
 }
 
+@keyframes pcSheetIn {
+  from { opacity: 0.4; transform: translateY(44px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* 펫 안무 (리마스터 유지) */
+.pixel-sprite.walk-pose { animation: cp-pet-walk 1800ms linear; }
 .pixel-sprite.workout-pose,
-.pixel-sprite.bench-pose {
-  animation: cp-pet-workout 1700ms linear;
-}
-
-.pixel-sprite.treadmill-pose {
-  animation: cp-pet-run 1500ms linear;
-}
-
-.pixel-sprite.youtube-pose {
-  animation: cp-pet-chill 1800ms ease-in-out;
-}
-
+.pixel-sprite.bench-pose { animation: cp-pet-workout 1700ms linear; }
+.pixel-sprite.treadmill-pose { animation: cp-pet-run 1500ms linear; }
+.pixel-sprite.youtube-pose { animation: cp-pet-chill 1800ms ease-in-out; }
 .pixel-sprite.feed-pose,
 .pixel-sprite.party-pose,
-.pixel-sprite.game-pose {
-  animation: cp-pet-joy 1300ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
+.pixel-sprite.game-pose { animation: cp-pet-joy 1300ms cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+.pixel-sprite.success-pose { animation: cp-pet-joy 1200ms cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+.pixel-sprite.bump { animation: cp-pet-bump 340ms cubic-bezier(0.36, 0.07, 0.19, 0.97); }
 
-.pixel-sprite.success-pose {
-  animation: cp-pet-joy 1200ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-.pixel-sprite.bump {
-  animation: cp-pet-bump 340ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-/* 산책: 오른쪽으로 세 걸음 깡총 → 잠시 둘러보고 → 되돌아오기 */
 @keyframes cp-pet-walk {
   0% { transform: translateX(-50%) translateY(0) scale(1); }
   6% { transform: translateX(calc(-50% + 5px)) translateY(-9px) scale(0.98, 1.05); }
@@ -14362,7 +13540,6 @@ a {
   100% { transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-/* 운동/벤치: 예비 웅크림 → 점프 스쿼트 3회, 갈수록 힘차게 */
 @keyframes cp-pet-workout {
   0% { transform: translateX(-50%) translateY(0) scale(1); }
   9% { transform: translateX(-50%) translateY(3px) scale(1.05, 0.93); }
@@ -14376,7 +13553,6 @@ a {
   100% { transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-/* 런닝: 앞으로 살짝 기운 채 빠른 잰걸음 */
 @keyframes cp-pet-run {
   0% { transform: translateX(-50%) translateY(0) rotate(0deg) scale(1); }
   8% { transform: translateX(calc(-50% + 2px)) translateY(-6px) rotate(4deg) scale(0.99, 1.03); }
@@ -14393,7 +13569,6 @@ a {
   100% { transform: translateX(-50%) translateY(0) rotate(0deg) scale(1); }
 }
 
-/* 영상휴식: 자리 잡고 뒤로 기대 느긋하게 까딱까딱 */
 @keyframes cp-pet-chill {
   0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
   12% { transform: translateX(calc(-50% + 4px)) translateY(2px) rotate(-6deg); }
@@ -14404,7 +13579,6 @@ a {
   100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
 }
 
-/* 기쁨 점프: 웅크림 → 높이 점프 → 착지 스쿼시 → 작은 점프 → 정착 */
 @keyframes cp-pet-joy {
   0% { transform: translateX(-50%) translateY(0) scale(1) rotate(0deg); }
   12% { transform: translateX(-50%) translateY(3px) scale(1.07, 0.91) rotate(0deg); }
@@ -14416,1167 +13590,9 @@ a {
   100% { transform: translateX(-50%) translateY(0) scale(1) rotate(0deg); }
 }
 
-/* 부딪힘: 짧고 탄력 있게 */
 @keyframes cp-pet-bump {
   0% { transform: translateX(-50%) translateY(0) scale(1); }
   35% { transform: translateX(-50%) translateY(-7px) scale(0.97, 1.05); }
   65% { transform: translateX(-50%) translateY(0) scale(1.06, 0.94); }
   100% { transform: translateX(-50%) translateY(0) scale(1); }
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 그룹 보상 컴팩트 (design-system.md §5 그룹)
-   보상 카드 3개가 각각 큰 카드를 차지하던 것 → 1행 컴팩트 로우.
-   상세 문구는 진행바+남음 칩이 대신하므로 숨긴다 (원칙 2: 중복 금지).
-   -------------------------------------------------------------------------- */
-.group-reward-card {
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-}
-
-.group-reward-card .label {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.group-reward-card strong {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 13px;
-}
-
-.group-reward-card p {
-  display: none;
-}
-
-.group-reward-track {
-  height: 5px;
-  margin-top: 6px;
-}
-
-.group-reward-card button {
-  min-height: 34px;
-  padding: 6px 12px;
-  font-size: 11.5px;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 스펙 컴플라이언스 패스 (design-system.md 금지 목록 전수 적용)
-   실사용 상태에서만 보이는 요소들(인증 승인, 방 관리, 채팅, 템플릿, 장착 칩,
-   AI 도구 등)에 남아 있던 레트로 아웃라인·옐로 버튼·오프셋 섀도를 교정한다.
-   픽셀 연출(reward-pop, 룸 장식, 메일함)은 원칙 1에 따라 유지.
-   -------------------------------------------------------------------------- */
-
-/* 주요 CTA → 민트 솔리드 */
-.proof-approve,
-.quest-open-primary,
-.template-actions button:last-child {
-  border: none;
-  background: var(--mint);
-  color: var(--on-mint, #ffffff);
-  box-shadow: none;
-}
-
-.proof-approve:active,
-.quest-open-primary:active,
-.template-actions button:last-child:active {
-  background: var(--mint-dark);
-}
-
-/* 보조 버튼 → 화이트 헤어라인 */
-.room-actions button,
-.member-poke-button,
-.verify-actions button,
-.notification-native-actions button,
-.routine-ai-tools button,
-.template-actions button,
-.message-presets button,
-.accessory-card button,
-.pet-card button {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  color: var(--ink);
-  box-shadow: none;
-}
-
-/* 상태 칩: 선택/장착/준비 → 민트 링 언어 */
-.starter-card.selected,
-.accessory-card.equipped,
-.craft-card.ready,
-.pet-card.active,
-.mood-picker button.active {
-  border: 1px solid var(--mint);
-  box-shadow: 0 0 0 2px rgba(53, 163, 129, 0.18);
-  background: var(--surface-strong);
-}
-
-/* 페널티 상태는 의미색(코럴) 소프트 */
-.care-actions button.active-penalty {
-  border: 1px solid rgba(232, 106, 80, 0.45);
-  background: var(--coral-soft);
-  color: var(--coral-ink, #a33f2b);
-  box-shadow: none;
-}
-
-/* 카드·박스·입력 → 화이트 + 헤어라인 */
-.proof-card,
-.proof-preview,
-.proof-photo-fallback,
-.proof-waiting,
-.notification-native-card,
-.routine-template-box,
-.self-rule-box,
-.starter-box,
-.theme-swatch-box,
-.goal-strip,
-.mission-open-card,
-.mission-tab,
-.member-mission-row,
-.palette-help,
-.room-join input,
-.daily-share-field textarea,
-.stat-grid div,
-.temptation-confirm-pet,
-.group-member-pet {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-.mission-open-card:hover {
-  border-color: rgba(53, 163, 129, 0.4);
-  background: var(--surface-strong);
-  box-shadow: var(--ui-soft-shadow);
-}
-
-.home-mission-card.dragging {
-  box-shadow: var(--shadow);
-}
-
-/* 작은 칩·배지 → 시스템 칩 */
-.rarity-badge,
-.reward-badge,
-.inventory-item em,
-.group-member-head span,
-.craft-head span,
-.game-row span,
-.room-meta span,
-.share-stats span,
-.member-mission-row em,
-.mission-open-number,
-.mission-open-state,
-.confidence,
-.starter-card em.mix,
-.gacha-item-mark {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  box-shadow: none;
-}
-
-/* 채팅 버블 → 부드러운 화이트 */
-.chat-bubble {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-strong);
-  box-shadow: none;
-}
-
-/* 공유 카드 내부 요소 */
-.share-mission,
-.share-accessory {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  box-shadow: none;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 진짜 탭 네비게이션
-   기존: 탭을 누르면 풀스크린 카드가 탭바까지 덮으며 0ms로 슬램(전환 셀렉터
-   오타로 애니메이션이 매치된 적 없음). 재설계: 탭바는 항상 남고, 콘텐츠
-   영역만 페이지처럼 부드럽게 교체된다. 탭 간 직행 전환 가능.
-   -------------------------------------------------------------------------- */
-
-/* 창을 '떠 있는 카드'가 아니라 '페이지 레이어'로: 탭바 위 영역만 차지 */
-#featureWindow {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: calc(var(--bottom-nav-reserve, 92px) - 6px);
-  padding: 12px 14px 8px;
-  border: none;
-  border-radius: 0;
-  background: var(--app-bg);
-  box-shadow: none;
-  backdrop-filter: none;
-  z-index: 20;
-}
-
-/* 탭바는 창 위에 항상 노출 — 탭 간 직행 전환 */
-.tab-bar {
-  position: relative;
-  z-index: 60;
-}
-
-/* 올바른 진입 모션 (기존 셀렉터는 자손 탐색 오타로 무동작이었음) */
-@media (prefers-reduced-motion: no-preference) {
-  #featureWindow.open {
-    animation: cpPageIn 220ms cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-}
-
-@keyframes cpPageIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* 진짜 탭 구조 마감: 창 열림 시 탭바를 숨기던 규칙과
-   inset:0 풀블리드(+핑크 그라데이션) 규칙을 뒤집는다 */
-body.feature-window-open .tab-bar {
-  display: grid !important;
-  z-index: 92;
-}
-
-body.feature-window-open .content-area.open,
-body.feature-window-open.pwa-standalone .content-area.open,
-body.feature-window-open.safari-browser .content-area.open {
-  inset: 0 0 calc(var(--bottom-nav-height) + var(--bottom-nav-offset) + 8px) 0 !important;
-  padding: max(12px, env(safe-area-inset-top)) 16px 10px;
-  background: var(--app-bg);
-}
-
-/* 탭바 하단 고정: 문서 흐름 위치가 아니라 항상 프레임 바닥에.
-   (phone-frame의 --bottom-nav-reserve 패딩이 이 자리를 예약하고 있다) */
-.tab-bar {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: max(10px, env(safe-area-inset-bottom));
-  margin: 0;
-}
-
-/* 탭바: 하단 고정. 기존 standalone/browser 분기가 position을 !important로
-   고정하고 있어 동일 강도로 확정한다 (프레임에 transform이 있어 fixed는
-   프레임 기준으로 동작 — 프레임이 전체 화면이라 의도대로 바닥에 붙는다) */
-.tab-bar,
-body.pwa-standalone .tab-bar,
-body.safari-browser .tab-bar {
-  position: fixed !important;
-  top: auto !important;
-  left: 50% !important;
-  right: auto !important;
-  bottom: max(10px, env(safe-area-inset-bottom)) !important;
-  width: min(calc(100vw - 28px), 420px);
-  transform: translateX(-50%);
-  margin: 0 !important;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 히어로 레이아웃 재구성
-   "카드 안의 카드" 스택 → 게임 화면 구성으로:
-   1) 펫 룸이 흰 카드 껍데기를 벗고 좌우 풀블리드 히어로가 된다
-   2) 케어 버튼(밥주기/유흥/게임)이 룸 하단 경계에 겹쳐 뜨는 플로팅 캡슐
-   3) 섹션 페이지 헤더 컴팩트화, 여백 체계 재정렬
-   -------------------------------------------------------------------------- */
-
-/* 1. 펫 디바이스: 카드 껍데기 제거 → 풀블리드 */
-.pet-device {
-  margin: 6px 0 0 !important;
-  padding: 0 !important;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.pixel-screen {
-  height: 336px;
-  margin: 0;
-  border-radius: 0 0 32px 32px;
-  box-shadow:
-    inset 0 0 0 1px rgba(35, 43, 54, 0.08),
-    0 14px 30px rgba(35, 43, 54, 0.12);
-}
-
-@media (max-height: 760px) {
-  .pixel-screen {
-    height: 296px;
-  }
-}
-
-/* HUD는 플로팅 케어 행이 겹칠 자리를 비워 위로 */
-.pet-hud {
-  bottom: 42px;
-}
-
-/* 2. 케어 행: 룸 경계에 반쯤 걸쳐 뜨는 캡슐 */
-.pet-care-grid {
-  position: relative;
-  z-index: 6;
-  margin: -26px 18px 0 !important;
-}
-
-.pet-care-grid .feed-row button,
-.pet-care-grid .care-actions button {
-  border-radius: 18px;
-  box-shadow: 0 2px 6px rgba(35, 43, 54, 0.08), 0 12px 26px rgba(35, 43, 54, 0.14);
-}
-
-.pet-care-grid .care-actions button {
-  background: var(--surface-strong);
-}
-
-/* 3. 하단 액션 존: 미션 카드가 좌우 여백을 물려받아 정렬 */
-.progress-panel {
-  margin: 12px 18px 0 !important;
-}
-
-/* 4. 섹션 페이지 헤더 컴팩트 */
-.feature-window-head {
-  margin-bottom: 6px;
-}
-
-#featureWindowClose {
-  width: 40px !important;
-  min-width: 40px !important;
-  height: 40px !important;
-  min-height: 40px !important;
-  flex-basis: 40px !important;
-  border-radius: 13px;
-  box-shadow: none;
-}
-
-.feature-window-head h2 {
-  font-size: 17px;
-}
-
-#featureWindow {
-  padding: max(10px, env(safe-area-inset-top)) 18px 8px !important;
-}
-
-/* 히어로 마감: 소품이 라운드 경계를 넘지 않게 클립, 높이는 화면 비례
-   (기존 --app-height×0.275 비례 규칙을 히어로 비율로 상향, !important로 확정) */
-.pixel-screen {
-  height: clamp(330px, calc(var(--app-height, 100dvh) * 0.5), 470px) !important;
-  overflow: hidden;
-}
-
-/* HUD는 비어 있는 하늘 상단에 — 펫·소품·케어 캡슐과 겹치지 않는다 */
-.pet-hud {
-  top: 12px;
-  bottom: auto;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 홈 컴포지션 마감 (특히 홈)
-   1) 액션 존(미션 카드)을 탭바 위로 하단 정렬 — 엄지 존 + 빈 공간 제거
-   2) 룸의 하늘:잔디 비율 58:42 → 42:58 — 빈 하늘을 줄이고 무대를 잔디로
-   3) 펫 스프라이트 확대(124→140px) — 주인공답게
-   -------------------------------------------------------------------------- */
-
-/* 1. 홈을 플렉스 컬럼으로: 미션 존이 탭바 바로 위에 정렬 */
-.phone-frame {
-  display: flex;
-  flex-direction: column;
-}
-
-.progress-panel {
-  margin-top: auto !important;
-  margin-bottom: 6px !important;
-}
-
-/* 2. 하늘:잔디 재배분 — 모든 시간대 팔레트 동일 경계(42%) */
-:root {
-  --screen-bg: linear-gradient(#e4f1f7 0 42%, #d9ecdb 42% 100%);
-  --room-bg-lv2: linear-gradient(#e7f3f8 0 42%, #dceede 42% 100%);
-  --room-bg-lv3: linear-gradient(#eaf4f9 0 42%, #dff0e1 42% 100%);
-  --room-bg-lv4: linear-gradient(#faf1e2 0 12%, #e7f3f8 12% 42%, #dceede 42% 100%);
-}
-
-.screen-grid[data-sky-phase="dawn"] {
-  background:
-    radial-gradient(circle at 78% 18%, rgba(255, 226, 132, 0.3) 0 13%, transparent 24%),
-    linear-gradient(#f4dcc4 0 16%, #e2eef4 32% 42%, #d6e8d4 42% 100%);
-}
-
-.screen-grid[data-sky-phase="morning"] {
-  background:
-    radial-gradient(circle at 78% 15%, rgba(255, 240, 164, 0.24) 0 12%, transparent 25%),
-    linear-gradient(#e2f1f7 0 42%, #d6e8d4 42% 100%);
-}
-
-.screen-grid[data-sky-phase="day"] {
-  background:
-    radial-gradient(circle at 78% 14%, rgba(255, 244, 166, 0.28) 0 12%, transparent 25%),
-    linear-gradient(#ddeef7 0 42%, #d2e6d0 42% 100%);
-}
-
-.screen-grid[data-sky-phase="evening"] {
-  background:
-    radial-gradient(circle at 80% 22%, rgba(240, 178, 122, 0.3) 0 15%, transparent 27%),
-    linear-gradient(#efd6bd 0 18%, #dcdaea 34% 42%, #c9dcc6 42% 100%);
-}
-
-.screen-grid[data-sky-phase="night"] {
-  background:
-    radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.07) 0 10%, transparent 24%),
-    linear-gradient(#242e42 0 42%, #59685a 42% 100%);
-}
-
-/* 3. 펫 확대 */
-.svg-sprite {
-  width: 140px;
-  height: 140px;
-}
-
-/* 홈 컴포지션 마감: 브라우저 분기가 하단 예약 패딩을 0으로 지우고 있었다.
-   탭바가 fixed로 상주하므로 예약 패딩을 항상 유지한다 */
-.phone-frame,
-body.pwa-standalone .phone-frame,
-body.safari-browser .phone-frame {
-  padding-bottom: var(--bottom-nav-reserve) !important;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 크래프트 마감 패스 (테두리·질감·감성)
-   균일한 회색 헤어라인의 사무적 인상 → 손맛 있는 마감:
-   · 배경에 픽셀 모눈 질감 (룸의 그리드와 호응)
-   · 카드는 상단 1px 화이트 하이라이트로 "들어올린 종이" 엣지
-   · 민트 버튼은 위-밝고 아래-깊은 캔디 뎁스 + 브랜드색 글로우
-   · HUD는 하늘 위 글래스 칩
-   -------------------------------------------------------------------------- */
-
-/* 1. 배경 질감: 아주 옅은 픽셀 모눈 (22px 격자, 3.5% 잉크) */
-body,
-#featureWindow {
-  background-image:
-    radial-gradient(rgba(35, 43, 54, 0.035) 1px, transparent 1.1px);
-  background-size: 22px 22px;
-  background-color: var(--app-bg);
-}
-
-/* 2. 카드 엣지: 상단 화이트 하이라이트 + 따뜻한 헤어라인 */
-.home-mission-card,
-.quest-list-card,
-.quest-overview,
-.mission-category-head,
-.room-card,
-.group-reward-card,
-.group-member-card,
-.brag-card,
-.friend-reward-card,
-.level-reward-card,
-.gacha-card,
-.quick-share-card,
-.notification-item,
-.achievement-card,
-.mission-open-card {
-  border-color: rgba(35, 43, 54, 0.08);
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.85)),
-    0 1px 2px rgba(35, 43, 54, 0.04),
-    0 10px 24px rgba(35, 43, 54, 0.07);
-}
-
-.profile-card,
-.quest-modal-card,
-.notification-card,
-.login-card,
-.group-gate-card {
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
-    0 2px 6px rgba(35, 43, 54, 0.06),
-    0 18px 44px rgba(35, 43, 54, 0.14);
-}
-
-/* 3. 민트 버튼: 캔디 뎁스 (위 하이라이트 · 아래 딥엣지 · 브랜드 글로우) */
-.quest-list-action.request,
-.quest-list-actions .quest-list-action.request,
-.quest-action,
-.quest-open-primary,
-.profile-submit,
-.proof-approve,
-.solo-start-button,
-#pushEnableButton,
-.gacha-card button:not(:disabled),
-.share-icon-button.share-icon-chat,
-.quick-share-card .quick-share-primary,
-.brag-actions #sharePetButton,
-.proof-camera-toolbar button:first-child,
-.template-actions button:last-child {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.1),
-    0 6px 16px rgba(53, 163, 129, 0.3);
-}
-
-/* 4. HUD: 하늘 위 글래스 칩 */
-.hud-chip {
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.7)),
-    0 3px 10px rgba(35, 43, 54, 0.18);
-}
-
-/* 5. 무대 프레임: 안쪽 미광 + 바닥 딥엣지 */
-.pixel-screen {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 -3px 0 rgba(0, 0, 0, 0.08),
-    0 16px 34px rgba(35, 43, 54, 0.16);
-}
-
-/* 6. 플로팅 케어 캡슐: 종이 엣지 + 부양감 */
-.pet-care-grid .feed-row button,
-.pet-care-grid .care-actions button {
-  border-color: rgba(35, 43, 54, 0.08);
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
-    0 2px 5px rgba(35, 43, 54, 0.08),
-    0 14px 28px rgba(35, 43, 54, 0.16);
-}
-
-/* 7. 탭바: 유리 필 + 활성 탭 내부 미광 */
-.tab-bar {
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
-    0 2px 6px rgba(35, 43, 54, 0.05),
-    0 16px 36px rgba(35, 43, 54, 0.16);
-}
-
-.tab-button.active {
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.7)),
-    inset 0 0 0 1px rgba(53, 163, 129, 0.22);
-}
-
-/* 8. 미션 카드 민트 레일: 둥근 캡 마감 */
-.home-mission-card {
-  border-left-width: 4px;
-  border-left-color: var(--mint);
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — iOS 디자인 언어 패스 (HIG 참조)
-   1) 모달 → 바텀 시트 (그래버 핸들, 상단만 라운드, 슬라이드 업)
-   2) 탭바 → 풀폭 도킹 바 (필 제거, 틴트 액티브, 상단 헤어라인, 블러)
-   3) 섹션 페이지 → 라지 타이틀 (chevron 백 + 28px 좌측 정렬 제목)
-   4) 표준 16px 거터
-   -------------------------------------------------------------------------- */
-
-/* --- 1. 바텀 시트 모달 --- */
-.login-modal:not(.hidden),
-.profile-modal:not(.hidden),
-.proof-modal:not(.hidden),
-.quest-modal:not(.hidden),
-.notification-modal:not(.hidden) {
-  display: flex !important;
-  align-items: flex-end !important;
-  justify-content: center !important;
-  padding: 0 !important;
-}
-
-.profile-card,
-.quest-modal-card,
-.notification-card,
-.login-card,
-.group-gate-card {
-  position: relative;
-  width: 100% !important;
-  max-width: none !important;
-  max-height: 90dvh;
-  margin: 0 !important;
-  padding-top: 30px;
-  border-radius: 24px 24px 0 0;
-  border-bottom: none;
-  padding-bottom: max(18px, env(safe-area-inset-bottom));
-}
-
-/* 그래버 핸들 */
-.profile-card::before,
-.quest-modal-card::before,
-.notification-card::before,
-.login-card::before,
-.group-gate-card::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  width: 40px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(35, 43, 54, 0.16);
-  transform: translateX(-50%);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .login-modal:not(.hidden) .profile-card,
-  .profile-modal:not(.hidden) .profile-card,
-  .quest-modal:not(.hidden) .quest-modal-card,
-  .notification-modal:not(.hidden) .notification-card,
-  .proof-modal:not(.hidden) .profile-card,
-  .login-modal:not(.hidden) .login-card,
-  .login-modal:not(.hidden) .group-gate-card {
-    animation: cpSheetIn 300ms cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-}
-
-@keyframes cpSheetIn {
-  from {
-    opacity: 0.4;
-    transform: translateY(48px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* --- 2. iOS 탭바: 풀폭 도킹, 필 제거, 틴트 액티브 --- */
-.tab-bar,
-body.pwa-standalone .tab-bar,
-body.safari-browser .tab-bar {
-  left: 0 !important;
-  bottom: 0 !important;
-  width: 100vw;
-  transform: none;
-  padding: 8px 10px max(8px, env(safe-area-inset-bottom)) !important;
-  border: none;
-  border-top: 1px solid rgba(35, 43, 54, 0.09);
-  border-radius: 0;
-  background: rgba(252, 250, 245, 0.88);
-  box-shadow: none;
-}
-
-.tab-button,
-.tab-button.active {
-  min-height: 50px;
-  border-radius: 12px;
-  background: transparent;
-  box-shadow: none;
-}
-
-.tab-button {
-  color: #8b92a3;
-}
-
-.tab-button.active {
-  color: var(--mint-dark);
-}
-
-.tab-button strong {
-  font-size: 10.5px;
-  font-weight: 650;
-}
-
-.tab-button.active strong {
-  font-weight: 800;
-}
-
-/* 하단 예약 높이 조정 (도킹 바 기준) */
-:root {
-  --bottom-nav-height: 64px;
-  --bottom-nav-offset: 0px;
-  --bottom-nav-reserve: calc(64px + max(8px, env(safe-area-inset-bottom)) + 10px);
-}
-
-/* --- 3. 섹션 페이지: 라지 타이틀 --- */
-.feature-window-head {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  margin-bottom: 10px;
-}
-
-#featureWindowClose {
-  width: 34px !important;
-  min-width: 34px !important;
-  height: 34px !important;
-  min-height: 34px !important;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  color: var(--mint-dark);
-}
-
-#featureWindowClose::before {
-  font-size: 24px;
-  font-weight: 800;
-}
-
-.feature-window-head h2 {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-/* --- 4. 표준 16px 거터 --- */
-#featureWindow {
-  padding-left: 16px !important;
-  padding-right: 16px !important;
-}
-
-@media (max-width: 430px) {
-  .topbar,
-  .progress-panel {
-    margin-inline: 16px;
-  }
-
-  .pet-care-grid {
-    margin-inline: 16px !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   iOS 패스 보정: 고정 요소를 앱 프레임 폭(430px)에 가둔다
-   데스크톱/태블릿에서 탭바·시트가 브라우저 전체 폭으로 퍼지던 문제
-   -------------------------------------------------------------------------- */
-.tab-bar,
-body.pwa-standalone .tab-bar,
-body.safari-browser .tab-bar {
-  left: 50% !important;
-  width: min(100vw, 430px);
-  transform: translateX(-50%);
-}
-
-.login-modal:not(.hidden),
-.profile-modal:not(.hidden),
-.proof-modal:not(.hidden),
-.quest-modal:not(.hidden),
-.notification-modal:not(.hidden) {
-  left: 50% !important;
-  right: auto !important;
-  width: min(100vw, 430px);
-  transform: translateX(-50%);
-}
-
-.profile-card,
-.quest-modal-card,
-.notification-card,
-.login-card,
-.group-gate-card {
-  width: min(100%, 430px) !important;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 홈 클린 배치
-   겹침·빈 공간 없는 정돈된 수직 리듬:
-   룸이 남는 세로 공간을 전부 흡수(flex) → 케어 행 → 미션 카드가
-   탭바 위까지 정확히 채워진다. 캡슐 오버랩은 제거(깔끔 우선).
-   -------------------------------------------------------------------------- */
-
-.pet-device {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: flex !important;
-  flex-direction: column;
-}
-
-.pixel-screen {
-  height: auto !important;
-  min-height: 280px;
-  flex: 1 1 auto;
-}
-
-/* 케어 행: 오버랩 제거, 정렬된 그리드로 룸 아래 배치 */
-.pet-care-grid {
-  flex: 0 0 auto;
-  margin: 12px 16px 0 !important;
-}
-
-.pet-care-grid .feed-row button,
-.pet-care-grid .care-actions button {
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
-    0 1px 3px rgba(35, 43, 54, 0.06),
-    0 8px 18px rgba(35, 43, 54, 0.08);
-}
-
-/* 미션 존: 케어 행 바로 아래, 하단 정렬 대신 자연 흐름 */
-.progress-panel {
-  flex: 0 0 auto;
-  margin: 10px 16px 4px !important;
-}
-
-/* HUD 칩: 더 타이트하게 */
-.pet-hud {
-  gap: 5px;
-}
-
-.hud-chip {
-  min-height: 24px;
-  padding: 3px 8px;
-  font-size: 11px;
-}
-
-/* --------------------------------------------------------------------------
-   Calm Pixel — 케어 존 여백 정렬
-   펫 행동 리스트가 가로 스크롤 플렉스(112px 고정폭)라 케어 행 그리드와
-   여백·정렬이 어긋났다. 같은 2열 그리드·같은 간격·같은 표면 언어로 통일.
-   -------------------------------------------------------------------------- */
-.pet-care-grid {
-  gap: 8px !important;
-}
-
-.pet-care-grid .pet-action-list,
-.pet-action-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0 !important;
-  padding: 0;
-  overflow: visible;
-}
-
-.pet-action-button {
-  flex: none;
-  width: 100%;
-  min-height: 56px;
-  padding: 9px 12px;
-  border: 1px solid rgba(35, 43, 54, 0.08);
-  border-radius: 16px;
-  background: var(--surface-strong);
-  box-shadow:
-    inset 0 1px 0 var(--edge-hl, rgba(255, 255, 255, 0.9)),
-    0 1px 3px rgba(35, 43, 54, 0.06),
-    0 8px 18px rgba(35, 43, 54, 0.08);
-}
-
-/* 카운트 칩(0/2)은 우상단 정렬 유지하되 표면 언어 통일 */
-.pet-action-button em {
-  border: 1px solid var(--soft-line);
-  background: var(--surface-soft);
-  color: var(--muted);
-  box-shadow: none;
-}
-
-/* ==========================================================================
-   Night Arcade — 다크 아트 디렉션
-   크림 파스텔의 밋밋함을 버린다. 깊은 차콜 네이비 위에서 픽셀 룸은
-   빛나는 창이 되고, 민트는 네온으로 깨어난다. 레트로 게임기의 문법.
-   ========================================================================== */
-
-:root {
-  --ink: #edf1f8;
-  --muted: #98a2b6;
-  --paper: #171c26;
-  --panel: #202634;
-  --app-bg: #171c26;
-  --surface: #202634;
-  --surface-strong: #202634;
-  --surface-soft: #28303f;
-  --surface-warm: #272c39;
-  --surface-cool: #242e40;
-  --mint: #36d6a3;
-  --mint-dark: #7dead0;
-  --accent-soft: rgba(54, 214, 163, 0.14);
-  --yellow: #f6b44e;
-  --amber-soft: rgba(246, 180, 78, 0.14);
-  --coral: #ff836b;
-  --coral-soft: rgba(255, 131, 107, 0.15);
-  --blue: #7fb2ea;
-  --soft-line: rgba(255, 255, 255, 0.09);
-  --ui-soft-border: rgba(255, 255, 255, 0.08);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 16px 38px rgba(0, 0, 0, 0.45);
-  --ui-soft-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 26px rgba(0, 0, 0, 0.35);
-  --edge-hl: rgba(255, 255, 255, 0.06);
-  --on-mint: #0b241a;
-  --amber-ink: #f4c983;
-  --coral-ink: #ff9f8b;
-  --tab-active-bg: rgba(54, 214, 163, 0.16);
-  --modal-bg: #202634;
-}
-
-/* 배경 질감: 다크 모눈 */
-body,
-#featureWindow {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1.1px);
-  background-color: var(--app-bg);
-}
-
-/* 유리 표면들 → 다크 글래스 */
-.hud-chip {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(23, 28, 38, 0.72);
-  color: var(--ink);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 3px 10px rgba(0, 0, 0, 0.4);
-}
-
-.hud-bar {
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.tab-bar,
-body.pwa-standalone .tab-bar,
-body.safari-browser .tab-bar {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(20, 25, 34, 0.88);
-  box-shadow: none;
-}
-
-.tab-button {
-  color: #7e879b;
-}
-
-.tab-button.active {
-  color: var(--mint);
-}
-
-/* 헤더 액션 */
-.top-actions .install-button,
-.top-actions .notify-button,
-.top-actions .icon-button,
-.top-actions .mini-action-button {
-  border-color: var(--soft-line);
-  background: var(--surface-strong);
-}
-
-.icon-button,
-.install-button {
-  color: var(--muted);
-}
-
-/* 퀘스트 카테고리 아이콘 배지: 파스텔 → 다크 의미 틴트 */
-.quest-list-icon,
-.quest-list-card:nth-child(3n + 2) .quest-list-icon,
-.quest-list-card:nth-child(3n) .quest-list-icon {
-  background: var(--surface-soft);
-  color: var(--mint);
-}
-
-.quest-list-card:nth-child(3n + 2) .quest-list-icon {
-  color: var(--blue);
-}
-
-.quest-list-card:nth-child(3n) .quest-list-icon {
-  color: var(--yellow);
-}
-
-/* 보상 칩: 다크 틴트 + 밝은 의미색 텍스트 */
-.reward-pill.xp {
-  background: rgba(127, 178, 234, 0.14);
-  color: var(--blue);
-}
-
-.reward-pill.coin {
-  background: var(--amber-soft);
-  color: var(--amber-ink);
-}
-
-.reward-pill.health {
-  background: var(--coral-soft);
-  color: var(--coral-ink);
-}
-
-.reward-pill.bond {
-  background: rgba(231, 123, 166, 0.16);
-  color: #f3a9c6;
-}
-
-/* 민트 CTA: 네온 위 딥그린 텍스트 (더 강한 대비) */
-.quest-list-action.request,
-.quest-list-actions .quest-list-action.request,
-.quest-action,
-.quest-open-primary,
-.profile-submit,
-.proof-approve,
-.solo-start-button,
-#pushEnableButton,
-.share-icon-button.share-icon-chat,
-.brag-actions #sharePetButton,
-.proof-camera-toolbar button:first-child {
-  color: var(--on-mint);
-  font-weight: 800;
-}
-
-/* 대기/완료 칩 텍스트 밝게 */
-.quest-list-action.waiting,
-.quest-list-actions .quest-list-action.waiting {
-  background: var(--amber-soft);
-  color: var(--amber-ink);
-  box-shadow: inset 0 0 0 1px rgba(246, 180, 78, 0.35);
-}
-
-.quest-list-action.done,
-.quest-list-actions .quest-list-action.done {
-  background: var(--surface-soft);
-  color: var(--mint-dark);
-}
-
-/* 인증 스티키 푸터: 흰 페이드 → 다크 페이드 */
-.proof-modal .proof-actions {
-  background: linear-gradient(rgba(32, 38, 52, 0), #202634 24%);
-}
-
-/* 우정 보상 행 배경 */
-.friend-reward-list > div,
-.level-reward-list > div {
-  background: var(--surface-soft);
-}
-
-.level-reward-list div {
-  background: var(--surface-soft);
-  color: var(--muted);
-}
-
-.level-reward-list div.unlocked {
-  background: var(--accent-soft);
-  color: var(--ink);
-}
-
-/* 출석 버튼(숨김 상태지만) · 열림 배너 흰 칩 */
-.mission-category.open .mission-category-head em,
-.mission-category.open .mission-category-head::after {
-  background: var(--surface-strong);
-}
-
-/* 게이트 요약/시트 그래버 */
-.gate-create-details {
-  background: var(--surface-warm);
-}
-
-.profile-card::before,
-.quest-modal-card::before,
-.notification-card::before,
-.login-card::before,
-.group-gate-card::before {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-/* 모달 배경 딤 */
-.login-modal,
-.profile-modal,
-.proof-modal,
-.quest-modal,
-.notification-modal {
-  background: rgba(8, 11, 17, 0.55);
-}
-
-/* 홈 미션 카드: 밝은 그라데이션 잔재 제거 */
-.home-mission-card {
-  background: var(--surface-strong);
-}
-
-.home-mission-card .label {
-  color: var(--mint);
-}
-
-/* 케어/행동 카운트, 채팅, 안내들 — 토큰이 처리하지만 명시 보정 */
-.attendance-button {
-  background: var(--amber-soft);
-  border-color: rgba(246, 180, 78, 0.4);
-  color: var(--amber-ink);
-}
-
-.pet-care-grid .feed-row button {
-  border-color: rgba(54, 214, 163, 0.35);
-  background: var(--accent-soft);
-}
-
-.pet-care-grid .feed-row button strong {
-  color: var(--mint-dark);
-}
-
-/* 픽셀 룸: 다크 UI 속 빛나는 창 — 테두리 미광 */
-.pixel-screen {
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 18px 44px rgba(0, 0, 0, 0.5);
-}
-
-/* Night Arcade 마감: 인풋·상점 잔재 */
-
-/* 전역 다크 인풋 (날짜/텍스트영역/셀렉트가 밝은 배경 + 밝은 글씨로 깨지던 것) */
-input,
-textarea,
-select {
-  background: var(--surface-soft);
-  color: var(--ink);
-  border-color: var(--soft-line);
-  color-scheme: dark;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--muted);
-}
-
-:root {
-  color-scheme: dark;
-}
-
-/* 상점: 받기 가능 행 — 라이트 그라데이션 → 네온 링 */
-.friend-reward-list > div.ready,
-.friend-reward-list .ready,
-.craft-card.ready {
-  background: var(--accent-soft);
-  border: 1px solid rgba(54, 214, 163, 0.4);
-  color: var(--ink);
-  box-shadow: 0 0 0 2px rgba(54, 214, 163, 0.15);
-}
-
-/* 남은 수 카운트 칩(비활성 버튼) */
-.friend-reward-list button:disabled,
-.level-reward-list button:disabled,
-.group-reward-card button:disabled {
-  background: var(--surface-soft);
-  border-color: var(--soft-line);
-  color: var(--muted);
-}
-
-/* 우정/레벨 헤더 배지 다크 틴트 */
-.friend-reward-head > span {
-  background: rgba(231, 123, 166, 0.18);
-  color: #f3a9c6;
-}
-
-.level-reward-head > span {
-  background: var(--amber-soft);
-  color: var(--amber-ink);
-}
-
-/* 받기 버튼(활성) 텍스트 대비 */
-.friend-reward-list .ready button:not(:disabled),
-.level-reward-list .ready button:not(:disabled),
-.group-reward-card.ready button:not(:disabled) {
-  color: var(--on-mint);
-}
-
-/* 인풋 다크 확정: base 레이어의 .profile-card input(흰 배경) 계열 제압 */
-.profile-card input,
-.profile-card textarea,
-.profile-card select,
-.quest-modal-card input,
-.quest-modal-card textarea,
-.notification-card input,
-.group-gate-card input,
-.group-gate-card textarea,
-.group-gate-card select,
-.login-card input,
-.room-join input,
-.daily-share-field textarea,
-#dailyShareNote {
-  background: var(--surface-soft) !important;
-  color: var(--ink) !important;
-  border-color: var(--soft-line) !important;
 }
