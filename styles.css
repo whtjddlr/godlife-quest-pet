@@ -13909,3 +13909,329 @@ a {
   width: 148px;
   scroll-snap-align: start;
 }
+
+/* ==========================================================================
+   MONGLE — 애플 소프트 패스 (몽글몽글)
+   잉크 보더 → 헤어라인/제거, 큰 라운드, 확산 그림자, 프레스는 스케일로.
+   픽셀 펫 아트(--line 픽셀 소품 포함)는 손대지 않는다.
+   ========================================================================== */
+:root {
+  --ui-card-radius: 20px;
+  --ui-control-radius: 14px;
+  --hairline: rgba(70, 60, 40, 0.1);
+  --mongle-card-shadow: 0 6px 16px rgba(70, 60, 40, 0.06);
+  --mongle-float-shadow: 0 10px 24px rgba(70, 60, 40, 0.1);
+  --mongle-green-shadow: 0 5px 14px rgba(88, 124, 38, 0.3);
+}
+
+/* 타이포: 페이지·섹션 제목은 프리텐다드로 (픽셀 폰트는 펫 이름판·HUD·탭 라벨만) */
+.feature-window-head h2,
+.section-title h2,
+.login-card h2,
+.group-gate-card h2,
+.quest-modal-head h2,
+.notification-card .section-title h2,
+.topbar h1,
+.mission-category-head strong {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 주요(그린) 버튼: 보더 없는 솔리드 + 그린 확산 섀도, 누르면 폭신하게 줄어듦 */
+.profile-submit,
+.quest-list-action.request,
+.quest-list-actions .quest-list-action.request,
+.quest-action,
+.quest-open-primary,
+.proof-approve,
+.solo-start-button,
+#pushEnableButton,
+.share-icon-button.share-icon-chat,
+.brag-actions #sharePetButton,
+.quick-share-card .quick-share-primary,
+.proof-camera-toolbar button:first-child,
+.template-actions button:last-child,
+.gacha-card button:not(:disabled) {
+  border: none;
+  border-radius: var(--ui-control-radius);
+  background: var(--mint);
+  color: #fff;
+  box-shadow: var(--mongle-green-shadow);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.profile-submit:active,
+.quest-list-action.request:active,
+.quest-list-actions .quest-list-action.request:active,
+.quest-action:active,
+.quest-open-primary:active,
+.proof-approve:active,
+.solo-start-button:active,
+#pushEnableButton:active,
+.share-icon-button.share-icon-chat:active,
+.brag-actions #sharePetButton:active,
+.quick-share-card .quick-share-primary:active,
+.proof-camera-toolbar button:first-child:active,
+.template-actions button:last-child:active,
+.gacha-card button:not(:disabled):active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(88, 124, 38, 0.24);
+}
+
+/* 보조(화이트) 버튼: 헤어라인 + 은은한 섀도 */
+.quest-list-actions .quest-list-detail,
+.quest-pager button,
+.quest-pager button:not(:disabled),
+.quest-share,
+.quest-edit,
+.quest-links .link-add,
+.quest-links .quest-link,
+.care-actions button,
+.care-actions button.within-limit,
+.room-actions button,
+.room-gate-join button,
+.member-mission-button,
+.member-poke-button,
+.verify-actions button,
+.notification-native-actions button,
+.routine-ai-tools button,
+.template-actions button,
+.message-presets button,
+.accessory-card button,
+.pet-card button,
+.proof-actions .ghost,
+.temptation-confirm-card .proof-actions .ghost,
+.proof-camera-toolbar button,
+.modal-close-button,
+.quest-modal-close,
+.profile-logout,
+.self-rule-stepper button,
+.friend-reward-list button,
+.level-reward-list button,
+.group-reward-card button,
+.share-icon-button,
+.quick-share-card button,
+.quick-share-card [data-external-share],
+.quick-share-card [data-save-share-image],
+.accessory-filter-bar button,
+.palette-option,
+#featureWindowClose {
+  border: 1px solid var(--hairline);
+  border-radius: var(--ui-control-radius);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(70, 60, 40, 0.05);
+  transition: transform 0.14s ease;
+}
+
+.quest-list-actions .quest-list-detail:active,
+.quest-pager button:active,
+.quest-share:active,
+.quest-edit:active,
+.care-actions button:active,
+.room-actions button:active,
+.member-mission-button:active,
+.member-poke-button:active,
+.verify-actions button:active,
+.template-actions button:active,
+.message-presets button:active,
+.accessory-card button:active,
+.pet-card button:active,
+.proof-actions .ghost:active,
+.proof-camera-toolbar button:active,
+.modal-close-button:active,
+.quest-modal-close:active,
+.profile-logout:active,
+.friend-reward-list button:active,
+.level-reward-list button:active,
+.group-reward-card button:active,
+.share-icon-button:active,
+.quick-share-card button:active,
+.accessory-filter-bar button:active,
+#featureWindowClose:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(70, 60, 40, 0.06);
+}
+
+/* 카드: 헤어라인 + 부드러운 부유감 */
+.quest-list-card,
+.quest-overview,
+.mission-category-head,
+.room-card,
+.room-card:not(.empty),
+#panel-verify .room-card:not(.empty),
+.room-card.room-effect-streak,
+.group-reward-card,
+.group-member-card,
+.brag-card,
+.friend-reward-card,
+.level-reward-card,
+.gacha-card,
+.quick-share-card,
+.notification-item,
+.achievement-card,
+.mission-open-card,
+.proof-card,
+.proof-empty,
+.quest-item {
+  border: 1px solid rgba(70, 60, 40, 0.07);
+  border-radius: var(--ui-card-radius);
+  background: #fff;
+  box-shadow: var(--mongle-card-shadow);
+}
+
+/* 다마고치 디바이스: 잉크 프레임 → 몽글한 셸 */
+.pet-device {
+  border: none;
+  border-radius: 28px;
+  box-shadow: var(--mongle-float-shadow);
+}
+
+.pixel-screen {
+  border: none;
+  border-radius: 20px;
+  box-shadow: inset 0 0 0 1px rgba(70, 60, 40, 0.08);
+}
+
+/* HUD 칩: 유리 알약 */
+.hud-chip {
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 2px 8px rgba(70, 60, 40, 0.14);
+}
+
+/* 케어 존: 밥주기·유흥·게임·행동 칩 전부 몽글 */
+.pet-care-grid .feed-row button,
+.pet-care-grid.has-actions .feed-row button {
+  border: none;
+  border-radius: 16px;
+  background: #e9efcf;
+  box-shadow: 0 4px 12px rgba(88, 124, 38, 0.16);
+  transition: transform 0.14s ease;
+}
+
+.pet-care-grid .feed-row button:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 6px rgba(88, 124, 38, 0.14);
+}
+
+.care-actions button,
+.care-actions button.within-limit,
+.care-actions button.limit-reached {
+  border-radius: 16px;
+}
+
+.care-actions button.limit-reached {
+  border: 1px solid rgba(217, 152, 46, 0.35);
+}
+
+.pet-action-button,
+.pet-care-grid.has-actions .pet-action-button,
+.pet-care-grid.has-many-actions .pet-action-button {
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(70, 60, 40, 0.05);
+  transition: transform 0.14s ease;
+}
+
+.pet-action-button:active {
+  transform: scale(0.96);
+}
+
+.pet-action-button em {
+  border: none;
+  border-radius: 999px;
+  background: var(--surface-soft);
+}
+
+.pet-action-button.done em,
+.pet-action-button:disabled em {
+  border: none;
+  background: var(--accent-soft);
+}
+
+/* 홈 미션 카드: 카트리지 → 몽글 카드 + 민트 인디케이터 */
+.home-mission-card {
+  border: none;
+  border-left: 6px solid var(--mint);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--mongle-card-shadow);
+  transition: transform 0.14s ease;
+}
+
+.home-mission-card:active {
+  transform: scale(0.985);
+  box-shadow: var(--mongle-card-shadow);
+}
+
+.home-mission-card::after {
+  border: none;
+  box-shadow: 0 4px 10px rgba(88, 124, 38, 0.3);
+  color: #fff;
+}
+
+/* 탭바: iOS 독 — 헤어라인 위 블러, 활성은 민트 틴트 알약 */
+.tab-bar {
+  border-top: 1px solid rgba(70, 60, 40, 0.08);
+  background: rgba(250, 250, 245, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.tab-button.active {
+  border-color: transparent;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  box-shadow: none;
+}
+
+.tab-button:active {
+  transform: scale(0.94);
+}
+
+/* 바텀 시트: 보더 제거 + 큰 라운드 + 깊은 부유감 */
+.profile-card,
+.quest-modal-card,
+.notification-card,
+.login-card,
+.group-gate-card {
+  border: none;
+  border-radius: 26px 26px 0 0;
+  box-shadow: 0 -10px 34px rgba(70, 60, 40, 0.16);
+}
+
+/* 인풋: 얇은 헤어라인 + 라운드 */
+input,
+textarea,
+select {
+  border: 1.5px solid rgba(70, 60, 40, 0.12);
+  border-radius: 14px;
+  background: #fff;
+}
+
+/* 보상 팝·기타 배지 */
+.reward-pop {
+  border: none;
+  box-shadow: 0 4px 12px rgba(154, 106, 20, 0.28);
+}
+
+.wake-wheel-column button.active {
+  border: none;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(70, 60, 40, 0.12);
+}
+
+/* 상단 아이콘 버튼(설치/알림/설정): 몽글 원형 */
+.top-actions button,
+.top-actions .icon-button,
+.top-actions .notify-button {
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(70, 60, 40, 0.06);
+}
