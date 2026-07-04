@@ -12277,16 +12277,16 @@ body.feature-window-open .content-area .panel.active {
 /* --- 1. 토큰 --- */
 :root {
   --ink: #463c28;
-  --muted: #857c66;
-  --paper: #efece3;
-  --panel: #fbf9f1;
-  --app-bg: #efece3;
-  --surface: #fbf9f1;
-  --surface-strong: #fbf9f1;
-  --surface-soft: #e9e5d7;
-  --surface-warm: #f3f0e6;
-  --surface-cool: #e6e2d5;
-  --bezel: #ddd8c8;
+  --muted: #82806f;
+  --paper: #efefe9;
+  --panel: #fcfcf7;
+  --app-bg: #efefe9;
+  --surface: #fcfcf7;
+  --surface-strong: #fcfcf7;
+  --surface-soft: #e8e8de;
+  --surface-warm: #f4f4ec;
+  --surface-cool: #e5e6dd;
+  --bezel: #dcdcd0;
   --mint: #7aa23e;            /* GB 리프 그린 (기존 변수명 유지) */
   --mint-dark: #587c26;
   --on-mint: #223510;
@@ -12325,7 +12325,7 @@ body {
   letter-spacing: -0.005em;
   color: var(--ink);
   background-color: var(--app-bg);
-  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
+  background-image: radial-gradient(rgba(62, 62, 50, 0.06) 1px, transparent 1.15px);
   background-size: 20px 20px;
 }
 
@@ -12342,7 +12342,7 @@ input,
 textarea,
 select {
   border: 2px solid var(--soft-line);
-  background: #fefdf8;
+  background: #fdfdf9;
   color: var(--ink);
   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
@@ -12466,7 +12466,7 @@ textarea::placeholder {
 .palette-option {
   border: 2px solid var(--soft-line);
   border-radius: var(--ui-control-radius);
-  background: #fefdf8;
+  background: #fdfdf9;
   color: var(--ink);
   box-shadow: var(--hard-soft);
 }
@@ -12620,7 +12620,7 @@ body.safari-browser .tab-bar {
   border: none;
   border-top: 2px solid var(--soft-line);
   border-radius: 0;
-  background: #e9e5d8;
+  background: #e9e9e0;
   box-shadow: none;
 }
 
@@ -12636,7 +12636,7 @@ body.feature-window-open .tab-bar {
   border-radius: 12px;
   background: transparent;
   box-shadow: none;
-  color: #918a76;
+  color: #8f8d7c;
   font-weight: 650;
 }
 
@@ -12670,7 +12670,7 @@ body.feature-window-open .tab-bar {
   padding: max(10px, env(safe-area-inset-top)) 16px var(--bottom-nav-reserve) !important;
   border: none;
   border-radius: 0;
-  background-color: #f4f2eb;
+  background-color: #f4f4ef;
   background-image: none;
   box-shadow: none;
   backdrop-filter: none;
@@ -12684,7 +12684,7 @@ body.feature-window-open.safari-browser .content-area.open {
   padding: max(10px, env(safe-area-inset-top)) 16px var(--bottom-nav-reserve) !important;
   border: 0;
   border-radius: 0;
-  background-color: #f4f2eb;
+  background-color: #f4f4ef;
   background-image: none;
   box-shadow: none;
 }
@@ -12900,7 +12900,7 @@ body.safari-browser .phone-frame {
   padding: 6px 46px 6px 10px;
   border: 2px solid var(--soft-line);
   border-radius: 10px;
-  background: #fefdf8;
+  background: #fdfdf9;
   box-shadow: var(--hard-soft);
 }
 
@@ -13225,7 +13225,7 @@ body.feature-window-open .mission-category-head span {
 .level-reward-list div {
   border: 2px solid var(--soft-line);
   border-radius: 12px;
-  background: #fefdf8;
+  background: #fdfdf9;
   color: var(--muted);
   box-shadow: none;
 }
@@ -13289,7 +13289,7 @@ body.feature-window-open .mission-category-head span {
 .quick-share-actions, .brag-actions { display: flex; justify-content: flex-end; gap: 6px; }
 .quick-share-card .share-icon-button::before, .brag-actions .share-icon-button::before { width: 15px; height: 15px; flex: 0 0 auto; }
 .quick-share-card .quick-share-primary, .brag-actions #sharePetButton { background: var(--mint); color: var(--on-mint); }
-.quick-share-card [data-external-share], .brag-actions [data-external-share], .quick-share-card [data-save-share-image], .brag-actions [data-save-share-image] { background: #fefdf8; color: var(--muted); }
+.quick-share-card [data-external-share], .brag-actions [data-external-share], .quick-share-card [data-save-share-image], .brag-actions [data-save-share-image] { background: #fdfdf9; color: var(--muted); }
 
 .notification-icon {
   border: 2px solid var(--soft-line);
@@ -13462,7 +13462,7 @@ body.feature-window-open .mission-category-head span {
 /* 채팅/기타 */
 .chat-bubble {
   border: 2px solid var(--soft-line);
-  background: #fefdf8;
+  background: #fdfdf9;
   box-shadow: none;
 }
 
@@ -13648,7 +13648,7 @@ a {
 
 .care-actions button.within-limit,
 .care-actions button.limit-reached {
-  background: #fefdf8;
+  background: #fdfdf9;
   border-color: var(--soft-line);
 }
 
@@ -13723,7 +13723,7 @@ a {
 .quick-share-card [data-external-share],
 .quick-share-card [data-save-share-image] {
   border: 2px solid var(--soft-line);
-  background: #fefdf8;
+  background: #fdfdf9;
   color: var(--muted);
   box-shadow: var(--hard-soft);
 }
