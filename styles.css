@@ -14235,3 +14235,89 @@ select {
   background: #fff;
   box-shadow: 0 2px 8px rgba(70, 60, 40, 0.06);
 }
+
+/* ==========================================================================
+   MONGLE 폴리시 — 전환에서 빠진 잉크 잔재 요소들을 소프트하게 통일
+   ========================================================================== */
+/* 그룹 방 코드 칩: 잉크 보더 + 하드 섀도 → 소프트 민트 알약 */
+.room-code-chip,
+#panel-verify .room-code-chip {
+  border: none;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+/* 알림함 아이콘: 잉크 사각형 → 소프트 틴트 라운드 */
+.notification-icon {
+  border: none;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+  box-shadow: none;
+}
+
+.notification-item.read .notification-icon {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+/* 상태 칩(진행/읽음/완료·알림 배지): 테두리 필 → 무보더 소프트 알약 */
+.notification-item strong em,
+.achievement-card em {
+  border: none;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.notification-item.unread strong em,
+.achievement-card.unlocked em {
+  border: none;
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* 소식 업적 아이콘: 탁한 회보라 원 → 온-브랜드 소프트 민트 */
+.achievement-card::before {
+  background: var(--accent-soft);
+  color: var(--mint-dark);
+}
+
+/* 업적 달성 상태: 노랑-핑크 그라데이션 → 그린 온-브랜드 */
+.achievement-card.unlocked {
+  background: var(--mint);
+  color: #fff;
+}
+
+.achievement-card.unlocked::before {
+  background: rgba(255, 255, 255, 0.24);
+  color: #fff;
+}
+
+/* 그룹원 상태 바: 잉크 보더 잔재 제거 + 소프트 트랙 */
+.group-member-bars span {
+  border: none;
+  border-radius: 999px;
+  background: rgba(70, 60, 40, 0.1);
+}
+
+/* 진행 트랙(그룹 보상 등) 소프트화 마감 */
+.group-reward-track,
+.progress-track {
+  border: none;
+}
+
+/* 한마디 입력창: 2px 잉크 + 노란 포커스 글로우 → 소프트 헤어라인 + 민트 포커스 */
+.daily-share-field textarea {
+  border: 1.5px solid rgba(70, 60, 40, 0.12);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.daily-share-field textarea:focus {
+  border-color: var(--mint-dark);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
