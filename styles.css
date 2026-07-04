@@ -13734,3 +13734,19 @@ a {
   background: var(--surface-soft);
   color: var(--muted);
 }
+
+/* ==========================================================================
+   PIXEL COZY — 겹침 수정: 보상 팝은 HUD 아래로, 선반 소품은 정리
+   ========================================================================== */
+/* 밥주기·행동 버튼 보상 팝이 HUD 칩 뒤에 겹쳐 뜨던 것 → HUD(top10+높이) 아래 */
+.reward-pop {
+  top: 54px;
+  z-index: 6;
+}
+
+/* 하우스 티어 3+ 벽 선반: HUD 바로 밑에서 떠 있는 막대처럼 읽혀 UI가 깨져 보임 */
+.pet-room[data-house-tier="3"] .pixel-shelf,
+.pet-room[data-house-tier="4"] .pixel-shelf,
+.pixel-shelf {
+  display: none !important;
+}
