@@ -13837,3 +13837,46 @@ a {
 .pet-action-list {
   gap: 6px;
 }
+
+/* ==========================================================================
+   PIXEL COZY — 케어 존 버튼 크기 통일 (6열 등분 그리드)
+   윗줄: 밥주기/유흥/게임 = 각 2칸(3등분, 동일 크기)
+   행동 칩: display:contents로 비대칭 컬럼에 흘러들던 것 → 전용 2등분 그리드
+   ========================================================================== */
+.pet-care-grid,
+.pet-care-grid.has-actions,
+.pet-care-grid.has-many-actions,
+.pet-care-grid.has-actions[data-action-count="1"],
+.pet-care-grid.has-actions[data-action-count="2"] {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.pet-care-grid .feed-row,
+.pet-care-grid.has-actions .feed-row {
+  grid-column: span 2;
+}
+
+.pet-care-grid .care-actions,
+.pet-care-grid.has-actions .care-actions {
+  display: contents;
+}
+
+.pet-care-grid .care-actions button {
+  grid-column: span 2;
+  min-height: 52px;
+}
+
+.pet-care-grid .feed-row button,
+.pet-care-grid.has-actions .feed-row button {
+  min-height: 52px !important;
+}
+
+.pet-care-grid .pet-action-list,
+.pet-care-grid.has-actions .pet-action-list,
+.pet-care-grid.has-many-actions .pet-action-list {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  min-width: 0;
+}
