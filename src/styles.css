@@ -12277,16 +12277,16 @@ body.feature-window-open .content-area .panel.active {
 /* --- 1. 토큰 --- */
 :root {
   --ink: #463c28;
-  --muted: #8a7a58;
-  --paper: #f2e7d0;
-  --panel: #fbf5e6;
-  --app-bg: #f2e7d0;
-  --surface: #fbf5e6;
-  --surface-strong: #fbf5e6;
-  --surface-soft: #efe4c8;
-  --surface-warm: #f6ecd6;
-  --surface-cool: #eae2cc;
-  --bezel: #e3d6b6;
+  --muted: #857c66;
+  --paper: #efece3;
+  --panel: #fbf9f1;
+  --app-bg: #efece3;
+  --surface: #fbf9f1;
+  --surface-strong: #fbf9f1;
+  --surface-soft: #e9e5d7;
+  --surface-warm: #f3f0e6;
+  --surface-cool: #e6e2d5;
+  --bezel: #ddd8c8;
   --mint: #7aa23e;            /* GB 리프 그린 (기존 변수명 유지) */
   --mint-dark: #587c26;
   --on-mint: #223510;
@@ -12342,7 +12342,7 @@ input,
 textarea,
 select {
   border: 2px solid var(--soft-line);
-  background: #fffdf4;
+  background: #fefdf8;
   color: var(--ink);
   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
@@ -12466,7 +12466,7 @@ textarea::placeholder {
 .palette-option {
   border: 2px solid var(--soft-line);
   border-radius: var(--ui-control-radius);
-  background: #fffdf4;
+  background: #fefdf8;
   color: var(--ink);
   box-shadow: var(--hard-soft);
 }
@@ -12620,7 +12620,7 @@ body.safari-browser .tab-bar {
   border: none;
   border-top: 2px solid var(--soft-line);
   border-radius: 0;
-  background: #ece0c4;
+  background: #e9e5d8;
   box-shadow: none;
 }
 
@@ -12636,7 +12636,7 @@ body.feature-window-open .tab-bar {
   border-radius: 12px;
   background: transparent;
   box-shadow: none;
-  color: #9a8b68;
+  color: #918a76;
   font-weight: 650;
 }
 
@@ -12666,13 +12666,12 @@ body.feature-window-open .tab-bar {
   top: 0;
   left: 0;
   right: 0;
-  bottom: calc(var(--bottom-nav-reserve) - 8px);
-  padding: max(10px, env(safe-area-inset-top)) 16px 8px !important;
+  bottom: 0;
+  padding: max(10px, env(safe-area-inset-top)) 16px var(--bottom-nav-reserve) !important;
   border: none;
   border-radius: 0;
-  background-color: var(--app-bg);
-  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
-  background-size: 20px 20px;
+  background-color: #f4f2eb;
+  background-image: none;
   box-shadow: none;
   backdrop-filter: none;
   z-index: 20;
@@ -12681,13 +12680,12 @@ body.feature-window-open .tab-bar {
 body.feature-window-open .content-area.open,
 body.feature-window-open.pwa-standalone .content-area.open,
 body.feature-window-open.safari-browser .content-area.open {
-  inset: 0 0 calc(var(--bottom-nav-reserve) - 8px) 0 !important;
-  padding: max(10px, env(safe-area-inset-top)) 16px 8px !important;
+  inset: 0 !important;
+  padding: max(10px, env(safe-area-inset-top)) 16px var(--bottom-nav-reserve) !important;
   border: 0;
   border-radius: 0;
-  background-color: var(--app-bg);
-  background-image: radial-gradient(rgba(70, 60, 40, 0.07) 1px, transparent 1.15px);
-  background-size: 20px 20px;
+  background-color: #f4f2eb;
+  background-image: none;
   box-shadow: none;
 }
 
@@ -12696,7 +12694,9 @@ body.feature-window-open.safari-browser .content-area.open {
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  margin-bottom: 10px;
+  margin: 0 -16px 12px;
+  padding: 0 16px 10px;
+  border-bottom: 2px solid var(--soft-line);
 }
 
 .feature-window-head .label,
@@ -12894,18 +12894,56 @@ body.safari-browser .phone-frame {
 .pet-action-button {
   flex: none;
   width: 100%;
-  min-height: 54px;
+  min-height: 42px;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 7px;
+  padding: 6px 46px 6px 10px;
   border: 2px solid var(--soft-line);
-  border-radius: 12px;
-  background: #fffdf4;
+  border-radius: 10px;
+  background: #fefdf8;
   box-shadow: var(--hard-soft);
 }
 
+.pet-action-icon,
+.pet-action-button .pet-action-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--mint-dark);
+}
+
+.pet-action-icon::before {
+  width: 15px;
+  height: 15px;
+}
+
+.pet-action-button.done .pet-action-icon,
+.pet-action-button:disabled .pet-action-icon {
+  color: var(--muted);
+}
+
+.pet-action-button strong {
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.pet-action-button small {
+  margin-top: 2px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
 .pet-action-button em {
-  border: 2px solid var(--soft-line);
-  border-radius: 8px;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 3px 7px;
+  border: 1.5px solid var(--soft-line);
+  border-radius: 7px;
   background: var(--surface-soft);
   color: var(--muted);
+  font-size: 9px;
   box-shadow: none;
 }
 
@@ -13187,7 +13225,7 @@ body.feature-window-open .mission-category-head span {
 .level-reward-list div {
   border: 2px solid var(--soft-line);
   border-radius: 12px;
-  background: #fffdf4;
+  background: #fefdf8;
   color: var(--muted);
   box-shadow: none;
 }
@@ -13251,7 +13289,7 @@ body.feature-window-open .mission-category-head span {
 .quick-share-actions, .brag-actions { display: flex; justify-content: flex-end; gap: 6px; }
 .quick-share-card .share-icon-button::before, .brag-actions .share-icon-button::before { width: 15px; height: 15px; flex: 0 0 auto; }
 .quick-share-card .quick-share-primary, .brag-actions #sharePetButton { background: var(--mint); color: var(--on-mint); }
-.quick-share-card [data-external-share], .brag-actions [data-external-share], .quick-share-card [data-save-share-image], .brag-actions [data-save-share-image] { background: #fffdf4; color: var(--muted); }
+.quick-share-card [data-external-share], .brag-actions [data-external-share], .quick-share-card [data-save-share-image], .brag-actions [data-save-share-image] { background: #fefdf8; color: var(--muted); }
 
 .notification-icon {
   border: 2px solid var(--soft-line);
@@ -13424,7 +13462,7 @@ body.feature-window-open .mission-category-head span {
 /* 채팅/기타 */
 .chat-bubble {
   border: 2px solid var(--soft-line);
-  background: #fffdf4;
+  background: #fefdf8;
   box-shadow: none;
 }
 
@@ -13610,7 +13648,7 @@ a {
 
 .care-actions button.within-limit,
 .care-actions button.limit-reached {
-  background: #fffdf4;
+  background: #fefdf8;
   border-color: var(--soft-line);
 }
 
@@ -13685,7 +13723,7 @@ a {
 .quick-share-card [data-external-share],
 .quick-share-card [data-save-share-image] {
   border: 2px solid var(--soft-line);
-  background: #fffdf4;
+  background: #fefdf8;
   color: var(--muted);
   box-shadow: var(--hard-soft);
 }
